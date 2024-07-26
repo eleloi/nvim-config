@@ -29,6 +29,12 @@ local keys = {
 		mode = "n",
 	},
 	{
+		'<leader>f"',
+		"<CMD>Telescope registers<CR>",
+		desc = "Registers",
+		mode = "n",
+	},
+	{
 		"<leader>fG",
 		"<CMD>Telescope git_status layout_strategy=vertical<CR>",
 		desc = "Git status",
