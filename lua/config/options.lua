@@ -80,7 +80,7 @@ vim.keymap.set("n", "<leader>o", "<CMD>only<CR>")
 vim.keymap.set("n", "<C-s>", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<left><left><left>")
 
 -- exit terminal mode
-vim.keymap.set("t", "<C-space>", "<C-\\><C-n>")
+vim.keymap.set("t", "<ESC>", "<C-\\><C-n>")
 vim.keymap.set("t", "<A-e>", "<C-\\><C-n>")
 
 -- yank buffer
