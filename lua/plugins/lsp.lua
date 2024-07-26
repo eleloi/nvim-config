@@ -49,6 +49,7 @@ return {
 			lspconfig.golangci_lint_ls.setup({ on_attach = on_attach })
 			lspconfig.typst_lsp.setup({ on_attach = on_attach, filetypes = { "typst", "typ" } })
 			lspconfig.astro.setup({ on_attach = on_attach })
+			lspconfig.bashls.setup({ on_attach = on_attach })
 			vim.g.astro_typescript = "enable"
 			lspconfig.tsserver.setup({
 				on_attach = on_attach,
