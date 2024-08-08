@@ -17,6 +17,12 @@ local keys = {
 		mode = "n",
 	},
 	{
+		"<leader>fe",
+		"<CMD>Telescope emoji<CR>",
+		desc = "😄 Emoji",
+		mode = "n",
+	},
+	{
 		"<leader>fg",
 		"<CMD>Telescope egrepify theme=get_ivy<CR>",
 		desc = "Grep",
@@ -179,6 +185,7 @@ return {
 		"nvim-telescope/telescope-media-files.nvim",
 		"nvim-telescope/telescope-ui-select.nvim",
 		"nvim-telescope/telescope.nvim",
+		"xiyaowong/telescope-emoji.nvim",
 		"piersolenski/telescope-import.nvim",
 		"stevearc/aerial.nvim",
 		"debugloop/telescope-undo.nvim",
@@ -188,19 +195,6 @@ return {
 	config = function()
 		local actions = require("telescope.actions")
 		local action_layout = require("telescope.actions.layout")
-
-		require("telescope").load_extension("file_browser")
-		require("telescope").load_extension("media_files")
-		require("telescope").load_extension("zf-native")
-		require("telescope").load_extension("adjacent")
-		require("telescope").load_extension("import")
-		require("telescope").load_extension("egrepify")
-		require("telescope").load_extension("aerial")
-		require("telescope").load_extension("grapple")
-		require("telescope").load_extension("ui-select")
-		require("telescope").load_extension("undo")
-
-		require("aerial").setup()
 
 		require("telescope").setup({
 			defaults = {
@@ -239,24 +233,20 @@ return {
 						["<C-n>"] = "move_selection_next",
 						["<M-p>"] = action_layout.toggle_preview,
 						["<M-m>"] = action_layout.toggle_mirror,
-
-						-- ["<M-p>"] = action_layout.toggle_prompt_position,
-
-						-- ["<M-m>"] = actions.master_stack,
-
-						-- ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-						-- ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-
-						-- This is nicer when used with smart-history plugin.
 						["<C-k>"] = actions.cycle_history_next,
 						["<C-j>"] = actions.cycle_history_prev,
 					},
 				},
-				extensions = {
-					fzy_native = {
-						override_generic_sorter = true,
-						override_file_sorter = true,
-					},
+			},
+			extensions = {
+				fzy_native = {
+					override_generic_sorter = true,
+					override_file_sorter = true,
+				},
+				emoji = {
+					action = function(emoji)
+						vim.api.nvim_put({ emoji.value }, "c", false, true)
+					end,
 				},
 			},
 			pickers = {
@@ -265,5 +255,18 @@ return {
 				},
 			},
 		})
+		require("telescope").load_extension("file_browser")
+		require("telescope").load_extension("media_files")
+		require("telescope").load_extension("zf-native")
+		require("telescope").load_extension("adjacent")
+		require("telescope").load_extension("import")
+		require("telescope").load_extension("egrepify")
+		require("telescope").load_extension("aerial")
+		require("telescope").load_extension("grapple")
+		require("telescope").load_extension("ui-select")
+		require("telescope").load_extension("undo")
+		require("telescope").load_extension("emoji")
+
+		require("aerial").setup()
 	end,
 }
