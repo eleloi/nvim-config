@@ -49,7 +49,7 @@ local keys = {
 	{
 		"<leader>st",
 		"<CMD>Telescope grapple tags<CR>",
-		desc = "File browser",
+		desc = "Grapple tags",
 		mode = "n",
 	},
 	{
@@ -181,7 +181,6 @@ return {
 		"nvim-lua/plenary.nvim",
 		"nvim-lua/plenary.nvim",
 		"nvim-lua/popup.nvim",
-		"nvim-telescope/telescope-file-browser.nvim",
 		"nvim-telescope/telescope-media-files.nvim",
 		"nvim-telescope/telescope-ui-select.nvim",
 		"nvim-telescope/telescope.nvim",
@@ -255,7 +254,6 @@ return {
 				},
 			},
 		})
-		require("telescope").load_extension("file_browser")
 		require("telescope").load_extension("media_files")
 		require("telescope").load_extension("zf-native")
 		require("telescope").load_extension("adjacent")
