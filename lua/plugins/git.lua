@@ -1,9 +1,22 @@
+-- "tpope/vim-fugitive": Fugitive don't need explanation
+--
+-- "sindrets/diffview.nvim": A global view of git diff, alternative to fuggitive,
+-- I don't be convinced yet.
+--
+-- "lewis6991/gitsigns.nvim": Plugin for displaying Git signs like added,
+-- modified , and removed lines in the sign column.
+--
+-- "junegunn/gv.vim": Git commit browser, GV! view the commits affecting
+-- current file, GV? view in quickfix list
+--
+-- "rbong/vim-flog": Git branch viewer like git graph
+
 return {
 	{
+		"sindrets/diffview.nvim",
 		keys = {
 			{ "<leader>gd", ":DiffviewOpen<cr>", desc = "Diffview" },
 		},
-		"sindrets/diffview.nvim",
 	},
 	{
 		"tpope/vim-fugitive",

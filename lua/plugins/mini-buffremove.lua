@@ -1,3 +1,5 @@
+-- remove buffer without killing window
+
 local function delete_buffers_but_current()
 	local bufs = vim.api.nvim_list_bufs()
 	local current_buf = vim.api.nvim_get_current_buf()

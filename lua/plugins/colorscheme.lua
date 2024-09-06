@@ -1,3 +1,4 @@
+-- Manages color schemes
 return {
 	{
 		"vague2k/huez.nvim",

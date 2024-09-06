@@ -1,3 +1,5 @@
+-- Funny things, <leader>x...
+
 return {
 	{
 		"tamton-aquib/duck.nvim",

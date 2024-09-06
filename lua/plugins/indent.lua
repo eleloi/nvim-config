@@ -1,3 +1,5 @@
+-- Draws a vertical line at each indentation level
+
 return {
 	"echasnovski/mini.indentscope",
 	version = "*",
@@ -6,14 +8,4 @@ return {
 	opts = {
 		symbol = "▏",
 	},
-	-- default mappings
-	-- mappings = {
-	--     -- Textobjects
-	--     object_scope = 'ii',
-	--     object_scope_with_border = 'ai',
-	--
-	--     -- Motions (jump to respective border line; if not present - body line)
-	--     goto_top = '[i',
-	--     goto_bottom = ']i',
-	-- },,
 }

@@ -1,3 +1,5 @@
+-- View notifications less invasively
+
 return {
 	"j-hui/fidget.nvim",
 	event = "VeryLazy",

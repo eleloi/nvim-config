@@ -1,4 +1,18 @@
 return {
+
+	-- **Bryley/neoai.nvim:** - This plugin provides AI-powered features for
+	-- Neovim, such as summarizing text and generating Git messages. It has
+	-- command mappings and configuration options for setup.
+	--
+	-- **Exafunction/codeium.vim:** - This plugin enables Codeium, a code and
+	-- snippet completion tool, in Neovim. It has key mappings for
+	-- enabling/disabling Codeium, accepting completions, cycling through
+	-- completions, and clearing Codeium.
+	--
+	-- **piersolenski/wtf.nvim:** - This plugin integrates AI diagnostics and
+	-- Google searches within Neovim. It offers commands for debugging diagnostics
+	-- with AI and searching diagnostics with Google.
+
 	{
 		"Bryley/neoai.nvim",
 		dependencies = {

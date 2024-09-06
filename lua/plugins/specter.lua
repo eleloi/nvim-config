@@ -1,5 +1,7 @@
+-- Find and repalce in all workspace
+
 return {
 	"nvim-pack/nvim-spectre",
-	event = "VeryLazy",
 	config = true,
+	cmd = { "Spectre" },
 }

@@ -1,3 +1,5 @@
+-- manages automating pairing of (), [], {}, '', etc
+
 return {
 	"echasnovski/mini.pairs",
 	version = "*",

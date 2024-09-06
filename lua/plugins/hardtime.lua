@@ -1,3 +1,5 @@
+-- Plugin to help you stop repeating the basic movement keys
+
 local function enable()
 	vim.g.hardtime_enabled = true
 	require("hardtime").enable()

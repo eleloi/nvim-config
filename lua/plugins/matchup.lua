@@ -1,3 +1,6 @@
+-- It extends vim's % key to language-specific words instead of just single
+-- characters.
+
 local function setMatchParen()
 	vim.cmd.hi("MatchWordCur guifg=nil, guibg=nil")
 	vim.cmd.hi("MatchWord guifg=red guibg=black")

@@ -1,3 +1,5 @@
+-- Refactoring plugin, works in visual mode
+
 return {
 	"ThePrimeagen/refactoring.nvim",
 	dependencies = {

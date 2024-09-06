@@ -1,3 +1,5 @@
+-- Zen mode and center mode
+
 return {
 	{
 		"folke/zen-mode.nvim",

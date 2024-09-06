@@ -1,3 +1,5 @@
+-- Grapple is like harpoon, to tag files
+
 local keys = {}
 local binds = 9
 

@@ -1,3 +1,5 @@
+-- Open "other" related file, ti works fine in go
+
 return {
 	"rgroli/other.nvim",
 	event = "VeryLazy",

@@ -1,3 +1,4 @@
+-- View colors in certain files
 return {
 	"norcalli/nvim-colorizer.lua",
 	event = "VeryLazy",

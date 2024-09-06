@@ -1,3 +1,5 @@
+-- A Neovim plugin that provides an explanation for regular expressions.
+
 return {
 	"tomiis4/Hypersonic.nvim",
 	cmd = "Hypersonic",

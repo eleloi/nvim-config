@@ -1,3 +1,5 @@
+-- Split and join items, very usefull
+
 return {
 	"echasnovski/mini.splitjoin",
 	version = "*",

@@ -1,3 +1,5 @@
+-- Undo tree viewer
+
 return {
 	{
 		"mbbill/undotree",
