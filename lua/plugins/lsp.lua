@@ -133,6 +133,7 @@ return {
 		"ray-x/lsp_signature.nvim",
 		event = "VeryLazy",
 		config = {
+			floating_window = false,
 			transparency = 30,
 			toggle_key = "<C-s>",
 			toggle_key_flip_floatwin_setting = true,
