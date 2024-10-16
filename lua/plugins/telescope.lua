@@ -177,13 +177,16 @@ return {
 		"MaximilianLloyd/adjacent.nvim",
 		"cbochs/grapple.nvim",
 		"fdschmidt93/telescope-egrepify.nvim",
-		"natecraddock/telescope-zf-native.nvim",
 		"nvim-lua/plenary.nvim",
 		"nvim-lua/plenary.nvim",
 		"nvim-lua/popup.nvim",
 		"nvim-telescope/telescope-media-files.nvim",
 		"nvim-telescope/telescope-ui-select.nvim",
 		"nvim-telescope/telescope.nvim",
+		{
+			"nvim-telescope/telescope-fzf-native.nvim",
+			build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release'
+		},
 		"xiyaowong/telescope-emoji.nvim",
 		"piersolenski/telescope-import.nvim",
 		"stevearc/aerial.nvim",
@@ -255,7 +258,6 @@ return {
 			},
 		})
 		require("telescope").load_extension("media_files")
-		require("telescope").load_extension("zf-native")
 		require("telescope").load_extension("adjacent")
 		require("telescope").load_extension("import")
 		require("telescope").load_extension("egrepify")
@@ -264,6 +266,7 @@ return {
 		require("telescope").load_extension("ui-select")
 		require("telescope").load_extension("undo")
 		require("telescope").load_extension("emoji")
+		require("telescope").load_extension("fzf")
 
 		require("aerial").setup()
 	end,
