@@ -1,9 +1,5 @@
 return {
 
-	-- **Bryley/neoai.nvim:** - This plugin provides AI-powered features for
-	-- Neovim, such as summarizing text and generating Git messages. It has
-	-- command mappings and configuration options for setup.
-	--
 	-- **Exafunction/codeium.vim:** - This plugin enables Codeium, a code and
 	-- snippet completion tool, in Neovim. It has key mappings for
 	-- enabling/disabling Codeium, accepting completions, cycling through
@@ -13,34 +9,6 @@ return {
 	-- Google searches within Neovim. It offers commands for debugging diagnostics
 	-- with AI and searching diagnostics with Google.
 
-	{
-		"Bryley/neoai.nvim",
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-		},
-		cmd = {
-			"NeoAI",
-			"NeoAIOpen",
-			"NeoAIClose",
-			"NeoAIToggle",
-			"NeoAIContext",
-			"NeoAIContextOpen",
-			"NeoAIContextClose",
-			"NeoAIInject",
-			"NeoAIInjectCode",
-			"NeoAIInjectContext",
-			"NeoAIInjectContextCode",
-		},
-		keys = {
-			{ "<leader>as", desc = "summarize text" },
-			{ "<leader>ag", desc = "generate git message" },
-		},
-		config = function()
-			require("neoai").setup({
-				-- Options go here
-			})
-		end,
-	},
 	{
 		"Exafunction/codeium.vim",
 		dependencies = {
@@ -131,6 +99,16 @@ return {
 				end,
 				desc = "Search diagnostic with Google",
 			},
+		},
+	},
+	{
+		"madox2/vim-ai",
+		cmd = {
+			"AI",
+			"AIChat",
+			"AIEdit",
+			"AIRedo",
+			"AINewChat",
 		},
 	},
 }

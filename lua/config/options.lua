@@ -35,6 +35,9 @@ vim.opt.clipboard = "unnamedplus"
 -- highlight on yank
 vim.cmd("au TextYankPost * lua vim.highlight.on_yank {on_visual = false}")
 
+-- explicit python3 path
+vim.g.python3_host_prog = "/usr/bin/python3"
+
 -- keymaps
 vim.g.mapleader = " "
 
