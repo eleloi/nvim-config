@@ -22,7 +22,7 @@ return {
 			},
 		},
 		config = function()
-			require("config.cmp")
+			require("config.plugins.cmp")
 		end,
 	},
 
