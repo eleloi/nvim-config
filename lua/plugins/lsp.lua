@@ -43,7 +43,7 @@ return {
 			})
 			lspconfig.eslint.setup({ on_attach = on_attach })
 			lspconfig.pyright.setup({ on_attach = on_attach })
-			lspconfig.ruff_lsp.setup({ on_attach = on_attach })
+			lspconfig.ruff.setup({ on_attach = on_attach })
 			lspconfig.rust_analyzer.setup({ on_attach = on_attach })
 			lspconfig.gopls.setup({ on_attach = on_attach })
 			lspconfig.golangci_lint_ls.setup({ on_attach = on_attach })
