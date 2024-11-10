@@ -1,8 +1,10 @@
-local builtin = require("telescope.builtin")
-local action_state = require("telescope.actions.state")
-local actions = require("telescope.actions")
 
 Buffer_searcher = function()
+
+	local builtin = require("telescope.builtin")
+	local action_state = require("telescope.actions.state")
+	local actions = require("telescope.actions")
+
 	builtin.buffers({
 		sort_mru = true,
 		ignore_current_buffer = true,
