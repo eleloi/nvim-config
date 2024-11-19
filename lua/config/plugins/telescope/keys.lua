@@ -2,14 +2,25 @@ local buffer_searcher = require("config.plugins.telescope.buffer_searcher")
 
 return {
 	{
-		"<leader>ff",
+		"<leader>fF",
 		function()
 			require("telescope.builtin").find_files({
 				hidden = true,
+				no_ignore = true,
+			})
+		end,
+		desc = "All files",
+		mode = "n",
+	},
+	{
+		"<leader>ff",
+		function()
+			require("telescope.builtin").find_files({
+				hidden = false,
 				no_ignore = false,
 			})
 		end,
-		desc = "Files",
+		desc = "Files (only git)",
 		mode = "n",
 	},
 	{
