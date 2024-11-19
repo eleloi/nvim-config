@@ -113,7 +113,7 @@ return {
 	},
 	{
 		"<leader>fh",
-		"<CMD>Telescope help_tags theme=get_ivy<CR>",
+		"<CMD>Telescope help_tags<CR>",
 		desc = "Help",
 		mode = "n",
 	},
