@@ -55,6 +55,7 @@ vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "]t", "<cmd>tabnext<CR>")
 vim.keymap.set("n", "[t", "<cmd>tabprev<CR>")
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- move lines
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==")
