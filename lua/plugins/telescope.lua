@@ -5,7 +5,6 @@ return {
 	tag = "0.1.3",
 	dependencies = {
 		"MaximilianLloyd/adjacent.nvim",
-		"cbochs/grapple.nvim",
 		"fdschmidt93/telescope-egrepify.nvim",
 		"nvim-lua/plenary.nvim",
 		"nvim-lua/plenary.nvim",
@@ -92,7 +91,6 @@ return {
 		require("telescope").load_extension("import")
 		require("telescope").load_extension("egrepify")
 		require("telescope").load_extension("aerial")
-		require("telescope").load_extension("grapple")
 		require("telescope").load_extension("ui-select")
 		require("telescope").load_extension("undo")
 		require("telescope").load_extension("emoji")

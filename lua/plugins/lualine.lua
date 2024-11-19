@@ -14,7 +14,6 @@ return {
 				lualine_a = { { "mode", upper = true } },
 				lualine_b = {
 					{ "branch", icon = "" },
-					{ "grapple" },
 					"db_ui#statusline",
 				},
 				lualine_c = { { "filename", file_status = true, path = 1 } },

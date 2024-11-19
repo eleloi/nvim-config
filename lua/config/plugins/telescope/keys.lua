@@ -49,12 +49,6 @@ return {
 		mode = "n",
 	},
 	{
-		"<leader>st",
-		"<CMD>Telescope grapple tags<CR>",
-		desc = "Grapple tags",
-		mode = "n",
-	},
-	{
 		"gr",
 		function()
 			require("telescope.builtin").lsp_references({
