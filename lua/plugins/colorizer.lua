@@ -13,6 +13,7 @@ return {
 			"lua",
 			"python",
 			"json",
+			"conf",
 		})
 	end,
 }
