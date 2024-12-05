@@ -36,4 +36,16 @@ return {
 			},
 		},
 	},
+	{
+		"marcussimonsen/let-it-snow.nvim",
+		cmd = "LetItSnow", -- Wait with loading until command is run
+		keys = {
+			{
+				"<leader>xs",
+				"<cmd>LetItSnow<cr>",
+				desc = "Let it snow!",
+			},
+		},
+		opts = {},
+	},
 }
