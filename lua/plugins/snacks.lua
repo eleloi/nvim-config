@@ -24,6 +24,7 @@ return {
 		words = {
 			enabled = true,
 			jumplist = false,
+			modes = { "n" },
 		},
 		zen = { enabled = true },
 	},
@@ -57,6 +58,20 @@ return {
 			end,
 			desc = "Jump to next lsp reference",
 		},
+		{
+			"<leader>nn",
+			function()
+				Snacks.notifier.show_history()
+			end,
+			desc = "Notification history",
+		},
+		{
+			"<leader>nu",
+			function()
+				Snacks.notifier.hide()
+			end,
+			desc = "Toggle notifications",
+		},
 	},
 	init = function()
 		---@type table<number, {token:lsp.ProgressToken, msg:string, done:boolean}[]>
@@ -65,8 +80,7 @@ return {
 			---@param ev {data: {client_id: integer, params: lsp.ProgressParams}}
 			callback = function(ev)
 				local client = vim.lsp.get_client_by_id(ev.data.client_id)
-				local value = ev.data.params
-				.value --[[@as {percentage?: number, title?: string, message?: string, kind: "begin" | "report" | "end"}]]
+				local value = ev.data.params.value --[[@as {percentage?: number, title?: string, message?: string, kind: "begin" | "report" | "end"}]]
 				if not client or type(value) ~= "table" then
 					return
 				end
@@ -98,7 +112,7 @@ return {
 					title = client.name,
 					opts = function(notif)
 						notif.icon = #progress[client.id] == 0 and " "
-								or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
+							or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
 					end,
 				})
 			end,
