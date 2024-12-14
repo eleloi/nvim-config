@@ -21,7 +21,10 @@ return {
 		notifier = { enabled = true },
 		scroll = { enabled = false },
 		statuscolumn = { enabled = false },
-		words = { enabled = false },
+		words = {
+			enabled = true,
+			jumplist = false,
+		},
 		zen = { enabled = true },
 	},
 	keys = {
@@ -46,6 +49,13 @@ return {
 				Snacks.zen()
 			end,
 			desc = "Toggle Zen mode",
+		},
+		{
+			"<C-n>",
+			function()
+				Snacks.words.jump(1, true)
+			end,
+			desc = "Jump to next lsp reference",
 		},
 	},
 	init = function()
