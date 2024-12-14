@@ -9,7 +9,6 @@ return {
 		event = "VeryLazy",
 		dependencies = {
 			"williamboman/mason.nvim",
-			"folke/neodev.nvim",
 			"davidosomething/format-ts-errors.nvim",
 		},
 		config = function()
@@ -32,14 +31,35 @@ return {
 				vim.cmd.autocmd("BufWritePre", "<buffer>", "lua vim.lsp.buf.format()")
 			end
 
-			require("neodev").setup()
 			local lspconfig = require("lspconfig")
 			lspconfig.lua_ls.setup({
 				on_attach = on_attach,
-				Lua = {
-					telemetry = { enable = false },
-					workspace = { checkThirdParty = false },
+
+				settings = {
+					Lua = {
+						telemetry = { enable = false },
+					},
 				},
+				on_init = function(client)
+					if client.workspace_folders then
+						local path = client.workspace_folders[1].name
+						if vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc") then
+							return
+						end
+					end
+
+					client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+						runtime = {
+							version = "LuaJIT",
+						},
+						workspace = {
+							checkThirdParty = true,
+							library = {
+								vim.env.VIMRUNTIME,
+							},
+						},
+					})
+				end,
 			})
 			lspconfig.eslint.setup({ on_attach = on_attach })
 			lspconfig.pyright.setup({ on_attach = on_attach })
