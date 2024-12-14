@@ -6,11 +6,16 @@ return {
 	opts = {
 		bigfile = { enabled = true },
 		bufdelete = { enabled = true },
-		dashboard = { enabled = false },
-		indent = { enabled = false },
+		quickfile = { enabled = true },
+		indent = {
+			enabled = true,
+			indent = {
+				only_scope = true,
+				only_current = true,
+			},
+		},
 		input = { enabled = false },
 		notifier = { enabled = false },
-		quickfile = { enabled = false },
 		scroll = { enabled = false },
 		statuscolumn = { enabled = false },
 		words = { enabled = false },
