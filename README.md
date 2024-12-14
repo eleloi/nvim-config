@@ -88,10 +88,6 @@ NVIM_APPNAME=eleloi/nvim-config/ nvim
 
 - [nvim-tree/nvim-web-devicons](https://dotfyle.com/plugins/nvim-tree/nvim-web-devicons)
 
-### indent
-
-- [echasnovski/mini.indentscope](https://dotfyle.com/plugins/echasnovski/mini.indentscope)
-
 ### keybinding
 
 - [folke/which-key.nvim](https://dotfyle.com/plugins/folke/which-key.nvim)
@@ -99,7 +95,6 @@ NVIM_APPNAME=eleloi/nvim-config/ nvim
 ### lsp
 
 - [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig)
-- [j-hui/fidget.nvim](https://dotfyle.com/plugins/j-hui/fidget.nvim)
 - [stevearc/aerial.nvim](https://dotfyle.com/plugins/stevearc/aerial.nvim)
 - [ray-x/lsp_signature.nvim](https://dotfyle.com/plugins/ray-x/lsp_signature.nvim)
 - [nvimtools/none-ls.nvim](https://dotfyle.com/plugins/nvimtools/none-ls.nvim)

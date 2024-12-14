@@ -18,11 +18,11 @@ return {
 			},
 		},
 		input = { enabled = false },
-		notifier = { enabled = true
-		},
+		notifier = { enabled = true },
 		scroll = { enabled = false },
 		statuscolumn = { enabled = false },
 		words = { enabled = false },
+		zen = { enabled = true },
 	},
 	keys = {
 		{
@@ -38,6 +38,14 @@ return {
 				Snacks.bufdelete.other()
 			end,
 			desc = "Delete all buffers except current",
+		},
+		{
+
+			"<leader>zz",
+			function()
+				Snacks.zen()
+			end,
+			desc = "Toggle Zen mode",
 		},
 	},
 	init = function()
