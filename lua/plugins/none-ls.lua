@@ -30,6 +30,7 @@ return {
 				null_ls.builtins.formatting.goimports,
 				null_ls.builtins.formatting.gofumpt,
 				null_ls.builtins.formatting.pg_format,
+				null_ls.builtins.formatting.nixfmt,
 			},
 		})
 	end,
