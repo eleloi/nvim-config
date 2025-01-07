@@ -16,7 +16,6 @@ return {
 			"nvim-telescope/telescope-fzf-native.nvim",
 			build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
 		},
-		"xiyaowong/telescope-emoji.nvim",
 		"piersolenski/telescope-import.nvim",
 		"stevearc/aerial.nvim",
 		"debugloop/telescope-undo.nvim",
@@ -74,11 +73,6 @@ return {
 					override_generic_sorter = true,
 					override_file_sorter = true,
 				},
-				emoji = {
-					action = function(emoji)
-						vim.api.nvim_put({ emoji.value }, "c", false, true)
-					end,
-				},
 			},
 			pickers = {
 				colorscheme = {
@@ -93,7 +87,6 @@ return {
 		require("telescope").load_extension("aerial")
 		require("telescope").load_extension("ui-select")
 		require("telescope").load_extension("undo")
-		require("telescope").load_extension("emoji")
 		require("telescope").load_extension("fzf")
 
 		require("aerial").setup()
