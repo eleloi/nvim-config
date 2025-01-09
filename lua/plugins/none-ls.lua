@@ -21,7 +21,6 @@ return {
 			on_attach = on_attach,
 			sources = {
 				null_ls.builtins.formatting.stylua,
-				-- null_ls.builtins.formatting.black,
 				null_ls.builtins.formatting.prettierd.with({
 					extra_filetypes = { "svelte", "svg", "astro" },
 				}),
