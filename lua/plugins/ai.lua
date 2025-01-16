@@ -1,13 +1,8 @@
-return {
+-- Codeium: Provides AI-powered code completions and suggestions.
+-- WTF.nvim: Uses AI to debug diagnostics and search for solutions.
+-- Avante.nvim: Offers AI-driven code conflict resolution and suggestions.
 
-	-- **Exafunction/codeium.vim:** - This plugin enables Codeium, a code and
-	-- snippet completion tool, in Neovim. It has key mappings for
-	-- enabling/disabling Codeium, accepting completions, cycling through
-	-- completions, and clearing Codeium.
-	--
-	-- **piersolenski/wtf.nvim:** - This plugin integrates AI diagnostics and
-	-- Google searches within Neovim. It offers commands for debugging diagnostics
-	-- with AI and searching diagnostics with Google.
+return {
 
 	{
 		"Exafunction/codeium.vim",
@@ -102,13 +97,68 @@ return {
 		},
 	},
 	{
-		"madox2/vim-ai",
-		cmd = {
-			"AI",
-			"AIChat",
-			"AIEdit",
-			"AIRedo",
-			"AINewChat",
+		"yetone/avante.nvim",
+		event = "VeryLazy",
+		lazy = false,
+		version = false, -- set this to "*" if you want to always pull the latest change, false to update on release
+		opts = {
+			---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
+			provider = "openai",
+			mappings = {
+				--- @class AvanteConflictMappings
+				diff = {
+					ours = "co",
+					theirs = "ct",
+					all_theirs = "ca",
+					both = "cb",
+					cursor = "cc",
+					next = "]x",
+					prev = "[x",
+				},
+				suggestion = {
+					accept = "<M-l>",
+					next = "<M-]>",
+					prev = "<M-[>",
+					dismiss = "<C-]>",
+				},
+				jump = {
+					next = "]]",
+					prev = "[[",
+				},
+				submit = {
+					normal = "<CR>",
+					insert = "<C-s>",
+				},
+				sidebar = {
+					apply_all = "A",
+					apply_cursor = "a",
+					switch_windows = "<Tab>",
+					reverse_switch_windows = "<S-Tab>",
+				},
+			},
+		},
+		build = "make",
+		dependencies = {
+			"stevearc/dressing.nvim",
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+			{
+				-- support for image pasting
+				"HakonHarnes/img-clip.nvim",
+				event = "VeryLazy",
+				opts = {
+					-- recommended settings
+					default = {
+						embed_image_as_base64 = false,
+						prompt_for_file_name = false,
+						drag_and_drop = {
+							insert_mode = true,
+						},
+						-- required for Windows users
+						use_absolute_path = true,
+					},
+				},
+			},
 		},
 	},
 }
