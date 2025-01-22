@@ -1,0 +1,15 @@
+{
+  "foo": {
+    "body": [
+      "local function ${2:ft}()",
+      "\tfor _, win in pairs($0) do",
+      "\t\tif win[\"$1\"] == 1 then",
+      "\t\t\treturn true",
+      "\t\tend",
+      "\tend",
+      "\treturn false",
+      "end"
+    ],
+    "prefix": "foo"
+  }
+}

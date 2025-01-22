@@ -33,6 +33,7 @@ return {
 
 		dependencies = {
 			"mikavilpas/blink-ripgrep.nvim",
+			'rafamadriz/friendly-snippets'
 		},
 
 		version = "*",
@@ -58,6 +59,7 @@ return {
 					"lsp",
 					"lazydev",
 					"path",
+					"snippets",
 					"dadbod",
 					"buffer",
 					"ripgrep",
@@ -80,12 +82,15 @@ return {
 						score_offset = 15,
 						opts = { insert = true },
 					},
+					snippets = {
+						name = "snippets",
+					}
 				},
 			},
 
 			completion = {
 				trigger = {
-					show_on_keyword = false,
+					show_on_keyword = true,
 				},
 				menu = {
 					draw = {
@@ -106,5 +111,6 @@ return {
 			},
 		},
 		opts_extend = { "sources.default" },
+
 	},
 }
