@@ -1,0 +1,1 @@
+{"justfile + justfile template":{"body":["set dotenv-load","","[private]","default:","    just --list"],"prefix":["justfile","justfile template"]}}
