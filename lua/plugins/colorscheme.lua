@@ -10,8 +10,8 @@ return {
 		lazy = false,
 		priority = 1000,
 		keys = {
-			{ "<leader>fcc", "<CMD>Huez<CR>", desc = "Huez Manager" },
-			{ "<leader>fcl", "<CMD>HuezLive<CR>", desc = "Huez Live" },
+			{ "<leader>fcc", "<CMD>Huez<CR>",          desc = "Huez Manager" },
+			{ "<leader>fcl", "<CMD>HuezLive<CR>",      desc = "Huez Live" },
 			{ "<leader>fcf", "<CMD>HuezFavorites<CR>", desc = "Huez Favorites" },
 		},
 		config = function()
