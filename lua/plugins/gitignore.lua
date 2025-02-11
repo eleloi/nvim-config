@@ -1,6 +1,6 @@
 -- Generate gitignore files
 
 return {
-	"wintermute-cell/gitignore.nvim",
-	cmd = { "Gitignore" },
+  "wintermute-cell/gitignore.nvim",
+  cmd = { "Gitignore" },
 }

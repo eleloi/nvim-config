@@ -172,4 +172,14 @@ return {
 		desc = "Import",
 		mode = "n",
 	},
+	{
+		"<leader>ci",
+		"<cmd>Telescope hierarchy incoming_calls<cr>",
+		desc = "LSP: [C]ode [I]ncoming Calls",
+	},
+	{
+		"<leader>co",
+		"<cmd>Telescope hierarchy outgoing_calls<cr>",
+		desc = "LSP: [C]ode [O]utgoing Calls",
+	},
 }

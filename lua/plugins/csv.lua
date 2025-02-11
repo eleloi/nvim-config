@@ -2,6 +2,6 @@
 -- %ArrangeColumn command
 
 return {
-	"chrisbra/csv.vim",
-	ft = { "csv" },
+  "chrisbra/csv.vim",
+  ft = { "csv" },
 }

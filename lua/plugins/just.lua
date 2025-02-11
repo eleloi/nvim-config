@@ -1,6 +1,6 @@
 -- Adds syntax into just files
 
 return {
-	"NoahTheDuke/vim-just",
-	ft = { "just" },
+  "NoahTheDuke/vim-just",
+  ft = { "just" },
 }
