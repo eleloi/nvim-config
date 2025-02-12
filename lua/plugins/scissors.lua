@@ -5,6 +5,6 @@ return {
   },
   keys = {
     { "<leader>se", "<CMD>ScissorsEditSnippet<CR>",   desc = "Edit Snippet" },
-    { "<leader>sa", "<CMD>ScissorsAddNewSnippet<CR>", desc = "Add Snippet", mode = { "n", "x" } },
+    { "<leader>sn", "<CMD>ScissorsAddNewSnippet<CR>", desc = "Add Snippet", mode = { "n", "x" } },
   },
 }
