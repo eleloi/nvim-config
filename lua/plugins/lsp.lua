@@ -27,9 +27,6 @@ return {
 				vim.keymap.set("n", "<leader>cD", vim.lsp.buf.type_definition, opts)
 				vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)
 				vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-				vim.keymap.set("n", "<leader>cf", function()
-					vim.lsp.buf.format({ async = true })
-				end, opts)
 				vim.cmd.autocmd("BufWritePre", "<buffer>", "lua vim.lsp.buf.format()")
 			end
 
