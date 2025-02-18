@@ -28,6 +28,10 @@ return {
 		end,
 	},
 	{
+		"xzbdmw/colorful-menu.nvim",
+		config = true,
+	},
+	{
 		"saghen/blink.cmp",
 
 		dependencies = {
@@ -98,6 +102,16 @@ return {
 							{ "source_name", "kind", gap = 1 },
 						},
 						treesitter = { "lsp" },
+						components = {
+							label = {
+								text = function(ctx)
+									return require("colorful-menu").blink_components_text(ctx)
+								end,
+								highlight = function(ctx)
+									return require("colorful-menu").blink_components_highlight(ctx)
+								end,
+							},
+						},
 					},
 				},
 				list = {
