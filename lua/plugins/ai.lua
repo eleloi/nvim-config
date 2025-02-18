@@ -10,24 +10,6 @@ return {
         end,
         keys = {
             {
-                "<leader>hce",
-                function()
-                    vim.g.codeium_enabled = true
-                    vim.notify("Codeium: " .. (vim.g.codeium_enabled and "on" or "off"))
-                    vim.fn["CodeiumEnable"]()
-                end,
-                desc = "Enable Codeium",
-            },
-            {
-                "<leader>hcd",
-                function()
-                    vim.g.codeium_enabled = false
-                    vim.notify("Codeium: " .. (vim.g.codeium_enabled and "on" or "off"))
-                    vim.fn["CodeiumDisable"]()
-                end,
-                desc = "Disable Codeium",
-            },
-            {
                 "<M-l>",
                 function()
                     return vim.fn["codeium#Accept"]()

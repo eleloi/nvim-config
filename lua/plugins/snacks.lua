@@ -105,5 +105,25 @@ return {
                 end,
             })
             :map("<leader>um")
+        Snacks.toggle
+            .new({
+                id = "codeium",
+                name = "Codeium",
+                get = function()
+                    return vim.g.codeium_enabled
+                end,
+                set = function(state)
+                    if state then
+                        vim.g.codeium_enabled = true
+                        vim.notify("Codeium: " .. (vim.g.codeium_enabled and "on" or "off"))
+                        vim.fn["CodeiumEnable"]()
+                    else
+                        vim.g.codeium_enabled = false
+                        vim.notify("Codeium: " .. (vim.g.codeium_enabled and "on" or "off"))
+                        vim.fn["CodeiumDisable"]()
+                    end
+                end,
+            })
+            :map("<leader>uc")
     end,
 }
