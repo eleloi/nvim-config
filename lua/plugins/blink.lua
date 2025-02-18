@@ -78,6 +78,7 @@ return {
 					ripgrep = {
 						module = "blink-ripgrep",
 						name = "Ripgrep",
+						score_offset = -10,
 					},
 					emoji = {
 						module = "blink-emoji",
