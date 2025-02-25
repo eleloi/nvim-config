@@ -81,15 +81,12 @@ return {
 			lspconfig.tailwindcss.setup({ on_attach = on_attach, capabilities = capabilities })
 			lspconfig.docker_compose_language_service.setup({ on_attach = on_attach, capabilities = capabilities })
 			lspconfig.dockerls.setup({ on_attach = on_attach, capabilities = capabilities })
-
 			lspconfig.yamlls.setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
 				settings = { redhat = { telemetry = { enable = false } } },
 			})
-
 			lspconfig.taplo.setup({ on_attach = on_attach, capabilities = capabilities })
-
 			lspconfig.jsonls.setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
@@ -141,6 +138,7 @@ return {
 					},
 				},
 			})
+			lspconfig.nushell.setup({})
 		end,
 	},
 	{
