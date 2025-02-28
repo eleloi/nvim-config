@@ -88,16 +88,24 @@ vim.keymap.set("n", "<leader>R", ":so $MYVIMRC<CR>")
 
 -- detect typ files as typst instead of sql
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "*.typ" },
-	callback = function()
-		vim.bo.filetype = "typst"
-	end,
+    pattern = { "*.typ" },
+    callback = function()
+        vim.bo.filetype = "typst"
+    end,
 })
 
 -- detect hurl files as hurl instead of conf
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "*.hurl" },
-	callback = function()
-		vim.bo.filetype = "hurl"
-	end,
+    pattern = { "*.hurl" },
+    callback = function()
+        vim.bo.filetype = "hurl"
+    end,
 })
+
+-- fold
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldcolumn = "0"
+vim.opt.foldlevel = 99
+-- vim.opt.foldlevelstart = 1
+vim.opt.foldnestmax = 6
