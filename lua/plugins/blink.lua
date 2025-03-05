@@ -90,7 +90,12 @@ return {
                     },
                 },
             },
-
+            cmdline = {
+                keymap = {
+                    ['<Tab>'] = { 'show', 'accept' },
+                },
+                completion = { menu = { auto_show = true } },
+            },
             completion = {
                 trigger = {
                     show_on_keyword = true,
