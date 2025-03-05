@@ -73,7 +73,7 @@ return {
         "<leader>,",
         function()
             Snacks.picker.buffers({
-                layout = "sidebar",
+                layout = "default",
                 on_show = function()
                     vim.cmd.stopinsert()
                 end,
