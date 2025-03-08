@@ -78,7 +78,7 @@ return {
                     vim.cmd.stopinsert()
                 end,
                 sort_lastused = true,
-                current = true,
+                current = false,
                 win = {
                     input = {
                         keys = {
