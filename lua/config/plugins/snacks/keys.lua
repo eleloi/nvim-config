@@ -74,9 +74,6 @@ return {
         function()
             Snacks.picker.buffers({
                 layout = "default",
-                on_show = function()
-                    vim.cmd.stopinsert()
-                end,
                 sort_lastused = true,
                 current = false,
                 win = {
