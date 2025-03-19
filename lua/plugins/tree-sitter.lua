@@ -5,6 +5,7 @@ local ensure_installed = {
     "sql",
     "tsx",
     "typescript",
+    "typst",
     "toml",
     "yaml",
     "json",
