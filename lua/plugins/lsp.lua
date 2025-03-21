@@ -142,7 +142,8 @@ return {
                     },
                 },
             })
-            lspconfig.nushell.setup({})
+            lspconfig.nushell.setup({ on_attach = on_attach, capabilities = capabilities })
+            lspconfig.tinymist.setup({ on_attach = on_attach, capabilities = capabilities })
         end,
     },
     {
