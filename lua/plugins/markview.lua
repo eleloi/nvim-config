@@ -14,7 +14,11 @@ return {
             preview = {
                 filetypes = { "markdown", "vimwiki" },
             },
-            markdown = { headings = preset.headings.glow }
+            markdown = {
+                headings = preset.headings.glow,
+                tables = preset.tables.none
+            },
+
         })
         vim.cmd("Markview Disable")
     end,
