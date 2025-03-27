@@ -23,8 +23,6 @@ return {
                     ext = "md",
                 },
             }
-            -- vim.g.vimwiki_filetypes = { "markdown" }
-            -- vim.treesitter.language.register("markdown", { "vimwiki" })
         end,
     },
     {
