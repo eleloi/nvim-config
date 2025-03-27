@@ -42,7 +42,7 @@ vim.g.python3_host_prog = "/usr/bin/python3"
 vim.g.mapleader = " "
 
 vim.leader = "<Space>"
-vim.keymap.set("n", "<Leader>w", "<cmd>w<CR>")
+vim.keymap.set("n", "ZX", "<cmd>w<CR>")
 vim.keymap.set("i", "jk", "<ESC>")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")

@@ -125,5 +125,18 @@ return {
                 end,
             })
             :map("<leader>uc")
+        -- toggle completion
+        Snacks.toggle({
+            name = "Completion",
+            get = function()
+                if vim.b.completion == nil then
+                    vim.b.completion = true
+                end
+                return vim.b.completion
+            end,
+            set = function(state)
+                vim.b.completion = state
+            end,
+        }):map("<leader>u/")
     end,
 }

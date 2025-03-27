@@ -90,6 +90,11 @@ return {
         desc = "Pick buffers",
     },
     {
+        "<leader>bb",
+        "<cmd>w<cr>",
+        desc = "Save current buffer",
+    },
+    {
         "<leader>bd",
         function()
             Snacks.bufdelete()
