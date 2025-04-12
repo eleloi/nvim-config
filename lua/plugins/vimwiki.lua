@@ -25,8 +25,4 @@ return {
             }
         end,
     },
-    {
-        "tools-life/taskwiki",
-        event = "VeryLazy",
-    }
 }
