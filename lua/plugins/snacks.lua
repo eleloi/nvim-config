@@ -91,16 +91,18 @@ return {
         Snacks.toggle.zen():map("<leader>uz")
         Snacks.toggle
             .new({
-                id = "markdown_preview",
-                name = "Markdown Preview",
+                id = "render_markdown",
+                name = "Render Markdown",
                 get = function()
-                    return require("markview").actions.__is_enabled() or false
+                    return vim.g.render_markdown_enable
                 end,
                 set = function(state)
                     if state then
-                        require("markview").actions.enable()
+                        vim.g.render_markdown_enable = true
+                        require("render-markdown").enable()
                     else
-                        require("markview").actions.disable()
+                        vim.g.render_markdown_enable = false
+                        require("render-markdown").disable()
                     end
                 end,
             })
@@ -115,11 +117,9 @@ return {
                 set = function(state)
                     if state then
                         vim.g.codeium_enabled = true
-                        vim.notify("Codeium: " .. (vim.g.codeium_enabled and "on" or "off"))
                         vim.fn["CodeiumEnable"]()
                     else
                         vim.g.codeium_enabled = false
-                        vim.notify("Codeium: " .. (vim.g.codeium_enabled and "on" or "off"))
                         vim.fn["CodeiumDisable"]()
                     end
                 end,
