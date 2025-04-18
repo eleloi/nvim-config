@@ -50,10 +50,15 @@ return {
     {
         "yetone/avante.nvim",
         event = "VeryLazy",
-        lazy = false,
         version = false, -- set this to "*" if you want to always pull the latest change, false to update on release
+        build = "make",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "stevearc/dressing.nvim",
+            "nvim-lua/plenary.nvim",
+            "MunifTanjim/nui.nvim",
+        },
         opts = {
-            ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
             provider = "claude",
             claude = {
                 model = "claude-3-7-sonnet-20250219",
@@ -94,12 +99,6 @@ return {
                     reverse_switch_windows = "<S-Tab>",
                 },
             },
-        },
-        build = "make",
-        dependencies = {
-            "stevearc/dressing.nvim",
-            "nvim-lua/plenary.nvim",
-            "MunifTanjim/nui.nvim",
         },
     },
 }
