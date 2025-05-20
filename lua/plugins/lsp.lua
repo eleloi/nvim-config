@@ -35,9 +35,7 @@ return {
 
             lspconfig.lua_ls.setup({
                 on_attach = on_attach,
-
                 settings = { Lua = { telemetry = { enable = false } } },
-
                 on_init = function(client)
                     if client.workspace_folders then
                         local path = client.workspace_folders[1].name
@@ -72,12 +70,17 @@ return {
                 on_attach = on_attach,
                 capabilities = capabilities,
                 filetypes = { "typst", "typ" },
+                settings = {
+                    formatterMode = "typstyle",
+                    exportPdf = "onType",
+                    semanticTokens = "disable",
+                },
             })
             lspconfig.astro.setup({ on_attach = on_attach, capabilities = capabilities })
             lspconfig.bashls.setup({
                 on_attach = on_attach,
                 capabilities = capabilities,
-                filetypes = { "bash", "sh", "zsh" }
+                filetypes = { "bash", "sh", "zsh" },
             })
             vim.g.astro_typescript = "enable"
             lspconfig.ts_ls.setup({ on_attach = on_attach, capabilities = capabilities })
@@ -153,16 +156,16 @@ return {
                     options = {
                         nixos = {
                             expr =
-                            '(builtins.getFlake "/home/eleloi/nixos-config/flake.nix").nixosConfigurations."bob".options'
+                            '(builtins.getFlake "/home/eleloi/nixos-config/flake.nix").nixosConfigurations."bob".options',
                         },
                         home_manager = {
                             expr =
-                            '(builtins.getFlake "/home/eleloi/nixos-config/flake.nix").homeConfigurations."eleloi".options'
-                        }
-                    }
+                            '(builtins.getFlake "/home/eleloi/nixos-config/flake.nix").homeConfigurations."eleloi".options',
+                        },
+                    },
                 },
                 on_attach = on_attach,
-                capabilities = capabilities
+                capabilities = capabilities,
             })
         end,
     },
