@@ -55,8 +55,6 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 -- move lines
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==")
 vim.keymap.set("n", "<A-k>", ":m .-2<CR>==")
-vim.keymap.set("i", "<A-j>", "<Esc>:m .+1<CR>==gi")
-vim.keymap.set("i", "<A-k>", "<Esc>:m .-2<CR>==gi")
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
 
@@ -68,9 +66,7 @@ vim.keymap.set("n", "<C-w><C-h>", "<cmd>vertical resize -5<CR>")
 vim.keymap.set("n", "<C-w><C-j>", "<cmd>resize +5<CR>")
 vim.keymap.set("n", "<C-w><C-k>", "<cmd>resize -5<CR>")
 
--- move visual lines
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+-- only
 vim.keymap.set("n", "<leader>o", "<CMD>only<CR>")
 
 -- repace all instances of word under cursor

@@ -45,9 +45,21 @@ return {
         ---@type blink.cmp.Config
         opts = {
             keymap = {
-                preset = "default",
-                ["<Tab>"] = { "select_and_accept" },
+                preset = "none",
                 ["<C-n>"] = { "show", "select_next", "fallback" },
+                ["<C-p>"] = { "select_prev", "fallback_to_mappings" },
+                ["<C-j>"] = { "show", "select_next", "fallback" },
+                ["<C-k>"] = { "select_prev", "fallback_to_mappings" },
+                ["<Tab>"] = { "select_accept_and_enter", "fallback" },
+
+                ["<C-e>"] = { "hide" },
+                ["<Esc>"] = { "cancel", "fallback" },
+
+                ["<Up>"] = { "select_prev", "fallback" },
+                ["<Down>"] = { "select_next", "fallback" },
+
+                ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+                ["<C-f>"] = { "scroll_documentation_down", "fallback" },
             },
 
             appearance = {
@@ -92,11 +104,12 @@ return {
             },
             cmdline = {
                 keymap = {
-                    ['<Tab>'] = { 'show', 'accept' },
+                    ["<Tab>"] = { "show", "accept" },
                 },
                 completion = { menu = { auto_show = true } },
             },
             completion = {
+                ghost_text = { enabled = true },
                 trigger = {
                     show_on_keyword = true,
                 },
@@ -120,7 +133,7 @@ return {
                     },
                 },
                 list = {
-                    selection = { auto_insert = true, preselect = true },
+                    selection = { auto_insert = true, preselect = false },
                 },
                 documentation = {
                     auto_show = true,
