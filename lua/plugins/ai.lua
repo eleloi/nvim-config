@@ -104,36 +104,13 @@ return {
             {
                 "<leader>aa",
                 "<CMD>CodeCompanionActions<CR>",
+                mode = { "v", "n" },
                 desc = "Code Companion Actions",
-            },
-            {
-                "<leader>ae",
-                "<CMD>CodeCompanion /explain<CR>",
-                mode = { "v" },
-                desc = "Explain how selected code in a buffer works",
-            },
-            {
-                "<leader>al",
-                "<CMD>CodeCompanion /lsp<CR>",
-                mode = { "v" },
-                desc = "Explain the LSP diagnostics for the selected code",
             },
             {
                 "<leader>ac",
                 "<CMD>CodeCompanion /commit<CR>",
                 desc = "Generate commit message from staged diff",
-            },
-            {
-                "<leader>at",
-                "<CMD>CodeCompanion /tests<CR>",
-                mode = { "v" },
-                desc = "Generate unit tests for selected code",
-            },
-            {
-                "<leader>af",
-                "<CMD>CodeCompanion /fix<CR>",
-                mode = { "v" },
-                desc = "Fix the selected code",
             },
         },
         config = function()
