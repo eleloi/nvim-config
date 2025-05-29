@@ -80,6 +80,9 @@ return {
                     "ripgrep",
                     "emoji",
                 },
+                per_filetype = {
+                    codecompanion = { "codecompanion" },
+                },
                 providers = {
                     minuet = {
                         name = "minuet",
