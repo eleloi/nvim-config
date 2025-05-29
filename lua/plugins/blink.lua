@@ -70,6 +70,7 @@ return {
             signature = { enabled = true },
             sources = {
                 default = {
+                    "minuet",
                     "lsp",
                     "lazydev",
                     "path",
@@ -80,6 +81,15 @@ return {
                     "emoji",
                 },
                 providers = {
+                    minuet = {
+                        name = "minuet",
+                        module = "minuet.blink",
+                        async = true,
+                        -- Should match minuet.config.request_timeout * 1000,
+                        -- since minuet.config.request_timeout is in seconds
+                        timeout_ms = 3000,
+                        score_offset = 50, -- Gives minuet higher priority among suggestions
+                    },
                     lazydev = {
                         name = "LazyDev",
                         module = "lazydev.integrations.blink",
@@ -111,6 +121,7 @@ return {
             completion = {
                 ghost_text = { enabled = true },
                 trigger = {
+                    prefetch_on_insert = false,
                     show_on_keyword = true,
                 },
                 menu = {

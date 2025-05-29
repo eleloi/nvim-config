@@ -1,7 +1,59 @@
 return {
     {
+        "milanglacier/minuet-ai.nvim",
+        config = function()
+            require("minuet").setup({
+                enabled = true,
+                provider = "gemini",
+                provider_options = {
+                    gemini = {
+                        model = "gemini-2.0-flash",
+                        optional = {
+                            generationConfig = {
+                                maxOutputTokens = 256,
+                                -- When using `gemini-2.5-flash`, it is recommended to entirely
+                                -- disable thinking for faster completion retrieval.
+                                thinkingConfig = {
+                                    thinkingBudget = 0,
+                                },
+                            },
+                            safetySettings = {
+                                {
+                                    -- HARM_CATEGORY_HATE_SPEECH,
+                                    -- HARM_CATEGORY_HARASSMENT
+                                    -- HARM_CATEGORY_SEXUALLY_EXPLICIT
+                                    category = "HARM_CATEGORY_DANGEROUS_CONTENT",
+                                    -- BLOCK_NONE
+                                    threshold = "BLOCK_ONLY_HIGH",
+                                },
+                            },
+                        },
+                    },
+                },
+                blink = {
+                    enable_auto_complete = true,
+                },
+                virtualtext = {
+                    auto_trigger_ft = { "*" },
+                    keymap = {
+                        -- accept whole completion
+                        accept = "<M-l>",
+                        -- accept one line
+                        accept_line = "<M-;>",
+                        prev = "<M-k>",
+                        -- Cycle to next completion item, or manually invoke completion
+                        next = "<M-j>",
+                        dismiss = "<M-e>",
+                    },
+                    show_on_completion_menu = true,
+                },
+            })
+        end,
+    },
+    {
         "zbirenbaum/copilot.lua",
         cmd = "Copilot",
+        enabled = false,
         event = "InsertEnter",
         config = function()
             require("copilot").setup({
@@ -49,6 +101,11 @@ return {
                 end,
                 desc = "Code Companion Chat toggle",
             },
+            {
+                "<leader>aa",
+                "<CMD>CodeCompanionActions<CR>",
+                desc = "Code Companion Actions",
+            },
         },
         config = function()
             require("codecompanion").setup({
@@ -56,7 +113,7 @@ return {
                     chat = {
                         keymaps = {
                             send = {
-                                modes = { n = "<C-s>", i = "<C-s>" },
+                                modes = { n = "<CR>", i = "<C-s>" },
                             },
                             close = {
                                 modes = { n = "<C-c>", i = "<C-c>" },
