@@ -93,12 +93,14 @@ return {
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
         },
+        event = "VeryLazy",
         keys = {
             {
                 "<leader>at",
                 function()
                     require("codecompanion").toggle()
                 end,
+                mode = { "v", "n" },
                 desc = "Code Companion Chat toggle",
             },
             {
@@ -106,6 +108,12 @@ return {
                 "<CMD>CodeCompanionActions<CR>",
                 mode = { "v", "n" },
                 desc = "Code Companion Actions",
+            },
+            {
+                "<leader>ad",
+                "<CMD>CodeCompanionChat Add<CR>",
+                mode = { "v" },
+                desc = "Add visually selected chat to the current chat buffer",
             },
             {
                 "<leader>ac",
@@ -138,6 +146,7 @@ return {
                     },
                 },
             })
+            vim.cmd([[cab cc CodeCompanion]])
         end,
     },
     {
