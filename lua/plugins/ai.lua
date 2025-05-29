@@ -4,7 +4,7 @@ return {
         config = function()
             require("minuet").setup({
                 enabled = true,
-                provider = "gemini",
+                provider = "claude",
                 provider_options = {
                     gemini = {
                         model = "gemini-2.0-flash",
