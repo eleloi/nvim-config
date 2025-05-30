@@ -48,7 +48,7 @@ return {
             callback = function(ev)
                 local client = vim.lsp.get_client_by_id(ev.data.client_id)
                 local value = ev.data.params
-                    .value --[[@as {percentage?: number, title?: string, message?: string, kind: "begin" | "report" | "end"}]]
+                .value --[[@as {percentage?: number, title?: string, message?: string, kind: "begin" | "report" | "end"}]]
                 if not client or type(value) ~= "table" then
                     return
                 end
@@ -109,22 +109,27 @@ return {
             :map("<leader>um")
         Snacks.toggle
             .new({
-                id = "codeium",
-                name = "Codeium",
+                id = "aicompletion",
+                name = "Inline AI Completion",
                 get = function()
-                    return vim.g.codeium_enabled
+                    if vim.g.aicompletion_enable == nil then
+                        vim.g.aicompletion_enable = true
+                    end
+                    return vim.g.aicompletion_enable
                 end,
                 set = function(state)
                     if state then
-                        vim.g.codeium_enabled = true
-                        vim.fn["CodeiumEnable"]()
+                        vim.g.aicompletion_enable = true
+                        vim.cmd("Minuet virtualtext enable")
+                        vim.cmd("Minuet blink enable")
                     else
-                        vim.g.codeium_enabled = false
-                        vim.fn["CodeiumDisable"]()
+                        vim.g.aicompletion_enable = false
+                        vim.cmd("Minuet blink disable")
                     end
                 end,
             })
             :map("<leader>uc")
+
         -- toggle completion
         Snacks.toggle({
             name = "Completion",

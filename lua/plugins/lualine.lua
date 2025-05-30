@@ -20,7 +20,7 @@ return {
                 lualine_x = {
                     {
                         function()
-                            return vim.g.codeium_enabled and "🧠 " or ""
+                            return vim.g.aicompletion_enable and "🧠 " or ""
                         end,
                         color = { fg = "ff9e64" },
                     },

@@ -1,10 +1,11 @@
 return {
     {
         "milanglacier/minuet-ai.nvim",
+        enabled = true,
         config = function()
+            vim.g.aicompletion_enable = true
             require("minuet").setup({
-                enabled = true,
-                provider = "claude",
+                provider = "gemini",
                 provider_options = {
                     gemini = {
                         model = "gemini-2.0-flash",
