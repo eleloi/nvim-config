@@ -146,10 +146,20 @@ return {
                             make_slash_commands = true, -- Add prompts as /slash commands
                         },
                     },
+                    vectorcode = {
+                        opts = {
+                            add_tool = true,
+                        },
+                    },
                 },
             })
             vim.cmd([[cab cc CodeCompanion]])
         end,
+    },
+    {
+        "Davidyz/VectorCode",
+        version = "*", -- optional, depending on whether you're on nightly or release
+        dependencies = { "nvim-lua/plenary.nvim" },
     },
     {
         "ravitemer/mcphub.nvim",
