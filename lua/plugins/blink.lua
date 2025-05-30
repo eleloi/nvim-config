@@ -50,7 +50,7 @@ return {
                 ["<C-p>"] = { "select_prev", "fallback_to_mappings" },
                 ["<C-j>"] = { "show", "select_next", "fallback" },
                 ["<C-k>"] = { "select_prev", "fallback_to_mappings" },
-                ["<Tab>"] = { "select_accept_and_enter", "fallback" },
+                ["<Tab>"] = { "select_and_accept", "fallback" },
 
                 ["<C-e>"] = { "hide" },
                 ["<Esc>"] = { "cancel", "fallback" },
