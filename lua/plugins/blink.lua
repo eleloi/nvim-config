@@ -70,8 +70,8 @@ return {
             signature = { enabled = true },
             sources = {
                 default = {
-                    "minuet",
                     "lsp",
+                    "minuet",
                     "lazydev",
                     "path",
                     "snippets",
