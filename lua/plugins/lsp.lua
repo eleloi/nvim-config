@@ -1,10 +1,5 @@
 return {
     {
-        "williamboman/mason.nvim",
-        config = true,
-        event = "VeryLazy",
-    },
-    {
         "neovim/nvim-lspconfig",
         event = "VeryLazy",
         dependencies = {
@@ -12,7 +7,25 @@ return {
             "davidosomething/format-ts-errors.nvim",
             "saghen/blink.cmp",
         },
+    },
+    {
+        "williamboman/mason.nvim",
+        config = true,
+        event = "VeryLazy",
+    },
+    {
+        "mason-org/mason-lspconfig.nvim",
+        dependencies = {
+            { "mason-org/mason.nvim", opts = {} },
+            "neovim/nvim-lspconfig",
+        },
         config = function()
+            vim.filetype.add({
+                pattern = {
+                    ["compose.*%.ya?ml"] = "yaml.docker-compose",
+                    ["docker%-compose.*%.ya?ml"] = "yaml.docker-compose",
+                },
+            })
             vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
             vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
 
@@ -32,142 +45,183 @@ return {
 
             local lspconfig = require("lspconfig")
             local capabilities = require("blink.cmp").get_lsp_capabilities()
+            require('mason-lspconfig').setup({
+                ensure_installed = {
+                    "lua_ls",
+                    "rust_analyzer",
+                    "eslint",
+                    "pyright",
+                    "ruff",
+                    "gopls",
+                    "golangci_lint_ls",
+                    "tinymist",
+                    "astro",
+                    "bashls",
+                    "ts_ls",
+                    "svelte",
+                    "tailwindcss",
+                    "docker_compose_language_service",
+                    "dockerls",
+                    "yamlls",
+                    "taplo",
+                    "jsonls",
+                },
+                handlers = {
+                    -- Default server lsp init
+                    function(server_name)
+                        lspconfig[server_name].setup {
+                            on_attach = on_attach,
+                            capabilities = capabilities
+                        }
+                    end,
+                    -- Specific handlers for certain servers
+                    ["lua_ls"] = function()
+                        lspconfig.lua_ls.setup({
+                            on_attach = on_attach,
+                            capabilities = capabilities,
+                            settings = { Lua = { telemetry = { enable = false } } },
+                            on_init = function(client)
+                                if client.workspace_folders then
+                                    local path = client.workspace_folders[1].name
+                                    if vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc") then
+                                        return
+                                    end
+                                end
 
-            lspconfig.lua_ls.setup({
-                on_attach = on_attach,
-                settings = { Lua = { telemetry = { enable = false } } },
-                on_init = function(client)
-                    if client.workspace_folders then
-                        local path = client.workspace_folders[1].name
-                        if vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc") then
-                            return
-                        end
+                                client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+                                    runtime = {
+                                        version = "LuaJIT",
+                                    },
+                                    workspace = {
+                                        checkThirdParty = true,
+                                        library = {
+                                            vim.env.VIMRUNTIME,
+                                            "/home/eleloi/.config/nvim/lazy",
+                                            "${3rd}/luv/library",
+                                        },
+                                    },
+                                })
+                            end,
+                        })
+                    end,
+
+                    ["tinymist"] = function()
+                        lspconfig.tinymist.setup({
+                            on_attach = on_attach,
+                            capabilities = capabilities,
+                            filetypes = { "typst", "typ" },
+                            settings = {
+                                formatterMode = "typstyle",
+                                exportPdf = "onType",
+                                semanticTokens = "disable",
+                            },
+                        })
+                    end,
+
+                    ["astro"] = function()
+                        vim.g.astro_typescript = "enable"
+                        lspconfig.astro.setup({
+                            on_attach = on_attach,
+                            capabilities = capabilities
+                        })
+                    end,
+
+                    ["bashls"] = function()
+                        lspconfig.bashls.setup({
+                            on_attach = on_attach,
+                            capabilities = capabilities,
+                            filetypes = { "bash", "sh", "zsh" },
+                        })
+                    end,
+
+                    ["yamlls"] = function()
+                        lspconfig.yamlls.setup({
+                            on_attach = on_attach,
+                            capabilities = capabilities,
+                            settings = { redhat = { telemetry = { enable = false } } },
+                        })
+                    end,
+
+                    ['jsonls'] = function()
+                        lspconfig.jsonls.setup({
+                            on_attach = on_attach,
+                            capabilities = capabilities,
+                            settings = {
+                                json = {
+                                    -- Schemas https://www.schemastore.org
+                                    schemas = {
+                                        {
+                                            fileMatch = { "package.json" },
+                                            url = "https://json.schemastore.org/package.json",
+                                        },
+                                        {
+                                            fileMatch = { "tsconfig*.json" },
+                                            url = "https://json.schemastore.org/tsconfig.json",
+                                        },
+                                        {
+                                            fileMatch = {
+                                                ".prettierrc",
+                                                ".prettierrc.json",
+                                                "prettier.config.json",
+                                            },
+                                            url = "https://json.schemastore.org/prettierrc.json",
+                                        },
+                                        {
+                                            fileMatch = { ".eslintrc", ".eslintrc.json" },
+                                            url = "https://json.schemastore.org/eslintrc.json",
+                                        },
+                                        {
+                                            fileMatch = { ".babelrc", ".babelrc.json", "babel.config.json" },
+                                            url = "https://json.schemastore.org/babelrc.json",
+                                        },
+                                        {
+                                            fileMatch = { "lerna.json" },
+                                            url = "https://json.schemastore.org/lerna.json",
+                                        },
+                                        {
+                                            fileMatch = { "now.json", "vercel.json" },
+                                            url = "https://json.schemastore.org/now.json",
+                                        },
+                                        {
+                                            fileMatch = {
+                                                ".stylelintrc",
+                                                ".stylelintrc.json",
+                                                "stylelint.config.json",
+                                            },
+                                            url = "http://json.schemastore.org/stylelintrc.json",
+                                        },
+                                    },
+                                },
+                            },
+                        })
+                    end,
+
+                    ['nixd'] = function()
+                        lspconfig.nixd.setup({
+                            cmd = { "nixd" },
+                            settings = {
+                                nixpkgs = {
+                                    expr = "import <nixpkgs> { }",
+                                },
+                                options = {
+                                    nixos = {
+                                        expr =
+                                        '(builtins.getFlake "/home/eleloi/nixos-config/flake.nix").nixosConfigurations."bob".options',
+                                    },
+                                    home_manager = {
+                                        expr =
+                                        '(builtins.getFlake "/home/eleloi/nixos-config/flake.nix").homeConfigurations."eleloi".options',
+                                    },
+                                },
+                            },
+                            on_attach = on_attach,
+                            capabilities = capabilities,
+                        })
                     end
 
-                    client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
-                        runtime = {
-                            version = "LuaJIT",
-                        },
-                        workspace = {
-                            checkThirdParty = true,
-                            library = {
-                                vim.env.VIMRUNTIME,
-                                "/home/eleloi/.config/nvim/lazy",
-                                "${3rd}/luv/library",
-                            },
-                        },
-                    })
-                end,
+                }
             })
-
-            lspconfig.eslint.setup({ on_attach = on_attach, capabilities = capabilities })
-            lspconfig.pyright.setup({ on_attach = on_attach, capabilities = capabilities })
-            lspconfig.ruff.setup({ on_attach = on_attach, capabilities = capabilities })
-            lspconfig.rust_analyzer.setup({ on_attach = on_attach, capabilities = capabilities })
-            lspconfig.gopls.setup({ on_attach = on_attach, capabilities = capabilities })
-            lspconfig.golangci_lint_ls.setup({ on_attach = on_attach, capabilities = capabilities })
-            lspconfig.tinymist.setup({
-                on_attach = on_attach,
-                capabilities = capabilities,
-                filetypes = { "typst", "typ" },
-                settings = {
-                    formatterMode = "typstyle",
-                    exportPdf = "onType",
-                    semanticTokens = "disable",
-                },
-            })
-            lspconfig.astro.setup({ on_attach = on_attach, capabilities = capabilities })
-            lspconfig.bashls.setup({
-                on_attach = on_attach,
-                capabilities = capabilities,
-                filetypes = { "bash", "sh", "zsh" },
-            })
-            vim.g.astro_typescript = "enable"
-            lspconfig.ts_ls.setup({ on_attach = on_attach, capabilities = capabilities })
-            lspconfig.svelte.setup({ on_attach = on_attach, capabilities = capabilities })
-            lspconfig.tailwindcss.setup({ on_attach = on_attach, capabilities = capabilities })
-            lspconfig.docker_compose_language_service.setup({ on_attach = on_attach, capabilities = capabilities })
-            lspconfig.dockerls.setup({ on_attach = on_attach, capabilities = capabilities })
-            lspconfig.yamlls.setup({
-                on_attach = on_attach,
-                capabilities = capabilities,
-                settings = { redhat = { telemetry = { enable = false } } },
-            })
-            lspconfig.taplo.setup({ on_attach = on_attach, capabilities = capabilities })
-            lspconfig.jsonls.setup({
-                on_attach = on_attach,
-                capabilities = capabilities,
-                settings = {
-                    json = {
-                        -- Schemas https://www.schemastore.org
-                        schemas = {
-                            {
-                                fileMatch = { "package.json" },
-                                url = "https://json.schemastore.org/package.json",
-                            },
-                            {
-                                fileMatch = { "tsconfig*.json" },
-                                url = "https://json.schemastore.org/tsconfig.json",
-                            },
-                            {
-                                fileMatch = {
-                                    ".prettierrc",
-                                    ".prettierrc.json",
-                                    "prettier.config.json",
-                                },
-                                url = "https://json.schemastore.org/prettierrc.json",
-                            },
-                            {
-                                fileMatch = { ".eslintrc", ".eslintrc.json" },
-                                url = "https://json.schemastore.org/eslintrc.json",
-                            },
-                            {
-                                fileMatch = { ".babelrc", ".babelrc.json", "babel.config.json" },
-                                url = "https://json.schemastore.org/babelrc.json",
-                            },
-                            {
-                                fileMatch = { "lerna.json" },
-                                url = "https://json.schemastore.org/lerna.json",
-                            },
-                            {
-                                fileMatch = { "now.json", "vercel.json" },
-                                url = "https://json.schemastore.org/now.json",
-                            },
-                            {
-                                fileMatch = {
-                                    ".stylelintrc",
-                                    ".stylelintrc.json",
-                                    "stylelint.config.json",
-                                },
-                                url = "http://json.schemastore.org/stylelintrc.json",
-                            },
-                        },
-                    },
-                },
-            })
-            lspconfig.nushell.setup({ on_attach = on_attach, capabilities = capabilities })
-            lspconfig.tinymist.setup({ on_attach = on_attach, capabilities = capabilities })
-            lspconfig.nixd.setup({
-                cmd = { "nixd" },
-                settings = {
-                    nixpkgs = {
-                        expr = "import <nixpkgs> { }",
-                    },
-                    options = {
-                        nixos = {
-                            expr =
-                            '(builtins.getFlake "/home/eleloi/nixos-config/flake.nix").nixosConfigurations."bob".options',
-                        },
-                        home_manager = {
-                            expr =
-                            '(builtins.getFlake "/home/eleloi/nixos-config/flake.nix").homeConfigurations."eleloi".options',
-                        },
-                    },
-                },
-                on_attach = on_attach,
-                capabilities = capabilities,
-            })
-        end,
+        end
     },
     {
         "dmmulroy/tsc.nvim",
