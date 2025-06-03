@@ -5,7 +5,7 @@ return {
         config = function()
             vim.g.aicompletion_enable = true
             require("minuet").setup({
-                provider = "gemini",
+                provider = "claude",
                 provider_options = {
                     gemini = {
                         model = "gemini-2.0-flash",
@@ -29,6 +29,10 @@ return {
                                 },
                             },
                         },
+                    },
+                    claude = {
+                        max_tokens = 512,
+                        model = "claude-3-5-haiku-20241022",
                     },
                 },
                 blink = {
