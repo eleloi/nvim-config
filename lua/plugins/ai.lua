@@ -138,6 +138,24 @@ return {
 							},
 						})
 					end,
+					ollama = function()
+						return require("codecompanion.adapters").extend("ollama", {
+							env = {
+								url = "http://localhost:11434",
+							},
+							headers = {
+								["Content-Type"] = "application/json",
+							},
+							parameters = {
+								sync = true,
+							},
+							schema = {
+								model = {
+									default = "qwen3:30b",
+								},
+							},
+						})
+					end,
 				},
 				strategies = {
 					chat = {
@@ -202,6 +220,31 @@ Please analyze the diff, group related changes into logical hunks, and for each 
 										git_diff
 									)
 								end,
+							},
+						},
+					},
+					["resume link contents"] = {
+						strategy = "chat",
+						opts = {
+							modes = { "v" },
+							contains_code = true,
+						},
+						condition = function(context)
+							return context.is_visual
+						end,
+						description = "Summarize the contents of a web page given its link, providing a concise and informative overview.",
+						prompts = {
+							{
+								role = "system",
+								content = "You are a helpful assistant skilled at browsing web pages and summarizing their content. When given a link, you will navigate to the page, analyze its main topics, and provide a clear, concise summary that highlights the most important information. Avoid copying large sections verbatim; instead, focus on the key points and overall purpose of the page.",
+							},
+							{
+								role = "user",
+								content = string.format([[
+Please visit the following link using @mcp fetch. After reviewing the page, write a brief summary, of max 2 lines, but idealy 1, that captures its main ideas and purpose.
+
+Give the result in code format, between ``` symbols
+]]),
 							},
 						},
 					},
