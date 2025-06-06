@@ -1,3 +1,4 @@
+vim.cmd("syntax on")
 vim.opt.autoread = true
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -85,18 +86,18 @@ vim.keymap.set("n", "<leader>R", ":so $MYVIMRC<CR>")
 
 -- detect typ files as typst instead of sql
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-    pattern = { "*.typ" },
-    callback = function()
-        vim.bo.filetype = "typst"
-    end,
+	pattern = { "*.typ" },
+	callback = function()
+		vim.bo.filetype = "typst"
+	end,
 })
 
 -- detect hurl files as hurl instead of conf
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-    pattern = { "*.hurl" },
-    callback = function()
-        vim.bo.filetype = "hurl"
-    end,
+	pattern = { "*.hurl" },
+	callback = function()
+		vim.bo.filetype = "hurl"
+	end,
 })
 
 -- fold
