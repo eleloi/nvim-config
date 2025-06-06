@@ -3,21 +3,14 @@ return {
 	{
 		"<leader>ff",
 		function()
-			Snacks.picker.files({
-				hidden = true,
-				matcher = { frecency = true },
-			})
+			Snacks.picker.files({ hidden = true, matcher = { frecency = true } })
 		end,
 		desc = "Find files",
 	},
 	{
 		"<leader>fF",
 		function()
-			Snacks.picker.files({
-				hidden = true,
-				ignored = true,
-				matcher = { frecency = true },
-			})
+			Snacks.picker.files({ hidden = true, ignored = true, matcher = { frecency = true } })
 		end,
 		desc = "Find all files",
 	},
@@ -39,18 +32,14 @@ return {
 		"<leader>fa",
 		function()
 			local current_file_path = vim.fs.dirname(vim.fn.expand("%:p"))
-			Snacks.picker.files({
-				dirs = { current_file_path },
-			})
+			Snacks.picker.files({ dirs = { current_file_path } })
 		end,
 		desc = "Find adjacent",
 	},
 	{
 		"<leader>fw",
 		function()
-			Snacks.picker.grep({
-				dirs = { "~/Documents/vimwiki" },
-			})
+			Snacks.picker.grep({ dirs = { "~/Documents/vimwiki" } })
 		end,
 		desc = "Find VimWiki",
 	},
@@ -87,10 +76,7 @@ return {
 				current = false,
 				win = {
 					input = {
-						keys = {
-							["d"] = { "bufdelete", mode = { "n" } },
-							["<c-x>"] = { "bufdelete", mode = { "i" } },
-						},
+						keys = { ["d"] = { "bufdelete", mode = { "n" } }, ["<c-x>"] = { "bufdelete", mode = { "i" } } },
 					},
 					list = { keys = { ["d"] = "bufdelete" } },
 				},
@@ -98,11 +84,7 @@ return {
 		end,
 		desc = "Pick buffers",
 	},
-	{
-		"<leader>bb",
-		"<cmd>w<cr>",
-		desc = "Save current buffer",
-	},
+	{ "<leader>bb", "<cmd>w<cr>", desc = "Save current buffer" },
 	{
 		"<leader>bd",
 		function()
@@ -136,45 +118,35 @@ return {
 	{
 		"gr",
 		function()
-			Snacks.picker.lsp_references({
-				layout = "ivy",
-			})
+			Snacks.picker.lsp_references({ layout = "ivy" })
 		end,
 		desc = "Lsp references",
 	},
 	{
 		"gd",
 		function()
-			Snacks.picker.lsp_definitions({
-				layout = "ivy",
-			})
+			Snacks.picker.lsp_definitions({ layout = "ivy" })
 		end,
 		desc = "Lsp definitions",
 	},
 	{
 		"gt",
 		function()
-			Snacks.picker.lsp_type_definitions({
-				layout = "ivy",
-			})
+			Snacks.picker.lsp_type_definitions({ layout = "ivy" })
 		end,
 		desc = "Lsp type definitions",
 	},
 	{
 		"fs",
 		function()
-			Snacks.picker.lsp_symbols({
-				layout = "sidebar",
-			})
+			Snacks.picker.lsp_symbols({ layout = "sidebar" })
 		end,
 		desc = "Lsp document symbols",
 	},
 	{
 		"fS",
 		function()
-			Snacks.picker.lsp_workspace_symbols({
-				layout = "ivy",
-			})
+			Snacks.picker.lsp_workspace_symbols({ layout = "ivy" })
 		end,
 		desc = "Lsp document symbols",
 	},
@@ -182,9 +154,7 @@ return {
 	{
 		"<leader>.",
 		function()
-			Snacks.picker.git_status({
-				layout = "ivy",
-			})
+			Snacks.picker.git_status({ layout = "ivy" })
 		end,
 		desc = "Changed files",
 	},
@@ -244,5 +214,13 @@ return {
 			Snacks.scratch.select()
 		end,
 		desc = "Scratch select",
+	},
+	-- Colorscheme
+	{
+		"<leader>fc",
+		function()
+			Snacks.picker.colorschemes()
+		end,
+		desc = "Colorscheme",
 	},
 }
