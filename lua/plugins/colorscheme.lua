@@ -1,22 +1,22 @@
 -- Manages color schemes
 return {
 	{
-		"vague2k/huez.nvim",
-		dependencies = {
-			"sainnhe/gruvbox-material",
-		},
-		import = "huez-manager.import",
+		"rebelot/kanagawa.nvim",
 		lazy = false,
 		priority = 1000,
-		keys = {
-			{ "<leader>fcc", "<CMD>Huez<CR>", desc = "Huez Manager" },
-			{ "<leader>fcl", "<CMD>HuezLive<CR>", desc = "Huez Live" },
-			{ "<leader>fcf", "<CMD>HuezFavorites<CR>", desc = "Huez Favorites" },
-		},
 		config = function()
-			require("huez").setup({
-				fallback = "gruvbox-material",
+			require("kanagawa").setup({
+				theme = "dragon",
+				overrides = function(colors)
+					return {
+						["@markup.strong.markdown"] = { fg = colors.palette.sakuraPink, bold = true },
+						["@markup.strong.markdown_inline"] = { fg = colors.palette.sakuraPink, bold = true },
+						["@markup.italic.markdown"] = { fg = colors.palette.springGreen, italic = true },
+						["@markup.italic.markdown_inline"] = { fg = colors.palette.springGreen, italic = true },
+					}
+				end,
 			})
+			vim.cmd("colorscheme kanagawa-dragon")
 		end,
 	},
 }
