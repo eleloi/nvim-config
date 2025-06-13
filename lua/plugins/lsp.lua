@@ -1,3 +1,25 @@
+local lsp_tools = {
+	"lua_ls",
+	"rust_analyzer",
+	"eslint",
+	"pyright",
+	"ruff",
+	"gopls",
+	"biome",
+	"golangci_lint_ls",
+	"tinymist",
+	"astro",
+	"bashls",
+	"ts_ls",
+	"svelte",
+	"tailwindcss",
+	"docker_compose_language_service",
+	"dockerls",
+	"yamlls",
+	"taplo",
+	"jsonls",
+}
+
 local on_attach = function(_, bufnr)
 	local opts = { buffer = bufnr }
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
@@ -49,8 +71,11 @@ return {
 			})
 		end,
 	},
+
+	-- use mason-lspconfig to install lsp tools automatically and setup lspconfig
 	{
 		"mason-org/mason-lspconfig.nvim",
+		enabled = true,
 		dependencies = {
 			{ "mason-org/mason.nvim", opts = {} },
 			"neovim/nvim-lspconfig",
@@ -68,26 +93,7 @@ return {
 			local lspconfig = require("lspconfig")
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 			require("mason-lspconfig").setup({
-				ensure_installed = {
-					"lua_ls",
-					"rust_analyzer",
-					"eslint",
-					"pyright",
-					"ruff",
-					"gopls",
-					"golangci_lint_ls",
-					"tinymist",
-					"astro",
-					"bashls",
-					"ts_ls",
-					"svelte",
-					"tailwindcss",
-					"docker_compose_language_service",
-					"dockerls",
-					"yamlls",
-					"taplo",
-					"jsonls",
-				},
+				ensure_installed = lsp_tools,
 				handlers = {
 					-- Default server lsp init
 					function(server_name)
