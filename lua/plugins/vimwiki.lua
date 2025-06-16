@@ -10,11 +10,6 @@ return {
 				desc = "Vimwiki Index",
 			},
 			{
-				"<leader>wd",
-				"<CMD>VimwikiMakeDiaryNote<CR>",
-				desc = "Vimwiki Make Diary Note",
-			},
-			{
 				"<leader>wb",
 				"<CMD>VimwikiBacklinks<CR>",
 				desc = "BackLinks",
@@ -28,6 +23,7 @@ return {
 					path = "~/Documents/vimwiki/",
 					syntax = "markdown",
 					ext = "md",
+					auto_diary_index = 1,
 				},
 			}
 		end,
