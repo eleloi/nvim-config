@@ -5,7 +5,7 @@ return {
 		config = function()
 			vim.g.aicompletion_enable = true
 			require("minuet").setup({
-				provider = "claude",
+				provider = "gemini",
 				provider_options = {
 					gemini = {
 						model = "gemini-2.0-flash",
@@ -179,11 +179,6 @@ return {
 							make_slash_commands = true, -- Add prompts as /slash commands
 						},
 					},
-					vectorcode = {
-						opts = {
-							add_tool = true,
-						},
-					},
 				},
 				prompt_library = {
 					["build git commits"] = {
@@ -252,11 +247,6 @@ Give the result in code format, between ``` symbols
 			})
 			vim.cmd([[cab cc CodeCompanion]])
 		end,
-	},
-	{
-		"Davidyz/VectorCode",
-		version = "*", -- optional, depending on whether you're on nightly or release
-		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 	{
 		"ravitemer/mcphub.nvim",
