@@ -51,6 +51,7 @@ return {
 		config = function()
 			local lspconfig = require("lspconfig")
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
+			vim.lsp.enable("nushell")
 			lspconfig.nixd.setup({
 				cmd = { "nixd" },
 				settings = {
