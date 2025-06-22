@@ -110,3 +110,8 @@ vim.opt.foldlevel = 99
 vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 -- vim.opt.foldlevelstart = 1
 vim.opt.foldnestmax = 6
+vim.keymap.set("n", "z1", "zMzr")
+vim.keymap.set("n", "z2", "zMzrzr")
+vim.keymap.set("n", "z3", "zMzrzrzr")
+vim.keymap.set("n", "z4", "zMzrzrzrzr")
+vim.keymap.set("n", "z5", "zMzrzrzrzrzr")
