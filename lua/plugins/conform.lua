@@ -1,6 +1,5 @@
 local formatters = {
 	lua = { "stylua" },
-	python = { "ruff" },
 	typescript = { "prettierd" },
 	typescriptreact = { "prettierd" },
 	html = { "prettierd" },
