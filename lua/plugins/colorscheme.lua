@@ -112,6 +112,7 @@ return {
                         return {
                             CmpItemMenu = { fg = colors.surface2 },
                             CursorLineNr = { fg = colors.text },
+                            CursorColumn = { bg = colors.surface1 },
                             FloatBorder = { bg = colors.base, fg = colors.surface0 },
                             GitSignsChange = { fg = colors.peach },
                             LineNr = { fg = colors.overlay0 },
