@@ -53,7 +53,16 @@ return {
         docker_compose_language_service = {},
         dockerls = {},
         yamlls = {
-            settings = { redhat = { telemetry = { enable = false } } },
+            settings = {
+                redhat = { telemetry = { enable = false } },
+                yaml = {
+                    schemas = {
+                        kubernetes = "k8s-*.yaml",
+                        ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
+                        ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
+                    },
+                },
+            },
         },
         taplo = {},
         jsonls = {
@@ -108,6 +117,7 @@ return {
     },
     noMason = {
         nushell = {},
+        nu = {},
         nixd = {
             cmd = { "nixd" },
             settings = {
