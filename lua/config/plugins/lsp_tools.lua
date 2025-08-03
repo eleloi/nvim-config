@@ -55,13 +55,6 @@ return {
         yamlls = {
             settings = {
                 redhat = { telemetry = { enable = false } },
-                yaml = {
-                    schemas = {
-                        kubernetes = "k8s-*.yaml",
-                        ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
-                        ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
-                    },
-                },
             },
         },
         taplo = {},
@@ -117,7 +110,7 @@ return {
     },
     noMason = {
         nushell = {},
-        nu = {},
+        -- nu = {},
         nixd = {
             cmd = { "nixd" },
             settings = {

@@ -5,4 +5,10 @@ return {
         desc = "Import",
         mode = "n",
     },
+    {
+        "<leader>fy",
+        "<CMD>Telescope yaml_schema<CR>",
+        desc = "Yaml Schemas",
+        mode = "n",
+    },
 }
