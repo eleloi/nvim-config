@@ -54,6 +54,9 @@ return {
         dockerls = {},
         yamlls = {
             settings = {
+                yaml = {
+                    format = { enable = true },
+                },
                 redhat = { telemetry = { enable = false } },
             },
         },
