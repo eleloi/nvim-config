@@ -35,40 +35,42 @@ local ensure_installed = {
 }
 
 return {
-    "nvim-treesitter/nvim-treesitter",
-    dependencies = {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        "andymass/vim-matchup",
-    },
-    build = ":TSUpdate",
-    event = "VeryLazy",
-    main = "nvim-treesitter.configs",
-    opts = {
-        ensure_installed = ensure_installed,
-        auto_install = true,
-        highlight = { enable = true },
-        indent = { enable = true },
-        matchup = { enable = true },
-        incremental_selection = {
-            enable = true,
-            keymaps = {
-                init_selection = "<C-space>",
-                node_incremental = "<C-space>",
-                scope_incremental = "<C‑s>",
-                node_decremental = "<BS>",
-            },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter-textobjects",
+            "andymass/vim-matchup",
         },
-        textobjects = {
-            select = {
+        build = ":TSUpdate",
+        event = "VeryLazy",
+        main = "nvim-treesitter.configs",
+        opts = {
+            ensure_installed = ensure_installed,
+            auto_install = true,
+            highlight = { enable = true },
+            indent = { enable = true },
+            matchup = { enable = true },
+            incremental_selection = {
                 enable = true,
-                lookahead = true,
                 keymaps = {
-                    ["af"] = "@function.outer",
-                    ["if"] = "@function.inner",
-                    ["ac"] = "@conditional.outer",
-                    ["ic"] = "@conditional.inner",
-                    ["al"] = "@loop.outer",
-                    ["il"] = "@loop.inner",
+                    init_selection = "<C-space>",
+                    node_incremental = "<C-space>",
+                    scope_incremental = "<C‑s>",
+                    node_decremental = "<BS>",
+                },
+            },
+            textobjects = {
+                select = {
+                    enable = true,
+                    lookahead = true,
+                    keymaps = {
+                        ["af"] = "@function.outer",
+                        ["if"] = "@function.inner",
+                        ["ac"] = "@conditional.outer",
+                        ["ic"] = "@conditional.inner",
+                        ["al"] = "@loop.outer",
+                        ["il"] = "@loop.inner",
+                    },
                 },
             },
         },
