@@ -71,6 +71,12 @@ vim.keymap.set("n", "<C-w><C-k>", "<cmd>resize -5<CR>")
 -- only
 vim.keymap.set("n", "<leader>o", "<CMD>only<CR>")
 
+-- copy current file path
+vim.keymap.set("n", "<leader>P", function()
+    vim.fn.setreg("+", vim.fn.expand("%:p"))
+    vim.notify("Path copied to clipboard: " .. vim.fn.expand("%:p"), vim.log.levels.INFO)
+end)
+
 -- repace all instances of word under cursor
 vim.keymap.set("n", "<C-s>", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<left><left><left>")
 
@@ -86,18 +92,18 @@ vim.keymap.set("n", "<leader>R", ":so $MYVIMRC<CR>")
 
 -- detect typ files as typst instead of sql
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "*.typ" },
-	callback = function()
-		vim.bo.filetype = "typst"
-	end,
+    pattern = { "*.typ" },
+    callback = function()
+        vim.bo.filetype = "typst"
+    end,
 })
 
 -- detect hurl files as hurl instead of conf
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "*.hurl" },
-	callback = function()
-		vim.bo.filetype = "hurl"
-	end,
+    pattern = { "*.hurl" },
+    callback = function()
+        vim.bo.filetype = "hurl"
+    end,
 })
 
 -- fold
