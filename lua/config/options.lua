@@ -105,19 +105,3 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
         vim.bo.filetype = "hurl"
     end,
 })
-
--- fold
-vim.opt.foldenable = true
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldcolumn = "0"
-vim.opt.foldlevel = 99
--- fix bug with blink
-vim.o.foldexpr = "nvim_treesitter#foldexpr()"
--- vim.opt.foldlevelstart = 1
-vim.opt.foldnestmax = 6
-vim.keymap.set("n", "z1", "zMzr")
-vim.keymap.set("n", "z2", "zMzrzr")
-vim.keymap.set("n", "z3", "zMzrzrzr")
-vim.keymap.set("n", "z4", "zMzrzrzrzr")
-vim.keymap.set("n", "z5", "zMzrzrzrzrzr")
