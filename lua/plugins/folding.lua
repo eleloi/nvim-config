@@ -10,7 +10,7 @@ return {
             padding = 3,
             lineCount = {
                 template = "↔️ %d", -- `%d` is replaced with the number of folded lines
-                hlgroup = "Comment",
+                hlgroup = "Conceal",
             },
             diagnosticsCount = true, -- uses hlgroups and icons from `vim.diagnostic.config().signs`
             gitsignsCount = true, -- requires `gitsigns.nvim`
