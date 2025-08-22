@@ -13,16 +13,13 @@ return {
                 hlgroup = "Conceal",
             },
             diagnosticsCount = true, -- uses hlgroups and icons from `vim.diagnostic.config().signs`
-            gitsignsCount = true, -- requires `gitsigns.nvim`
+            gitsignsCount = true,    -- requires `gitsigns.nvim`
         },
         autoFold = {
-            enabled = true,
+            enabled = false,
             kinds = { "comment", "imports" }, ---@type lsp.FoldingRangeKind[]
         },
-        foldKeymaps = {
-            setup = false,
-            hOnlyOpensOnFirstColumn = false,
-        },
+        foldKeymaps = { setup = false },
     },
 
     init = function()
@@ -33,13 +30,10 @@ return {
     config = function(_, opts)
         require("origami").setup(opts)
 
-        -- vim.keymap.set("n", "<Left>", function()
-        --     require("origami").h()
-        -- end)
-        --
-        -- vim.keymap.set("n", "<Right>", function()
-        --     require("origami").l()
-        -- end)
+        vim.keymap.set("n", "z-", function()
+            vim.cmd("normal! ^")
+            require("origami").h()
+        end)
 
         -- Keymaps
         vim.keymap.set("n", "z1", "zMzr", {
