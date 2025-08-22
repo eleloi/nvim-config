@@ -5,7 +5,7 @@ return {
         config = function()
             vim.g.aicompletion_enable = true
             require("minuet").setup({
-                provider = "claude",
+                provider = "gemini",
                 provider_options = {
                     gemini = {
                         model = "gemini-2.0-flash",
@@ -39,7 +39,7 @@ return {
                     enable_auto_complete = true,
                 },
                 virtualtext = {
-                    auto_trigger_ft = { "*" },
+                    auto_trigger_ft = {},
                     keymap = {
                         -- accept whole completion
                         accept = "<M-l>",
@@ -58,7 +58,7 @@ return {
     {
         "zbirenbaum/copilot.lua",
         cmd = "Copilot",
-        enabled = true,
+        enabled = false,
         event = "InsertEnter",
         config = function()
             require("copilot").setup({
@@ -175,7 +175,7 @@ return {
                         callback = "mcphub.extensions.codecompanion",
                         opts = {
                             show_result_in_chat = true, -- Show mcp tool results in chat
-                            make_vars = true,           -- Convert resources to #variables
+                            make_vars = true, -- Convert resources to #variables
                             make_slash_commands = true, -- Add prompts as /slash commands
                         },
                     },
