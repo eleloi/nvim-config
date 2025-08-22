@@ -1,25 +1,5 @@
 -- Manages color schemes
 return {
-    -- {
-    --     "rebelot/kanagawa.nvim",
-    --     lazy = false,
-    --     priority = 1000,
-    --     config = function()
-    --         require("kanagawa").setup({
-    --             theme = "dragon",
-    --             overrides = function(colors)
-    --                 return {
-    --                     ["@markup.strong.markdown"] = { fg = colors.palette.sakuraPink, bold = true },
-    --                     ["@markup.strong.markdown_inline"] = { fg = colors.palette.sakuraPink, bold = true },
-    --                     ["@markup.italic.markdown"] = { fg = colors.palette.springGreen, italic = true },
-    --                     ["@markup.italic.markdown_inline"] = { fg = colors.palette.springGreen, italic = true },
-    --                 }
-    --             end,
-    --         })
-    --         vim.cmd("colorscheme kanagawa-dragon")
-    --     end,
-    -- },
-
     {
         "catppuccin/nvim",
         name = "catppuccin",
@@ -27,6 +7,10 @@ return {
         priority = 1000,
         config = function()
             require("catppuccin").setup({
+                float = {
+                    solid = true,
+                    transparent = true,
+                },
                 background = {
                     light = "latte",
                     dark = "mocha",
@@ -257,6 +241,8 @@ return {
                             TSURI = { fg = colors.blue },
                             TSVariable = { fg = colors.text },
                             TSVariableBuiltin = { fg = colors.mauve },
+
+                            TreesitterContext = { bg = colors.surface1 },
 
                             ["@annotation"] = { link = "TSAnnotation" },
                             ["@attribute"] = { link = "TSAttribute" },

@@ -14,6 +14,8 @@ vim.api.nvim_create_autocmd("BufEnter", {
     buffer = 0,
     callback = function()
         vim.opt_local.cursorcolumn = true
+        vim.g.tscontext = true
+        vim.cmd("TSContext enable")
     end,
 })
 
@@ -22,5 +24,7 @@ vim.api.nvim_create_autocmd("BufLeave", {
     buffer = 0,
     callback = function()
         vim.opt_local.cursorcolumn = false
+        vim.g.tscontext = false
+        vim.cmd("TSContext disable")
     end,
 })

@@ -165,7 +165,11 @@ return {
 
         ---Toggle
         local Snacks = require("snacks")
+
+        -- Toggle zen
         Snacks.toggle.zen():map("<leader>uz")
+
+        -- Toggle markdown render
         Snacks.toggle
             .new({
                 id = "render_markdown",
@@ -184,10 +188,12 @@ return {
                 end,
             })
             :map("<leader>um")
+
+        -- Toggle AI Minuet
         Snacks.toggle
             .new({
                 id = "aicompletion",
-                name = "Inline AI Completion",
+                name = "Minuet",
                 get = function()
                     if vim.g.aicompletion_enable == nil then
                         vim.g.aicompletion_enable = true
@@ -209,7 +215,7 @@ return {
 
         -- toggle completion
         Snacks.toggle({
-            name = "Completion",
+            name = "Blink cmp",
             get = function()
                 if vim.b.completion == nil then
                     vim.b.completion = true
@@ -220,5 +226,28 @@ return {
                 vim.b.completion = state
             end,
         }):map("<leader>u/")
+
+        -- toggle treesitter_context
+        Snacks.toggle
+            .new({
+                id = "treesitter_context",
+                name = "Treesitter context",
+                get = function()
+                    if vim.g.tscontext == nil then
+                        vim.g.tscontext = false
+                    end
+                    return vim.g.tscontext
+                end,
+                set = function(state)
+                    if state then
+                        vim.g.tscontext = true
+                        vim.cmd("TSContext enable")
+                    else
+                        vim.g.tscontext = false
+                        vim.cmd("TSContext disable")
+                    end
+                end,
+            })
+            :map("<leader>ut")
     end,
 }
