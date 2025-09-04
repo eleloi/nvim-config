@@ -1,1 +1,1 @@
-{"version":2,"macros":[{"scope":{"type":"global"},"saved_at":"2025-08-27T16:41:34Z","updated_at":"2025-08-27T16:41:34Z","id":"06307837-1290-32","name":"duplicate","keys":"yyp"}]}
+{"macros":[{"saved_at":"2025-08-27T16:41:34Z","scope":{"type":"global"},"name":"duplicate","id":"06307837-1290-32","updated_at":"2025-08-27T16:41:34Z","keys":"yyp"},{"saved_at":"2025-08-29T17:00:38Z","scope":{"type":"filetype","value":"nu"},"name":"split |","id":"39941699-8736-97","updated_at":"2025-08-29T17:00:38Z","keys":"f|€ý5i\r\u001b"}],"version":2}
