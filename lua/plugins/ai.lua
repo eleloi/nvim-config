@@ -128,38 +128,9 @@ return {
         },
         config = function()
             require("codecompanion").setup({
-                adapters = {
-                    anthropic = function()
-                        return require("codecompanion.adapters").extend("anthropic", {
-                            schema = {
-                                model = {
-                                    default = "claude-sonnet-4-20250514",
-                                },
-                            },
-                        })
-                    end,
-                    ollama = function()
-                        return require("codecompanion.adapters").extend("ollama", {
-                            env = {
-                                url = "http://localhost:11434",
-                            },
-                            headers = {
-                                ["Content-Type"] = "application/json",
-                            },
-                            parameters = {
-                                sync = true,
-                            },
-                            schema = {
-                                model = {
-                                    default = "qwen3:30b",
-                                },
-                            },
-                        })
-                    end,
-                },
                 strategies = {
                     chat = {
-                        adapter = "anthropic",
+                        adapter = "gemini",
                         keymaps = {
                             send = {
                                 modes = { n = "<CR>", i = "<C-s>" },
@@ -169,15 +140,19 @@ return {
                             },
                         },
                     },
+                    inline = {
+                        adapter = "gemini",
+                    },
                 },
-                extensions = {
-                    mcphub = {
-                        callback = "mcphub.extensions.codecompanion",
-                        opts = {
-                            show_result_in_chat = true, -- Show mcp tool results in chat
-                            make_vars = true, -- Convert resources to #variables
-                            make_slash_commands = true, -- Add prompts as /slash commands
-                        },
+                adapters = {
+                    http = {
+                        gemini = function()
+                            return require("codecompanion.adapters").extend("gemini", {
+                                env = {
+                                    api_key = "cmd:bash -c 'echo $GEMINI_API_KEY'",
+                                },
+                            })
+                        end,
                     },
                 },
                 prompt_library = {
@@ -250,18 +225,6 @@ Give the result in code format, between ``` symbols
                 },
             })
             vim.cmd([[cab cc CodeCompanion]])
-        end,
-    },
-    {
-        "ravitemer/mcphub.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-        build = "bundled_build.lua",
-        config = function()
-            require("mcphub").setup({
-                use_bundled_binary = true,
-            })
         end,
     },
 }
