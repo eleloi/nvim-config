@@ -1,7 +1,7 @@
 return {
     {
         "milanglacier/minuet-ai.nvim",
-        enabled = true,
+        enabled = false,
         config = function()
             vim.g.aicompletion_enable = true
             require("minuet").setup({
@@ -139,9 +139,6 @@ return {
                                 modes = { n = "<C-c>", i = "<C-c>" },
                             },
                         },
-                    },
-                    inline = {
-                        adapter = "gemini",
                     },
                 },
                 adapters = {

@@ -71,7 +71,7 @@ return {
             sources = {
                 default = {
                     "lsp",
-                    "minuet",
+                    -- "minuet",
                     "lazydev",
                     "path",
                     "snippets",
