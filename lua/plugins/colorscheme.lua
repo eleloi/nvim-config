@@ -88,7 +88,7 @@ return {
                     semantic_tokens = true,
                     treesitter = true,
                     treesitter_context = true,
-                    vimwiki = true,
+                    vimwiki = false,
                     which_key = true,
                 },
                 highlight_overrides = {
