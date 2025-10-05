@@ -1,64 +1,8 @@
 return {
     {
-        "milanglacier/minuet-ai.nvim",
-        enabled = false,
-        config = function()
-            vim.g.aicompletion_enable = true
-            require("minuet").setup({
-                provider = "gemini",
-                provider_options = {
-                    gemini = {
-                        model = "gemini-2.5-flash",
-                        optional = {
-                            generationConfig = {
-                                maxOutputTokens = 256,
-                                -- When using `gemini-2.5-flash`, it is recommended to entirely
-                                -- disable thinking for faster completion retrieval.
-                                thinkingConfig = {
-                                    thinkingBudget = 0,
-                                },
-                            },
-                            safetySettings = {
-                                {
-                                    -- HARM_CATEGORY_HATE_SPEECH,
-                                    -- HARM_CATEGORY_HARASSMENT
-                                    -- HARM_CATEGORY_SEXUALLY_EXPLICIT
-                                    category = "HARM_CATEGORY_DANGEROUS_CONTENT",
-                                    -- BLOCK_NONE
-                                    threshold = "BLOCK_ONLY_HIGH",
-                                },
-                            },
-                        },
-                    },
-                    claude = {
-                        max_tokens = 512,
-                        model = "claude-3-5-haiku-20241022",
-                    },
-                },
-                blink = {
-                    enable_auto_complete = true,
-                },
-                virtualtext = {
-                    auto_trigger_ft = {},
-                    keymap = {
-                        -- accept whole completion
-                        accept = "<M-l>",
-                        -- accept one line
-                        accept_line = "<M-;>",
-                        prev = "<M-k>",
-                        -- Cycle to next completion item, or manually invoke completion
-                        next = "<M-j>",
-                        dismiss = "<M-e>",
-                    },
-                    show_on_completion_menu = true,
-                },
-            })
-        end,
-    },
-    {
         "zbirenbaum/copilot.lua",
         cmd = "Copilot",
-        enabled = true,
+        enabled = false,
         event = "InsertEnter",
         config = function()
             require("copilot").setup({
@@ -222,6 +166,42 @@ Give the result in code format, between ``` symbols
                 },
             })
             vim.cmd([[cab cc CodeCompanion]])
+        end,
+    },
+    {
+        "Exafunction/windsurf.nvim",
+        event = "VeryLazy",
+        config = function()
+            require("codeium").setup({
+                -- Optionally disable cmp source if using virtual text only
+                enable_cmp_source = false,
+                virtual_text = {
+                    enabled = true,
+                    -- These are the defaults
+                    -- Set to true if you never want completions to be shown automatically.
+                    manual = false,
+                    idle_delay = 75,
+                    map_keys = true,
+                    -- The key to press when hitting the accept keybinding but no completion is showing.
+                    -- Defaults to \t normally or <c-n> when a popup is showing.
+                    accept_fallback = nil,
+                    -- Key bindings for managing completions in virtual text mode.
+                    key_bindings = {
+                        -- Accept the current completion.
+                        accept = "<M-l>",
+                        -- Accept the next word.
+                        accept_word = "<M-;>",
+                        -- Accept the next line.
+                        accept_line = false,
+                        -- Clear the virtual text.
+                        clear = false,
+                        -- Cycle to the next completion.
+                        next = "<M-j>",
+                        -- Cycle to the previous completion.
+                        prev = "<M-k>",
+                    },
+                },
+            })
         end,
     },
 }
