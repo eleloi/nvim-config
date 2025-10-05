@@ -52,14 +52,7 @@ return {
         tailwindcss = {},
         docker_compose_language_service = {},
         dockerls = {},
-        yamlls = {
-            settings = {
-                yaml = {
-                    format = { enable = true },
-                },
-                redhat = { telemetry = { enable = false } },
-            },
-        },
+        yamlls = {},
         taplo = {},
         jsonls = {
             settings = {
@@ -110,6 +103,7 @@ return {
                 },
             },
         },
+        helm_ls = {},
     },
     noMason = {
         nushell = {},

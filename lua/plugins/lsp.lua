@@ -155,11 +155,13 @@ return {
                                 },
                             }),
                         },
+                        redhat = { telemetry = { enable = false } },
                     },
                 },
             })
 
-            require("lspconfig")["yamlls"].setup(cfg)
+            vim.lsp.config("yamlls", cfg)
+            vim.lsp.enable("yamlls")
 
             require("telescope").load_extension("yaml_schema")
             -- get schema for current buffer
