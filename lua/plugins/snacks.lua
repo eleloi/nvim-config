@@ -5,9 +5,9 @@ local keys = require("config.plugins.snacks.keys")
 local indent_config = {
     indent = {
         priority = 1,
-        enabled = false, -- enable indent guides
+        enabled = false,     -- enable indent guides
         char = "│",
-        only_scope = true, -- only show indent guides of the scope
+        only_scope = true,   -- only show indent guides of the scope
         only_current = true, -- only show indent guides in the current window
         -- hl = "SnacksIndent", ---@type string|string[] hl groups for indent guides
         -- can be a list of hl groups to cycle through
@@ -36,7 +36,7 @@ local indent_config = {
         style = "up_down",
         easing = "linear",
         duration = {
-            step = 20, -- ms per step
+            step = 20,   -- ms per step
             total = 300, -- maximum duration
         },
     },
@@ -45,7 +45,7 @@ local indent_config = {
         enabled = true, -- enable highlighting the current scope
         priority = 200,
         char = "│",
-        underline = false, -- underline the start of the scope
+        underline = false,    -- underline the start of the scope
         only_current = false, -- only show scope in the current window
         hl = "SnacksIndentScope", ---@type string|string[] hl group for scopes
     },
@@ -125,7 +125,7 @@ return {
             callback = function(ev)
                 local client = vim.lsp.get_client_by_id(ev.data.client_id)
                 local value = ev.data.params
-                .value --[[@as {percentage?: number, title?: string, message?: string, kind: "begin" | "report" | "end"}]]
+                    .value --[[@as {percentage?: number, title?: string, message?: string, kind: "begin" | "report" | "end"}]]
                 if not client or type(value) ~= "table" then
                     return
                 end
@@ -249,5 +249,23 @@ return {
                 end,
             })
             :map("<leader>ut")
+
+        -- toggle colorscheme between catppuccin and monoglow
+        Snacks.toggle
+            .new({
+                id = "colorscheme",
+                name = "Colorfull colorscheme",
+                get = function()
+                    return vim.g.colors_name == "catppuccin-mocha"
+                end,
+                set = function(state)
+                    if state then
+                        vim.api.nvim_command("colorscheme catppuccin-mocha")
+                    else
+                        vim.api.nvim_command("colorscheme monoglow")
+                    end
+                end,
+            })
+            :map("<leader>us")
     end,
 }

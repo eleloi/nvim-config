@@ -1,6 +1,11 @@
 -- Manages color schemes
 return {
     {
+        "wnkz/monoglow.nvim",
+        event = "VeryLazy",
+        opts = {},
+    },
+    {
         "catppuccin/nvim",
         name = "catppuccin",
         lazy = false,
