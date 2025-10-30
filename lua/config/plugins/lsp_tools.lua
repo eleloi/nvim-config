@@ -31,6 +31,7 @@ return {
         basedpyright = {},
         ruff = {},
         gopls = {},
+        templ = {},
         biome = {},
         golangci_lint_ls = {},
         tinymist = {

@@ -11,6 +11,7 @@ local formatters = {
     typescript = { "prettierd" },
     typescriptreact = { "prettierd" },
     typst = { "typstyle" },
+    templ = { "templ" },
 }
 
 return {
