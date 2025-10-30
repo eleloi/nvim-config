@@ -43,6 +43,13 @@ return {
         end,
         desc = "Find VimWiki",
     },
+    {
+        "<leader>us",
+        function()
+            Snacks.picker.colorschemes()
+        end,
+        desc = "Colorschemes",
+    },
     ---Projects
     {
         "<leader>fp",
