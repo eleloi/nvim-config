@@ -13,6 +13,11 @@ return {
         end,
     },
     {
+        "rose-pine/neovim",
+        lazy = false,
+        priority = 1000,
+    },
+    {
         "catppuccin/nvim",
         name = "catppuccin",
         lazy = false,
