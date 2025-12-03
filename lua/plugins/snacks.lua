@@ -189,11 +189,11 @@ return {
             })
             :map("<leader>um")
 
-        -- Toggle AI Minuet
+        -- Toggle AI Codeium
         Snacks.toggle
             .new({
                 id = "aicompletion",
-                name = "Minuet",
+                name = "Codeium",
                 get = function()
                     if vim.g.aicompletion_enable == nil then
                         vim.g.aicompletion_enable = true
@@ -203,11 +203,10 @@ return {
                 set = function(state)
                     if state then
                         vim.g.aicompletion_enable = true
-                        vim.cmd("Minuet virtualtext enable")
-                        vim.cmd("Minuet blink enable")
+                        vim.cmd("Codeium Toggle")
                     else
                         vim.g.aicompletion_enable = false
-                        vim.cmd("Minuet blink disable")
+                        vim.cmd("Codeium Toggle")
                     end
                 end,
             })
