@@ -160,6 +160,20 @@ return {
                 },
             })
 
+            -- Polyfill for workspace_did_change_configuration (removed in nvim 0.10)
+            -- yaml-companion relies on this method which was removed.
+            local original_on_init = cfg.on_init
+            cfg.on_init = function(client, initialize_result)
+                if original_on_init then
+                    original_on_init(client, initialize_result)
+                end
+                if not client.workspace_did_change_configuration then
+                    client.workspace_did_change_configuration = function(settings)
+                        client.notify("workspace/didChangeConfiguration", { settings = settings })
+                    end
+                end
+            end
+
             vim.lsp.config("yamlls", cfg)
             vim.lsp.enable("yamlls")
 
