@@ -42,6 +42,7 @@ return {
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
         },
+        version = "17.33.0",
         event = "VeryLazy",
         keys = {
             {
