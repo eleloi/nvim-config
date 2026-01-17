@@ -3,7 +3,9 @@ return {
     "chrisgrieser/nvim-origami",
     event = "VeryLazy",
     opts = {
-        useLspFoldsWithTreesitterFallback = true,
+        useLspFoldsWithTreesitterFallback = {
+            enabled = true,
+        },
         pauseFoldsOnSearch = true,
         foldtext = {
             enabled = true,
@@ -13,7 +15,7 @@ return {
                 hlgroup = "Conceal",
             },
             diagnosticsCount = true, -- uses hlgroups and icons from `vim.diagnostic.config().signs`
-            gitsignsCount = true,    -- requires `gitsigns.nvim`
+            gitsignsCount = true, -- requires `gitsigns.nvim`
         },
         autoFold = {
             enabled = false,
