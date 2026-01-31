@@ -1,26 +1,24 @@
 return {
     ---Files
-    {
-        "<leader>ff",
-        function()
-            Snacks.picker.files({ hidden = true, matcher = { frecency = true } })
-        end,
-        desc = "Find files",
-    },
-    {
-        "<leader>fF",
-        function()
-            Snacks.picker.files({ hidden = true, ignored = true, matcher = { frecency = true } })
-        end,
-        desc = "Find all files",
-    },
-    {
-        "<leader>fg",
-        function()
-            Snacks.picker.grep({ layout = "default" })
-        end,
-        desc = "Find grep",
-    },
+    -- {
+    --     "<leader>ff",
+    --     function()
+    --         Snacks.picker.files({ hidden = true, matcher = { frecency = true } })
+    --     end,
+    --     desc = "Find files",
+    -- },
+    -- {
+    --     "<leader>fF",
+    --     function()
+    --         Snacks.picker.files({ hidden = true, ignored = true, matcher = { frecency = true } })
+    --     end,
+    --     desc = "Find all files",
+    --     "<leader>fg",
+    --     function()
+    --         Snacks.picker.grep({ layout = "default" })
+    --     end,
+    --     desc = "Find grep",
+    -- },
     {
         "<leader>fo",
         function()
