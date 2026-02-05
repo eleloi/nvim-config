@@ -2,7 +2,7 @@ return {
     {
         "zbirenbaum/copilot.lua",
         cmd = "Copilot",
-        enabled = false,
+        enabled = true,
         event = "InsertEnter",
         config = function()
             require("copilot").setup({
@@ -175,6 +175,7 @@ Give the result in code format, between ``` symbols
     {
         "Exafunction/windsurf.nvim",
         event = "VeryLazy",
+        enabled = false,
         config = function()
             require("codeium").setup({
                 -- Optionally disable cmp source if using virtual text only
