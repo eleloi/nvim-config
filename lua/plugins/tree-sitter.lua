@@ -32,6 +32,7 @@ local ensure_installed = {
     "vimdoc",
     "yaml",
     "kdl",
+    "templ",
 }
 
 return {
