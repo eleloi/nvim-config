@@ -43,6 +43,9 @@ return {
             local all_servers = vim.tbl_extend("force", lsp_tools.mason, lsp_tools.noMason)
 
             vim.filetype.add({
+                extension = {
+                    templ = "templ",
+                },
                 pattern = {
                     ["compose.*%.ya?ml"] = "yaml.docker-compose",
                     ["docker%-compose.*%.ya?ml"] = "yaml.docker-compose",
@@ -60,9 +63,9 @@ return {
                 capabilities = capabilities,
             }
             for server_name, params in pairs(all_servers) do
-                vim.lsp.enable(server_name)
                 local server_params = vim.tbl_extend("force", base_params, params)
                 vim.lsp.config[server_name] = server_params
+                vim.lsp.enable(server_name)
             end
         end,
     },
