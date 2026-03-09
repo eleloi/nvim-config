@@ -32,7 +32,6 @@ return {
         ruff = {},
         gopls = {},
         templ = {},
-        biome = {},
         golangci_lint_ls = {},
         tinymist = {
             filetypes = { "typst", "typ" },
