@@ -26,6 +26,7 @@ return {
             require("hunk").setup()
         end,
     },
+    { "rafikdraoui/jj-diffconflicts" },
     {
         "tpope/vim-fugitive",
         cmd = { "G", "Git" },
