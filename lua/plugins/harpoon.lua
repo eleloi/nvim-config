@@ -1,40 +1,28 @@
-local keys = {}
-local binds = 9
-
-for i = 1, binds do
-  table.insert(keys, {
-    string.format("<leader>%s", i),
-    function()
-      local harpoon = require("harpoon")
-      harpoon:list():select(i)
-    end,
-  })
-end
-
-table.insert(keys, {
-  "<leader>ss",
-  function()
-    local harpoon = require("harpoon")
-    harpoon.ui:toggle_quick_menu(harpoon:list())
-  end,
-  desc = "Harpoon List",
-  mode = "n",
-})
-
-table.insert(keys, {
-  "<leader>sa",
-  function()
-    local harpoon = require("harpoon")
-    harpoon:list():add()
-  end,
-  desc = "Harpoon List",
-  mode = "n",
-})
-
 return {
-  "ThePrimeagen/harpoon",
-  branch = "harpoon2",
-  dependencies = { "nvim-lua/plenary.nvim" },
-  keys = keys,
-  config = true,
+    {
+        "jackMort/tide.nvim",
+        config = function()
+            require("tide").setup({
+                -- optional configuration
+                keys = {
+                    leader = ";",                -- Leader key to prefix all Tide commands
+                    panel = ";",                 -- Open the panel (uses leader key as prefix)
+                    add_item = "a",              -- Add a new item to the list (leader + 'a')
+                    delete = "d",                -- Remove an item from the list (leader + 'd')
+                    clear_all = "x",             -- Clear all items (leader + 'x')
+                    horizontal = "-",            -- Split window horizontally (leader + '-')
+                    vertical = "|",              -- Split window vertically (leader + '|')
+                },
+                animation_duration = 100,        -- Animation duration in milliseconds
+                animation_fps = 30,              -- Frames per second for animations
+                hints = {
+                    dictionary = "qwert1234zuiopsfghjklycvbnm", -- Key hints for quick access
+                },
+            })
+        end,
+        requires = {
+            "MunifTanjim/nui.nvim",
+            "nvim-tree/nvim-web-devicons",
+        },
+    },
 }
