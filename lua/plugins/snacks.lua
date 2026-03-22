@@ -169,26 +169,6 @@ return {
         -- Toggle zen
         Snacks.toggle.zen():map("<leader>uz")
 
-        -- Toggle markdown render
-        Snacks.toggle
-            .new({
-                id = "render_markdown",
-                name = "Render Markdown",
-                get = function()
-                    return vim.g.render_markdown_enable
-                end,
-                set = function(state)
-                    if state then
-                        vim.g.render_markdown_enable = true
-                        require("render-markdown").enable()
-                    else
-                        vim.g.render_markdown_enable = false
-                        require("render-markdown").disable()
-                    end
-                end,
-            })
-            :map("<leader>um")
-
         -- Toggle AI Codeium
         Snacks.toggle
             .new({
