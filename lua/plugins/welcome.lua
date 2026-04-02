@@ -1,5 +1,6 @@
 return {
   "goolord/alpha-nvim",
+  enabled = false, -- Desactivamos alpha para usar snacks.dashboard
   event = "VimEnter",
   config = function()
     local alpha = require("alpha")

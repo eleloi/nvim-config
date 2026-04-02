@@ -99,9 +99,17 @@ return {
         indent = indent_config,
         input = { enabled = false },
         notifier = { enabled = true },
-        scroll = { enabled = false },
+        scroll = { enabled = true },
         scratch = { enabled = true },
-        statuscolumn = { enabled = true },
+        statuscolumn = {
+            enabled = true,
+            left = { "mark", "sign" }, -- Marcadores y errores en el mismo sitio
+            right = { "number" }, -- El número de línea
+            folds = {
+                open = false, -- Sin iconos de pliegue abierto
+                git_hl = true, -- ¡CLAVE! El número de línea brilla con el color de Git
+            },
+        },
         toggle = { enabled = true },
         words = {
             enabled = false,
@@ -109,6 +117,39 @@ return {
             modes = { "n" },
         },
         zen = { enabled = true },
+        dashboard = {
+            enabled = true,
+            sections = {
+                {
+                    text = [[
+ ███████████████████████████ 
+ ███████▀▀▀░░░░░░░▀▀▀███████ 
+ ████▀░░░░░░░░░░░░░░░░░▀████ 
+ ███│░░░░░░░░░░░░░░░░░░░│███ 
+ ██▌│░░░░░░░░░░░░░░░░░░░│▐██ 
+ ██░└┐░░░░░░░░░░░░░░░░░┌┘░██ 
+ ██░░└┐░░░░░░░░░░░░░░░┌┘░░██ 
+ ██░░┌┘▄▄▄▄▄░░░░░▄▄▄▄▄└┐░░██ 
+ ██▌│░██████▌░░░▐██████│░▐██ 
+ ███░│▐███▀▀░░▄░░▀▀███▌│░███ 
+ ██▀─┘░░░░░░░▐█▌░░░░░░░└─▀██ 
+ ██▄░░░▄▄▄▓░░▀█▀░░▓▄▄▄░░░▄██ 
+ ████▄─┘██▌░░░░░░░▐██└─▄████ 
+ █████░░▐█─┬┬┬┬┬┬┬─█▌░░█████ 
+ ████▌░░░▀┬┼┼┼┼┼┼┼┬▀░░░▐████ 
+ █████▄░░░└┴┴┴┴┴┴┴┘░░░▄█████ 
+ ███████▄░░░░░░░░░░░▄███████ 
+ ██████████▄▄▄▄▄▄▄██████████ ]],
+                    hl = "String",
+                    padding = 1,
+                    align = "center",
+                },
+                { section = "keys",         gap = 1, padding = 1 },
+                { section = "recent_files", indent = 2, padding = 1 },
+                { section = "projects",     indent = 2, padding = 1 },
+                { section = "startup" },
+            },
+        },
         picker = {
             enabled = true,
             layouts = {
@@ -246,5 +287,19 @@ return {
                 end,
             })
             :map("<leader>us")
+
+        -- toggle symbol usage
+        Snacks.toggle
+            .new({
+                id = "symbol_usage",
+                name = "Symbol Usage",
+                get = function()
+                    return require("symbol-usage").is_enabled()
+                end,
+                set = function()
+                    require("symbol-usage").toggle()
+                end,
+            })
+            :map("<leader>uy")
     end,
 }
