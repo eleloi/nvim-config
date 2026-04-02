@@ -45,8 +45,10 @@ return {
     {
         "lewis6991/gitsigns.nvim",
         opts = {
-            signcolumn = false,
-            numhl = true,
+            signcolumn = false, -- No queremos su columna propia
+            numhl = true, -- Queremos que coloree el número de línea
+            linehl = false, -- No queremos que pinte la línea entera
+            word_diff = false,
             max_file_length = 10000,
         },
     },

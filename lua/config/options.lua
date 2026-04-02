@@ -25,12 +25,24 @@ vim.opt.incsearch = true
 vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = "yes" -- Necesario para que Neovim procese los signos y marcas
+-- Mantenemos el fondo transparente para que no se vea la franja
+vim.api.nvim_set_hl(0, "LineNr", { fg = "#505050", bg = "none" })
+vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#ebdbb2", bg = "none", bold = true })
+vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
+-- Ajuste de sobriedad: Columna casi invisible que se adapta al tema
+vim.api.nvim_create_autocmd("ColorScheme", {
+    callback = function()
+        vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#252525" }) -- Un gris "fantasma" muy elegante
+    end,
+})
+-- Lo ejecutamos una vez por si ya se ha cargado el tema
+vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#252525" })
 
 vim.opt.clipboard = "unnamedplus"
 
