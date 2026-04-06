@@ -104,6 +104,7 @@ return {
             },
         },
         helm_ls = {},
+        clangd = {},
     },
     noMason = {
         nushell = {},
