@@ -1,5 +1,12 @@
 vim.cmd("syntax on")
 vim.opt.autoread = true
+
+-- Autocargar cambios cuando el archivo se modifica externamente
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+	command = "if mode() != 'c' | checktime | endif",
+	pattern = { "*" },
+})
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.numberwidth = 3
