@@ -1,7 +1,54 @@
+---@type LazySpec
 return {
+    {
+        "mikavilpas/yazi.nvim",
+        version = "*", -- use the latest stable version
+        event = "VeryLazy",
+        dependencies = {
+            { "nvim-lua/plenary.nvim", lazy = true },
+        },
+        keys = {
+            -- 👇 in this section, choose your own keymappings!
+            {
+                "<leader>e",
+                mode = { "n", "v" },
+                "<cmd>Yazi<cr>",
+                desc = "Open yazi at the current file",
+            },
+            {
+                -- Open in the current working directory
+                "<leader>E",
+                "<cmd>Yazi cwd<cr>",
+                desc = "Open the file manager in nvim's working directory",
+            },
+            {
+                "<c-up>",
+                "<cmd>Yazi toggle<cr>",
+                desc = "Resume the last yazi session",
+            },
+        },
+        ---@type YaziConfig | {}
+        opts = {
+            -- if you want to open yazi instead of netrw, see below for more info
+            open_for_directories = false,
+            keymaps = {
+                show_help = "<f1>",
+            },
+            floating_window_scaling_factor = 0.90,
+            yazi_floating_window_border = "rounded",
+        },
+        -- 👇 if you use `open_for_directories=true`, this is recommended
+        init = function()
+            -- mark netrw as loaded so it's not loaded at all.
+            --
+            -- More details: https://github.com/mikavilpas/yazi.nvim/issues/802
+            vim.g.loaded_netrwPlugin = 1
+        end,
+    },
     {
         "nvim-mini/mini.files",
         version = false,
+        enabled = false,
         event = "VeryLazy",
         opts = {
             windows = {
@@ -109,48 +156,6 @@ return {
                 callback = function(event)
                     Snacks.rename.on_rename_file(event.data.from, event.data.to)
                 end,
-            })
-        end,
-    },
-    {
-        "stevearc/oil.nvim",
-        keys = {
-            {
-                "<leader>F",
-                "<CMD>Oil<CR>",
-                desc = "Open file explorer",
-                mode = "n",
-            },
-        },
-        config = function()
-            require("oil").setup({
-                default_file_explorer = true,
-                delete_to_trash = true,
-                skip_confirm_for_simple_edits = true,
-                view_options = {
-                    show_hidden = true,
-                    natural_order = true,
-                    is_always_hidden = function(name, _)
-                        return name == ".." or name == ".git"
-                    end,
-                },
-                use_default_keymaps = false,
-                keymaps = {
-                    ["g?"] = { "actions.show_help", mode = "n" },
-                    ["<CR>"] = "actions.select",
-                    ["<C-s>"] = { "actions.select", opts = { vertical = true } },
-                    ["<C-t>"] = { "actions.select", opts = { tab = true } },
-                    ["<C-p>"] = "actions.preview",
-                    ["<C-c>"] = { "actions.close", mode = "n" },
-                    ["-"] = { "actions.parent", mode = "n" },
-                    ["_"] = { "actions.open_cwd", mode = "n" },
-                    ["`"] = { "actions.cd", mode = "n" },
-                    ["~"] = { "actions.cd", opts = { scope = "tab" }, mode = "n" },
-                    ["gs"] = { "actions.change_sort", mode = "n" },
-                    ["gx"] = "actions.open_external",
-                    ["g."] = { "actions.toggle_hidden", mode = "n" },
-                    ["g\\"] = { "actions.toggle_trash", mode = "n" },
-                },
             })
         end,
     },
