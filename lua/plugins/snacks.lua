@@ -103,11 +103,11 @@ return {
         scratch = { enabled = true },
         statuscolumn = {
             enabled = true,
-            left = { "mark", "sign" }, -- Marcadores y errores en el mismo sitio
-            right = { "number" }, -- El número de línea
+            left = { "mark", "sign" }, -- Combined signs (marks and diagnostics)
+            right = { "number" },
             folds = {
-                open = false, -- Sin iconos de pliegue abierto
-                git_hl = true, -- ¡CLAVE! El número de línea brilla con el color de Git
+                open = false,
+                git_hl = true, -- Highlight line number with Git color
             },
         },
         toggle = { enabled = true },
@@ -122,29 +122,29 @@ return {
             sections = {
                 {
                     text = [[
- ███████████████████████████ 
- ███████▀▀▀░░░░░░░▀▀▀███████ 
- ████▀░░░░░░░░░░░░░░░░░▀████ 
- ███│░░░░░░░░░░░░░░░░░░░│███ 
- ██▌│░░░░░░░░░░░░░░░░░░░│▐██ 
- ██░└┐░░░░░░░░░░░░░░░░░┌┘░██ 
- ██░░└┐░░░░░░░░░░░░░░░┌┘░░██ 
- ██░░┌┘▄▄▄▄▄░░░░░▄▄▄▄▄└┐░░██ 
- ██▌│░██████▌░░░▐██████│░▐██ 
- ███░│▐███▀▀░░▄░░▀▀███▌│░███ 
- ██▀─┘░░░░░░░▐█▌░░░░░░░└─▀██ 
- ██▄░░░▄▄▄▓░░▀█▀░░▓▄▄▄░░░▄██ 
- ████▄─┘██▌░░░░░░░▐██└─▄████ 
- █████░░▐█─┬┬┬┬┬┬┬─█▌░░█████ 
- ████▌░░░▀┬┼┼┼┼┼┼┼┬▀░░░▐████ 
- █████▄░░░└┴┴┴┴┴┴┴┘░░░▄█████ 
- ███████▄░░░░░░░░░░░▄███████ 
+ ███████████████████████████
+ ███████▀▀▀░░░░░░░▀▀▀███████
+ ████▀░░░░░░░░░░░░░░░░░▀████
+ ███│░░░░░░░░░░░░░░░░░░░│███
+ ██▌│░░░░░░░░░░░░░░░░░░░│▐██
+ ██░└┐░░░░░░░░░░░░░░░░░┌┘░██
+ ██░░└┐░░░░░░░░░░░░░░░┌┘░░██
+ ██░░┌┘▄▄▄▄▄░░░░░▄▄▄▄▄└┐░░██
+ ██▌│░██████▌░░░▐██████│░▐██
+ ███░│▐███▀▀░░▄░░▀▀███▌│░███
+ ██▀─┘░░░░░░░▐█▌░░░░░░░└─▀██
+ ██▄░░░▄▄▄▓░░▀█▀░░▓▄▄▄░░░▄██
+ ████▄─┘██▌░░░░░░░▐██└─▄████
+ █████░░▐█─┬┬┬┬┬┬┬─█▌░░█████
+ ████▌░░░▀┬┼┼┼┼┼┼┼┬▀░░░▐████
+ █████▄░░░└┴┴┴┴┴┴┴┘░░░▄█████
+ ███████▄░░░░░░░░░░░▄███████
  ██████████▄▄▄▄▄▄▄██████████ ]],
                     hl = "String",
                     padding = 1,
                     align = "center",
                 },
-                { section = "keys",         gap = 1, padding = 1 },
+                { section = "keys",         gap = 1,    padding = 1 },
                 { section = "recent_files", indent = 2, padding = 1 },
                 { section = "projects",     indent = 2, padding = 1 },
                 { section = "startup" },
@@ -204,7 +204,6 @@ return {
             end,
         })
 
-        ---Toggle
         local Snacks = require("snacks")
 
         -- Toggle zen
@@ -297,9 +296,29 @@ return {
                     return require("symbol-usage").is_enabled()
                 end,
                 set = function()
-                    require("symbol-usage").toggle()
+                    require("symbol-usage").toggle_globally()
                 end,
             })
             :map("<leader>uy")
+
+        -- toggle tiny-inline-diagnostic
+        Snacks.toggle
+            .new({
+                id = "tiny_inline_diagnostic",
+                name = "Tiny Inline Diagnostic",
+                get = function()
+                    return not require("tiny-inline-diagnostic").is_disabled()
+                end,
+                set = function(state)
+                    if state then
+                        require("tiny-inline-diagnostic").enable()
+                        vim.diagnostic.config({ virtual_text = false })
+                    else
+                        require("tiny-inline-diagnostic").disable()
+                        vim.diagnostic.config({ virtual_text = true })
+                    end
+                end,
+            })
+            :map("<leader>ud")
     end,
 }

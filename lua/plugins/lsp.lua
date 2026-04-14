@@ -70,7 +70,6 @@ return {
         end,
     },
 
-    -- use mason-lspconfig to install lsp tools automatically and setup lspconfig
     {
         "mason-org/mason-lspconfig.nvim",
         enabled = true,
@@ -98,14 +97,13 @@ return {
         },
         config = function()
             local cfg = require("yaml-companion").setup({
-                -- detect k8s schemas based on file content
+                -- Detect Kubernetes schemas
                 builtin_matchers = {
                     kubernetes = { enabled = true },
                 },
 
                 schemas = {
-                    -- not loaded automatically, manually select with
-                    -- :Telescope yaml_schema
+                    -- Manual selection only
                     {
                         name = "Argo CD Application",
                         uri =
@@ -127,8 +125,7 @@ return {
                         uri =
                         "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/bitnami.com/sealedsecret_v1alpha1.json",
                     },
-                    -- schemas below are automatically loaded, but added
-                    -- them here so that they show up in the statusline
+                    -- Auto-loaded schemas
                     {
                         name = "Kustomization",
                         uri = "https://json.schemastore.org/kustomization.json",
@@ -149,8 +146,7 @@ return {
                                 url = "",
                             },
 
-                            -- schemas from store, matched by filename
-                            -- loaded automatically
+                            -- Schemas from store matched by filename
                             schemas = require("schemastore").yaml.schemas({
                                 select = {
                                     "kustomization.yaml",
@@ -181,7 +177,6 @@ return {
             vim.lsp.enable("yamlls")
 
             require("telescope").load_extension("yaml_schema")
-            -- get schema for current buffer
             local function get_schema()
                 local schema = require("yaml-companion").get_buf_schema(0)
                 if schema.result[1].name == "none" then

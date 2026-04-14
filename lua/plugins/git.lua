@@ -1,16 +1,3 @@
--- "tpope/vim-fugitive": Fugitive don't need explanation
---
--- "sindrets/diffview.nvim": A global view of git diff, alternative to fuggitive,
--- I don't be convinced yet.
---
--- "lewis6991/gitsigns.nvim": Plugin for displaying Git signs like added,
--- modified , and removed lines in the sign column.
---
--- "junegunn/gv.vim": Git commit browser, GV! view the commits affecting
--- current file, GV? view in quickfix list
---
--- "rbong/vim-flog": Git branch viewer like git graph
-
 return {
     {
         "sindrets/diffview.nvim",
@@ -45,9 +32,9 @@ return {
     {
         "lewis6991/gitsigns.nvim",
         opts = {
-            signcolumn = false, -- No queremos su columna propia
-            numhl = true, -- Queremos que coloree el número de línea
-            linehl = false, -- No queremos que pinte la línea entera
+            signcolumn = false, -- Don't use a separate sign column
+            numhl = true, -- Highlight line number
+            linehl = false,
             word_diff = false,
             max_file_length = 10000,
         },

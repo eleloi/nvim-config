@@ -30,16 +30,16 @@ return {
                     padding = 0,
                 },
                 render = function(props)
-                    -- Solo mostramos la burbuja si la ventana NO tiene el foco
+                    -- Only show if window is not focused
                     if props.focused then
                         return ""
                     end
 
                     local full_path = vim.api.nvim_buf_get_name(props.buf)
                     local filename = vim.fn.fnamemodify(full_path, ":t")
-                    -- Obtenemos la ruta relativa al directorio de trabajo (más limpio que la absoluta)
+                    -- Get relative path for display
                     local relative_path = vim.fn.fnamemodify(full_path, ":.")
-                    
+
                     if filename == "" then
                         return { { "[No Name]", gui = "italic" } }
                     end
@@ -47,13 +47,17 @@ return {
                     local ft_icon, ft_color = require("nvim-web-devicons").get_icon_color(filename)
                     local modified = vim.bo[props.buf].modified and " ●" or ""
 
-                    -- Dividimos la ruta para dar un color más tenue al directorio y resaltar el nombre
+                    -- Differentiate directory and filename colors
                     local dirname = vim.fn.fnamemodify(relative_path, ":h")
-                    if dirname == "." then dirname = "" else dirname = dirname .. "/" end
+                    if dirname == "." then
+                        dirname = ""
+                    else
+                        dirname = dirname .. "/"
+                    end
 
                     return {
                         { (ft_icon or "") .. " ", guifg = ft_color },
-                        { dirname,                guifg = "#808080" }, -- Color gris tenue para el directorio
+                        { dirname,                guifg = "#808080" },
                         { filename,               gui = "bold" },
                         { modified,               guifg = "#e67e80" },
                         { " ",                    guibg = "none" },
@@ -83,16 +87,16 @@ return {
                 before = "",
                 keyword = "wide",
                 after = "fg",
-                -- Volvemos al estándar: palabra clave seguida de dos puntos
-                pattern = [[.*<(KEYWORDS)\s*:]], 
-                comments_only = true, -- Solo resaltamos dentro de comentarios
+                -- Match standard keyword format (KEYWORD:)
+                pattern = [[.*<(KEYWORDS)\s*:]],
+                comments_only = true,
             },
         },
     },
     {
         "rachartier/tiny-inline-diagnostic.nvim",
-        event = "VeryLazy", -- Cargamos después de lo principal
-        priority = 1000, -- Prioridad alta para que sobrescriba los diagnósticos por defecto
+        event = "VeryLazy",
+        priority = 1000, -- Higher priority to override defaults
         config = function()
             require("tiny-inline-diagnostic").setup({
                 signs = {
@@ -105,48 +109,55 @@ return {
                     vertical_end = " └",
                 },
                 blend = {
-                    factor = 0.2, -- Fondo muy sutil y transparente
+                    factor = 0.2,
                 },
                 options = {
-                    show_source = true, -- Mostrar de qué LSP viene (ej: gopls, lua_ls)
-                    use_icons_from_diagnostic = true, -- Reutiliza tus iconos de lsp.lua
+                    show_source = true, -- Show diagnostic source
+                    use_icons_from_diagnostic = true,
                     add_padding = true,
                     multilines = {
                         enabled = true,
-                        always_show = false, -- Solo muestra multilínea si es necesario
+                        always_show = false, -- Only show multiline when needed
                     },
-                    show_all_diags_on_line = false, -- Solo el diagnóstico más importante por línea
+                    show_all_diags_on_line = false, -- One diagnostic per line
                 },
             })
-            -- Desactivamos el virtual text por defecto de Neovim para que no se pisen
-            vim.diagnostic.config({ virtual_text = false })
+            -- Start disabled; use toggle to enable
+            -- Keep standard virtual text enabled
+            require("tiny-inline-diagnostic").disable()
         end,
     },
     {
         "Wansmer/symbol-usage.nvim",
-        event = "LspAttach", -- Solo cuando hay un LSP activo
+        event = "LspAttach",
         config = function()
             require("symbol-usage").setup({
                 text_format = function(symbol)
                     local res = {}
                     if symbol.references then
-                        local usage = symbol.references > 0 and ("󰈇 %d refs"):format(symbol.references) or "󰈇 0 refs"
+                        local usage = symbol.references > 0 and ("󰈇 %d refs"):format(symbol.references)
+                            or "󰈇 0 refs"
                         table.insert(res, usage)
                     end
                     if symbol.definitions then
                         local defs = symbol.definitions > 0 and ("󰡱 %d defs"):format(symbol.definitions) or ""
-                        if defs ~= "" then table.insert(res, defs) end
+                        if defs ~= "" then
+                            table.insert(res, defs)
+                        end
                     end
                     if symbol.implementations then
-                        local impls = symbol.implementations > 0 and ("󰡱 %d impls"):format(symbol.implementations) or ""
-                        if impls ~= "" then table.insert(res, impls) end
+                        local impls = symbol.implementations > 0 and ("󰡱 %d impls"):format(symbol.implementations)
+                            or ""
+                        if impls ~= "" then
+                            table.insert(res, impls)
+                        end
                     end
                     return table.concat(res, " | ")
                 end,
-                -- Sobriedad absoluta: colores tenues
                 hl = { link = "Comment" },
-                vt_position = "above", -- Encima de la línea, como un comentario de metadatos
+                vt_position = "above", -- Metadata style position
             })
+            require("symbol-usage").toggle_globally()
         end,
     },
 }

@@ -1,7 +1,7 @@
 vim.cmd("syntax on")
 vim.opt.autoread = true
 
--- Autocargar cambios cuando el archivo se modifica externamente
+-- Auto-load changes when file is modified externally
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
 	command = "if mode() != 'c' | checktime | endif",
 	pattern = { "*" },
@@ -32,8 +32,7 @@ vim.opt.incsearch = true
 vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes" -- Necesario para que Neovim procese los signos y marcas
--- Mantenemos el fondo transparente para que no se vea la franja
+vim.opt.signcolumn = "yes"
 vim.api.nvim_set_hl(0, "LineNr", { fg = "#505050", bg = "none" })
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#ebdbb2", bg = "none", bold = true })
 vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
@@ -42,13 +41,12 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
--- Ajuste de sobriedad: Columna casi invisible que se adapta al tema
+-- Subtle color column
 vim.api.nvim_create_autocmd("ColorScheme", {
     callback = function()
-        vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#252525" }) -- Un gris "fantasma" muy elegante
+        vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#252525" })
     end,
 })
--- Lo ejecutamos una vez por si ya se ha cargado el tema
 vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#252525" })
 
 vim.opt.clipboard = "unnamedplus"
@@ -93,7 +91,7 @@ vim.keymap.set("n", "<C-w><C-k>", "<cmd>resize -5<CR>")
 
 -- only
 vim.keymap.set("n", "<leader>o", "<CMD>only<CR>")
--- tabclose
+-- close tab
 vim.keymap.set("n", "<leader>tc", "<CMD>tabclose<CR>")
 
 -- copy current file path
@@ -109,10 +107,10 @@ vim.keymap.set("t", "<A-e>", "<C-\\><C-n>")
 -- yank buffer
 vim.keymap.set("n", "<leader>Y", "<cmd>%y+<CR>")
 
--- reload configuration
+-- reload config
 vim.keymap.set("n", "<leader>R", ":so $MYVIMRC<CR>")
 
--- detect typ files as typst instead of sql
+-- detect .typ as typst
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = { "*.typ" },
 	callback = function()
@@ -120,7 +118,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	end,
 })
 
--- detect hurl files as hurl instead of conf
+-- detect .hurl as hurl
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = { "*.hurl" },
 	callback = function()

@@ -3,8 +3,8 @@ return {
         "folke/which-key.nvim",
         event = "VeryLazy",
         opts = {
-            preset = "modern", -- Estilo limpio y moderno
-            delay = 500, -- Reducimos el retardo para que sea más ágil
+            preset = "modern",
+            delay = 500, -- Shorter delay for responsiveness
             win = {
                 border = "rounded",
                 padding = { 1, 2 },
@@ -18,7 +18,7 @@ return {
                 { "<leader>g", group = "git", icon = "󰊢 " },
                 { "<leader>h", group = "http/rest", icon = "󰖟 " },
                 { "<leader>s", group = "harpoon", icon = "󱗓 " },
-                { "<leader>u", group = "ui", icon = "󰙵 " }, -- Tu nuevo grupo de UI
+                { "<leader>u", group = "ui", icon = "󰙵 " },
                 { "<leader>w", group = "save", icon = "󰆓 " },
                 { "<leader>x", group = "funny", icon = "󰃥 " },
                 { "g", group = "goto", icon = "󰈇 " },
