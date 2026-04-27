@@ -51,6 +51,21 @@ vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#252525" })
 
 vim.opt.clipboard = "unnamedplus"
 
+-- use osc52 over ssh
+if vim.env.SSH_TTY then
+	vim.g.clipboard = {
+		name = "OSC 52",
+		copy = {
+			["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+			["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+		},
+		paste = {
+			["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+			["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+		},
+	}
+end
+
 -- highlight on yank
 vim.cmd("au TextYankPost * lua vim.highlight.on_yank {on_visual = false}")
 
