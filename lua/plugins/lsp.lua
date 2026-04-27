@@ -29,6 +29,7 @@ return {
             "saghen/blink.cmp",
         },
         config = function()
+            vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>")
             vim.diagnostic.config({
                 virtual_text = {
                     prefix = "●",
