@@ -14,6 +14,7 @@ return {
                 { "<leader>a", group = "ai", icon = "󰧑 " },
                 { "<leader>b", group = "buffer", icon = "󰓩 " },
                 { "<leader>c", group = "code", icon = "󰅱 " },
+                { "<leader>d", group = "debug", icon = "󰃤 " },
                 { "<leader>f", group = "find", icon = "󰍉 " },
                 { "<leader>g", group = "git", icon = "󰊢 " },
                 { "<leader>h", group = "http/rest", icon = "󰖟 " },
