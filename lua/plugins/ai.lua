@@ -37,139 +37,51 @@ return {
         end,
     },
     {
-        "olimorris/codecompanion.nvim",
+        "nickjvandyke/opencode.nvim",
+        version = "*",
         dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-treesitter/nvim-treesitter",
-        },
-        version = "17.33.0",
-        event = "VeryLazy",
-        keys = {
             {
-                "<leader>at",
-                function()
-                    require("codecompanion").toggle()
-                end,
-                mode = { "v", "n" },
-                desc = "Code Companion Chat toggle",
-            },
-            {
-                "<leader>aa",
-                "<CMD>CodeCompanionActions<CR>",
-                mode = { "v", "n" },
-                desc = "Code Companion Actions",
-            },
-            {
-                "<leader>ad",
-                "<CMD>CodeCompanionChat Add<CR>",
-                mode = { "v" },
-                desc = "Add visually selected chat to the current chat buffer",
-            },
-            {
-                "<leader>ac",
-                "<CMD>CodeCompanion /commit<CR>",
-                desc = "Generate commit message from staged diff",
+                "folke/snacks.nvim",
+                optional = true,
+                opts = {
+                    input = {},
+                    picker = {
+                        actions = {
+                            opencode_send = function(...)
+                                return require("opencode").snacks_picker_send(...)
+                            end,
+                        },
+                        win = {
+                            input = {
+                                keys = {
+                                    ["<a-a>"] = { "opencode_send", mode = { "n", "i" } },
+                                },
+                            },
+                        },
+                    },
+                },
             },
         },
         config = function()
-            require("codecompanion").setup({
-                strategies = {
-                    chat = {
-                        adapter = {
-                            name = "gemini",
-                            model = "gemini-2.5-flash",
-                        },
-                        keymaps = {
-                            send = {
-                                modes = { n = "<CR>", i = "<C-s>" },
-                            },
-                            close = {
-                                modes = { n = "<C-c>", i = "<C-c>" },
-                            },
-                        },
-                    },
-                },
-                adapters = {
-                    http = {
-                        gemini = function()
-                            return require("codecompanion.adapters").extend("gemini", {
-                                env = {
-                                    api_key = "cmd:bash -c 'echo $GEMINI_API_KEY'",
-                                },
-                            })
-                        end,
-                    },
-                },
-                prompt_library = {
-                    ["build git commits"] = {
-                        strategy = "chat",
-                        description =
-                        "Given a git diff, group related changes into logical hunks and generate concise, descriptive commit messages for each group.",
-                        prompts = {
-                            {
-                                role = "system",
-                                content =
-                                "You are an experienced developer. You are skilled at analyzing git diffs and writing clear, conventional commit messages.",
-                            },
-                            {
-                                role = "user",
-                                content = function()
-                                    local handle = io.popen("git diff")
-                                    if not handle then
-                                        return "Unable to retrieve git diff."
-                                    end
-                                    local git_diff = handle:read("*a")
-                                    handle:close()
+            vim.g.opencode_opts = {}
+            vim.o.autoread = true
 
-                                    if not git_diff or git_diff == "" then
-                                        return "No unstaged changes found."
-                                    end
-                                    return string.format(
-                                        [[
-Here is the output of a git diff:
+            vim.keymap.set({ "n", "x" }, "<leader>aa", function()
+                require("opencode").ask("@this: ", { submit = true })
+            end, { desc = "Ask opencode…" })
+            vim.keymap.set({ "n", "x" }, "<leader>ax", function()
+                require("opencode").select()
+            end, { desc = "Execute opencode action…" })
+            vim.keymap.set({ "n", "t" }, "<leader>at", function()
+                require("opencode").toggle()
+            end, { desc = "Toggle opencode" })
 
-```diff
-%s
-```
-
-Please analyze the diff, group related changes into logical hunks, and for each group, write a concise and descriptive commit message. If multiple commits are needed, provide a commit message for each group. Use best practices for commit message formatting.
-]],
-                                        git_diff
-                                    )
-                                end,
-                            },
-                        },
-                    },
-                    ["resume link contents"] = {
-                        strategy = "chat",
-                        opts = {
-                            modes = { "v" },
-                            contains_code = true,
-                        },
-                        condition = function(context)
-                            return context.is_visual
-                        end,
-                        description =
-                        "Summarize the contents of a web page given its link, providing a concise and informative overview.",
-                        prompts = {
-                            {
-                                role = "system",
-                                content =
-                                "You are a helpful assistant skilled at browsing web pages and summarizing their content. When given a link, you will navigate to the page, analyze its main topics, and provide a clear, concise summary that highlights the most important information. Avoid copying large sections verbatim; instead, focus on the key points and overall purpose of the page.",
-                            },
-                            {
-                                role = "user",
-                                content = string.format([[
-Please visit the following link using @mcp fetch. After reviewing the page, write a brief summary, of max 2 lines, but idealy 1, that captures its main ideas and purpose.
-
-Give the result in code format, between ``` symbols
-]]),
-                            },
-                        },
-                    },
-                },
-            })
-            vim.cmd([[cab cc CodeCompanion]])
+            vim.keymap.set({ "n", "x" }, "go", function()
+                return require("opencode").operator("@this ")
+            end, { desc = "Add range to opencode", expr = true })
+            vim.keymap.set("n", "goo", function()
+                return require("opencode").operator("@this ") .. "_"
+            end, { desc = "Add line to opencode", expr = true })
         end,
     },
     {

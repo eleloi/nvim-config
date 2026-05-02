@@ -25,7 +25,7 @@ Personal Neovim config written in Lua, managed by `lazy.nvim`. No build, test, o
 - `yazi` — file explorer (replaces netrw; `mini.files` is present but `enabled = false`)
 - `jj` (Jujutsu) — version control; `.jj/` coexists with `.git/`. `jj-diffconflicts` and `hunk.nvim` are configured for jj workflows
 - `nixd` LSP — hardcoded NixOS/home-manager flake paths in `lua/config/plugins/lsp_tools.lua`; adjust if the host changes
-- `GEMINI_API_KEY` — required env var for `codecompanion.nvim` (Gemini adapter)
+- `opencode` — CLI tool required by `opencode.nvim`
 - `cmake` — required to build `telescope-fzf-native.nvim` (uses cmake, not make)
 
 ## LSP Quirks
