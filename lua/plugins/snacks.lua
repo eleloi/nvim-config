@@ -209,6 +209,24 @@ return {
         -- Toggle zen
         Snacks.toggle.zen():map("<leader>uz")
 
+        -- Toggle markdown render
+        Snacks.toggle
+            .new({
+                id = "render_markdown",
+                name = "Render Markdown",
+                get = function()
+                    return require("render-markdown").get()
+                end,
+                set = function(state)
+                    if state then
+                        require("render-markdown").enable()
+                    else
+                        require("render-markdown").disable()
+                    end
+                end,
+            })
+            :map("<leader>um")
+
         -- Toggle AI Codeium
         Snacks.toggle
             .new({
