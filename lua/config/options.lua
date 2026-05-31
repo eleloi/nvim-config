@@ -51,8 +51,8 @@ vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#252525" })
 
 vim.opt.clipboard = "unnamedplus"
 
--- use osc52 over ssh
-if vim.env.SSH_TTY then
+-- Clipboard over SSH: use OSC52 (requires terminal support + tmux allow-passthrough)
+if vim.env.SSH_TTY or vim.env.SSH_CONNECTION then
 	vim.g.clipboard = {
 		name = "OSC 52",
 		copy = {
