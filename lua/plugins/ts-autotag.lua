@@ -1,9 +1,7 @@
--- Automatic closes tags like <div></div>...
+vim.pack.add({
+    "https://github.com/windwp/nvim-ts-autotag",
+})
 
-return {
-  "windwp/nvim-ts-autotag",
-  event = "VeryLazy",
-  opts = {
+require("nvim-ts-autotag").setup({
     autotag = { enable = true },
-  },
-}
+})

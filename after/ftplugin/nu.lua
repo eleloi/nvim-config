@@ -6,6 +6,4 @@ set.expandtab = true
 set.shiftwidth = 2
 
 vim.cmd("packadd nvim-lspconfig")
-vim.lsp.enable("eslint")
-vim.lsp.enable("ts_ls")
-vim.lsp.enable("tailwindcss")
+vim.lsp.enable("nu")

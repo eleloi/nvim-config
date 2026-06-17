@@ -1,34 +1,3 @@
--- Seamless navigation between tmux panes and vim splits
-
-return {
-    "christoomey/vim-tmux-navigator",
-    cmd = {
-        "TmuxNavigateLeft",
-        "TmuxNavigateDown",
-        "TmuxNavigateUp",
-        "TmuxNavigateRight",
-        "TmuxNavigatePrevious",
-    },
-    keys = {
-        {
-            "<c-h>",
-            "<cmd>TmuxNavigateLeft<cr>",
-            mode = { "n", "v" },
-        },
-        {
-            "<c-j>",
-            "<cmd>TmuxNavigateDown<cr>",
-            mode = { "n", "v" },
-        },
-        {
-            "<c-k>",
-            "<cmd>TmuxNavigateUp<cr>",
-            mode = { "n", "v" },
-        },
-        {
-            "<c-l>",
-            "<cmd>TmuxNavigateRight<cr>",
-            mode = { "n", "v" },
-        },
-    },
-}
+vim.pack.add({
+    "https://github.com/christoomey/vim-tmux-navigator",
+})

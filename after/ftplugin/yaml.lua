@@ -15,7 +15,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
     callback = function()
         vim.opt_local.cursorcolumn = true
         vim.g.tscontext = true
-        require("treesitter-context").enable()
     end,
 })
 
@@ -25,6 +24,5 @@ vim.api.nvim_create_autocmd("BufLeave", {
     callback = function()
         vim.opt_local.cursorcolumn = false
         vim.g.tscontext = false
-        require("treesitter-context").disable()
     end,
 })

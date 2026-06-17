@@ -1,4 +1,3 @@
-return {
-  "junegunn/vim-easy-align",
-  keys = { { "ga", "<Plug>(EasyAlign)", mode = { "n", "v" }, desc = "EasyAlign" } },
-}
+vim.pack.add({
+    "https://github.com/junegunn/vim-easy-align",
+})

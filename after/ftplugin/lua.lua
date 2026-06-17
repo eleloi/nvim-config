@@ -1,6 +1,9 @@
 local set = vim.bo
 
-set.tabstop = 4
+set.tabstop = 2
 set.softtabstop = 2
 set.expandtab = true
-set.shiftwidth = 4
+set.shiftwidth = 2
+
+vim.cmd("packadd nvim-lspconfig")
+vim.lsp.enable("lua_ls")

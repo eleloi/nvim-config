@@ -1,8 +1,5 @@
--- manages automating pairing of (), [], {}, '', etc
+vim.pack.add({
+    { src = "https://github.com/echasnovski/mini.pairs", version = "stable" },
+})
 
-return {
-  "echasnovski/mini.pairs",
-  version = "*",
-  event = "VeryLazy",
-  config = true,
-}
+require("mini.pairs").setup()

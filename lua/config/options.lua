@@ -1,142 +1,61 @@
 vim.cmd("syntax on")
-vim.opt.autoread = true
 
--- Auto-load changes when file is modified externally
-vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
-	command = "if mode() != 'c' | checktime | endif",
-	pattern = { "*" },
-})
+local options = {
+    autoread = true,
+    nu = true,
+    relativenumber = true,
+    numberwidth = 3,
+    ignorecase = true,
+    tabstop = 4,
+    softtabstop = 4,
+    shiftwidth = 4,
+    expandtab = true,
+    smartindent = true,
+    wrap = false,
+    swapfile = false,
+    backup = false,
+    undodir = os.getenv("HOME") .. "/.vim/undodir",
+    undofile = true,
+    incsearch = true,
+    termguicolors = true,
+    scrolloff = 8,
+    signcolumn = "yes",
+    updatetime = 50,
+    colorcolumn = "80",
+    clipboard = "unnamedplus",
+    foldlevel = 99,
+    foldlevelstart = 99,
+}
 
-vim.opt.nu = true
-vim.opt.relativenumber = true
-vim.opt.numberwidth = 3
-
-vim.opt.ignorecase = true
-
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-
-vim.opt.smartindent = true
-
-vim.opt.wrap = false
-
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true
-
-vim.opt.incsearch = true
-
-vim.opt.termguicolors = true
-
-vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
-vim.api.nvim_set_hl(0, "LineNr", { fg = "#505050", bg = "none" })
-vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#ebdbb2", bg = "none", bold = true })
-vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
-vim.opt.isfname:append("@-@")
-
-vim.opt.updatetime = 50
-
-vim.opt.colorcolumn = "80"
--- Subtle color column
-vim.api.nvim_create_autocmd("ColorScheme", {
-    callback = function()
-        vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#252525" })
-    end,
-})
-vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#252525" })
-
-vim.opt.clipboard = "unnamedplus"
-
--- Clipboard over SSH: use OSC52 (requires terminal support + tmux allow-passthrough)
-if vim.env.SSH_TTY or vim.env.SSH_CONNECTION then
-	vim.g.clipboard = {
-		name = "OSC 52",
-		copy = {
-			["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-			["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-		},
-		paste = {
-			["+"] = require("vim.ui.clipboard.osc52").paste("+"),
-			["*"] = require("vim.ui.clipboard.osc52").paste("*"),
-		},
-	}
+for k, v in pairs(options) do
+    vim.opt[k] = v
 end
 
--- highlight on yank
-vim.cmd("au TextYankPost * lua vim.highlight.on_yank {on_visual = false}")
+-- Clipboard over SSH: use OSC52 (requires terminal support + tmux allow-passthrough)
+vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
+        ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+        ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+    },
+    paste = {
+        ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+        ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+    },
+}
 
 -- explicit python3 path
 vim.g.python3_host_prog = "/usr/bin/python3"
 
--- keymaps
-vim.g.mapleader = " "
-
--- save
-vim.keymap.set("n", "<leader>z", "<cmd>w<CR>")
--- save without format
-vim.keymap.set("n", "<leader>Z", "<cmd>noautocmd w<CR>")
-
-vim.leader = "<Space>"
-vim.keymap.set("i", "jk", "<ESC>")
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
-vim.keymap.set("n", "]t", "<cmd>tabnext<CR>")
-vim.keymap.set("n", "[t", "<cmd>tabprev<CR>")
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
-
--- move lines
-vim.keymap.set("n", "<A-j>", ":m .+1<CR>==")
-vim.keymap.set("n", "<A-k>", ":m .-2<CR>==")
-vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
-
--- window navigation
-vim.keymap.set("n", "<C-w>|", "<cmd>vsplit<CR>")
-vim.keymap.set("n", "<C-w>-", "<cmd>split<CR>")
-vim.keymap.set("n", "<C-w><C-l>", "<cmd>vertical resize +5<CR>")
-vim.keymap.set("n", "<C-w><C-h>", "<cmd>vertical resize -5<CR>")
-vim.keymap.set("n", "<C-w><C-j>", "<cmd>resize +5<CR>")
-vim.keymap.set("n", "<C-w><C-k>", "<cmd>resize -5<CR>")
-
--- only
-vim.keymap.set("n", "<leader>o", "<CMD>only<CR>")
--- close tab
-vim.keymap.set("n", "<leader>tc", "<CMD>tabclose<CR>")
-
--- copy current file path
-vim.keymap.set("n", "<leader>P", function()
-	vim.fn.setreg("+", vim.fn.expand("%:p"))
-	vim.notify("Path copied to clipboard: " .. vim.fn.expand("%:p"), vim.log.levels.INFO)
-end)
-
--- exit terminal mode
-vim.keymap.set("t", "<ESC>", "<C-\\><C-n>")
-vim.keymap.set("t", "<A-e>", "<C-\\><C-n>")
-
--- yank buffer
-vim.keymap.set("n", "<leader>Y", "<cmd>%y+<CR>")
-
--- reload config
-vim.keymap.set("n", "<leader>R", ":so $MYVIMRC<CR>")
-
--- detect .typ as typst
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "*.typ" },
-	callback = function()
-		vim.bo.filetype = "typst"
-	end,
-})
-
--- detect .hurl as hurl
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "*.hurl" },
-	callback = function()
-		vim.bo.filetype = "hurl"
-	end,
+-- diagnostics virtual text
+vim.diagnostic.config({
+    virtual_text = {
+        spacing = 4,
+        prefix = "■ ",
+        source = "if_many",
+        -- severity = vim.diagnostic.severity.ERROR,
+    },
+    signs = true,
+    underline = true,
+    update_in_insert = false,
 })

@@ -1,9 +1,10 @@
--- Split and join items, very usefull
+vim.pack.add({
+    {
+        src = "https://github.com/echasnovski/mini.splitjoin",
+        version = "stable",
+    },
+})
 
-return {
-  "echasnovski/mini.splitjoin",
-  version = "*",
-  event = "VeryLazy",
-  opts = { mappings = { toggle = "<Leader>j" } },
-  config = true,
-}
+require("mini.splitjoin").setup({
+    mappings = {},
+})
