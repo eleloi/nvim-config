@@ -5,6 +5,7 @@ vim.pack.add({
   "https://github.com/julienvincent/hunk.nvim",     -- to use in conjuntion with jj
   "https://github.com/MunifTanjim/nui.nvim",        -- dependency of Hunk
   "https://github.com/nvim-tree/nvim-web-devicons", -- dependency of Hunk
+  "https://github.com/avm99963/vim-jjdescription",  -- jj syntax highlight
 })
 
 require("gitsigns").setup({
@@ -15,4 +16,4 @@ require("gitsigns").setup({
   max_file_length = 10000,
 })
 
-require("hunk").setup({})
+require("hunk").setup()
