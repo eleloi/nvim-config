@@ -1,5 +1,6 @@
 require("config.options")
 
+require("plugins.conform")
 require("plugins.lspconfig")
 vim.cmd("packadd nvim-lspconfig")
 require("plugins.treesitter")

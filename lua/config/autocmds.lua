@@ -31,14 +31,7 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- format on save using lsp
--- Formateo automático al guardar usando el LSP nativo
-vim.api.nvim_create_autocmd("BufWritePre", {
-    group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = true }),
-    callback = function(args)
-        vim.lsp.buf.format({ bufnr = args.buf })
-    end,
-})
+-- format on save: handled by conform.nvim (lua/plugins/conform.lua)
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "*.bash", "*.sh", "*.zsh" },
