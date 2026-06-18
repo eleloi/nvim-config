@@ -6,4 +6,7 @@ set.expandtab = true
 set.shiftwidth = 2
 
 vim.cmd("packadd nvim-lspconfig")
-vim.lsp.enable("nu")
+vim.lsp.config("nushell", {
+  cmd = { "nu", "--lsp", "--no-config-file" },
+})
+vim.lsp.enable("nushell")
