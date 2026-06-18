@@ -136,8 +136,8 @@ map("n", "<leader>fa", fzf_samedir, { desc = "find files in same dir" })
 map("n", "<leader>fr", fzf_resume, { desc = "resume last search" })
 -- grep
 map("n", "<leader>fg", ":lua require('fzf-lua').live_grep()<CR>", { desc = "grep" })
-map("n", "<leader>fG", ":lua require('fzf-lua').grep_cword()<CR>", { desc = "grep word under cursor" })
-map("v", "<leader>fG", ":lua require('fzf-lua').grep_visual()<CR>", { desc = "grep visual selection" })
+map("n", "<leader>fw", ":lua require('fzf-lua').grep_cword()<CR>", { desc = "grep word under cursor" })
+map("v", "<leader>fw", ":lua require('fzf-lua').grep_visual()<CR>", { desc = "grep visual selection" })
 -- buffers
 map("n", "<leader>,", ":lua require('fzf-lua').buffers({})<CR>", { desc = "buffers" })
 -- jj
