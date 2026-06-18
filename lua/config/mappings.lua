@@ -1,30 +1,30 @@
 local function map(m, k, v, opts)
-    local options = { noremap = true, silent = true }
-    if opts then
-        options = vim.tbl_extend("force", options, opts)
-    end
-    vim.keymap.set(m, k, v, opts)
+  local options = { noremap = true, silent = true }
+  if opts then
+    options = vim.tbl_extend("force", options, opts)
+  end
+  vim.keymap.set(m, k, v, opts)
 end
 --
 -- quickfix toggle
 local function isQfOpened()
-    for _, win in pairs(vim.fn.getwininfo()) do
-        if win["quickfix"] == 1 then
-            return true
-        end
+  for _, win in pairs(vim.fn.getwininfo()) do
+    if win["quickfix"] == 1 then
+      return true
     end
-    return false
+  end
+  return false
 end
 
 function Toggle_qf()
-    print("Toggle qf")
-    local qf_exists = false
-    print("qf_exists: " .. tostring(qf_exists))
-    if isQfOpened() then
-        vim.cmd("cclose")
-        return
-    end
-    vim.cmd("copen")
+  print("Toggle qf")
+  local qf_exists = false
+  print("qf_exists: " .. tostring(qf_exists))
+  if isQfOpened() then
+    vim.cmd("cclose")
+    return
+  end
+  vim.cmd("copen")
 end
 
 -- set leader
@@ -66,17 +66,17 @@ map("n", "]q", "<cmd>cnext<cr>zz", { desc = "next quickfix" })
 map("n", "[q", "<cmd>cprev<cr>zz", { desc = "previous quickfix" })
 -- diagnostics
 map("n", "[d", function()
-    vim.diagnostic.jump({ count = -1, float = true })
+  vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = "previous diagnostic" })
 map("n", "]d", function()
-    vim.diagnostic.jump({ count = 1, float = true })
+  vim.diagnostic.jump({ count = 1, float = true })
 end, { desc = "next diagnostic" })
 -- flash
 map({ "n", "o", "x" }, "s", function()
-    require("flash").jump()
+  require("flash").jump()
 end, { desc = "flash" })
-map({ "n", "o", "x" }, "s", function()
-    require("flash").treesitter()
+map({ "n", "o", "x" }, "S", function()
+  require("flash").treesitter()
 end, { desc = "flash treesitter" })
 -- tmux
 map({ "v", "n" }, "<c-h>", "<cmd>tmuxnavigateleft<cr>", { desc = "tmux navigate left" })
@@ -96,25 +96,25 @@ map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "move line up" })
 map({ "n", "v" }, "ga", ":EasyAlign<CR>", { desc = "easy align" })
 -- splitjoin
 map("n", "<leader>j", function()
-    require("mini.splitjoin").toggle()
+  require("mini.splitjoin").toggle()
 end, { desc = "split-join" })
 
 -- yank, copy
 -- copy current file path
 map("n", "<leader>P", function()
-    vim.fn.setreg("+", vim.fn.expand("%:p"))
-    vim.notify("Path copied to clipboard: " .. vim.fn.expand("%:p"), vim.log.levels.INFO)
+  vim.fn.setreg("+", vim.fn.expand("%:p"))
+  vim.notify("Path copied to clipboard: " .. vim.fn.expand("%:p"), vim.log.levels.INFO)
 end, { desc = "copy current file path" })
 -- yank buffer
 map("n", "<leader>Y", "<cmd>%y+<CR>", { desc = "yank buffer" })
 -- search and replace
 map("n", "<leader>*", "<cmd>GrugFar<CR>", { desc = "search and replace" })
 map("v", "<leader>*", function()
-    require("grug-far").with_visual_selection({
-        transient = true,
-        startInInsertMode = false,
-        startCursorRow = 1,
-    })
+  require("grug-far").with_visual_selection({
+    transient = true,
+    startInInsertMode = false,
+    startCursorRow = 1,
+  })
 end, { desc = "search and replace" })
 
 -- exit terminal mode
@@ -150,23 +150,23 @@ map("n", "gt", ":lua require('fzf-lua').lsp_type_definitions()<CR>", { desc = "l
 map("n", "ca", ":lua require('fzf-lua').lsp_code_actions()<CR>", { desc = "lsp code actions" })
 map("n", "<leader>fs", ":lua require('fzf-lua').lsp_document_symbols()<CR>", { desc = "lsp document symbols" })
 map(
-    "n",
-    "<leader>fS",
-    ":lua require('fzf-lua').lsp_live_workspace_symbols()<CR>",
-    { desc = "lsp live workspace symbols" }
+  "n",
+  "<leader>fS",
+  ":lua require('fzf-lua').lsp_live_workspace_symbols()<CR>",
+  { desc = "lsp live workspace symbols" }
 )
 map("n", "<leader>fd", ":lua require('fzf-lua').lsp_document_diagnostics()<CR>", { desc = "lsp document diagnostics" })
 map(
-    "n",
-    "<leader>fD",
-    ":lua require('fzf-lua').lsp_workspace_diagnostics()<CR>",
-    { desc = "lsp workspace diagnostics" }
+  "n",
+  "<leader>fD",
+  ":lua require('fzf-lua').lsp_workspace_diagnostics()<CR>",
+  { desc = "lsp workspace diagnostics" }
 )
 map(
-    "n",
-    "<leader>fc",
-    ":lua require('fzf-lua').lsp_workspace_diagnostics()<CR>",
-    { desc = "lsp workspace diagnostics" }
+  "n",
+  "<leader>fc",
+  ":lua require('fzf-lua').lsp_workspace_diagnostics()<CR>",
+  { desc = "lsp workspace diagnostics" }
 )
 map("n", "<leader>lc", ":lua print(vim.inspect(vim.lsp.get_clients()))<CR>", { desc = "active lsp clients" })
 map("n", "<leader>li", ":checkhealth lsp<CR>", { desc = "lsp info" })
