@@ -14,17 +14,17 @@ local formatters = {
   typescript = { "prettierd" },
   typescriptreact = { "prettierd" },
   typst = { "typstyle" },
-  nu = { "nufmt" },
+  -- nu = { "nufmt" },
 }
 
 require("conform").setup({
   formatters_by_ft = formatters,
   formatters = {
-    nufmt = {
-      command = "nufmt",
-      args = { "--stdin" },
-      stdin = true,
-    },
+    -- nufmt = {
+    --   command = "nufmt",
+    --   args = { "--stdin", "--config", "/home/eleloi/.config/nufmt/nufmt.nuon" },
+    --   stdin = true,
+    -- },
   },
   default_format_opts = {
     lsp_format = "fallback",
