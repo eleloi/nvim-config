@@ -51,7 +51,7 @@ map("n", "[t", "<cmd>tabprev<cr>", { desc = "previous tab" })
 map("n", "<leader>tc", "<cmd>tabclose<cr>", { desc = "close tab" })
 map("n", "<leader>to", "<cmd>tabonly<cr>", { desc = "only tab" })
 -- buffers
-map("n", "<leader>bd", ":lua snacks.bufdelete()<cr>", { desc = "delete current buffer" })
+map("n", "<leader>bd", ":lua Snacks.bufdelete()<cr>", { desc = "delete current buffer" })
 map("n", "<leader>bD", "<cmd>bufdo bdelete<cr>", { desc = "delete all buffers" })
 -- window navigation
 map("n", "<c-w>|", "<cmd>vsplit<cr>", { desc = "vertical split" })
