@@ -116,6 +116,8 @@ map("v", "<leader>*", function()
     startCursorRow = 1,
   })
 end, { desc = "search and replace" })
+-- select and replace all in file
+map("v", "<leader>r", "y:%s/<C-r>\"//g<Left><Left>", { desc = "select and replace all in file" })
 
 -- exit terminal mode
 map("t", "<ESC>", "<C-\\><C-n>")
