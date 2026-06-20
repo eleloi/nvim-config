@@ -72,10 +72,6 @@
       "rev": "a2aa9a247b56d2c1a6f6be81bcf41c5450cc82ff",
       "src": "https://github.com/rafikdraoui/jj-diffconflicts"
     },
-    "jj-log.nvim": {
-      "rev": "fc9416af13c0a98ed2a1b4b5eea473e05ffd9c3c",
-      "src": "https://tangled.org/bpavuk.neocities.org/jj-log.nvim"
-    },
     "keep-split-ratio.nvim": {
       "rev": "906aa5196e194dca12c7729069760d42e77ddcff",
       "src": "https://github.com/adlrwbr/keep-split-ratio.nvim"
