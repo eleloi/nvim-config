@@ -149,7 +149,7 @@ map("n", "gr", ":lua require('fzf-lua').lsp_references()<CR>", { desc = "lsp ref
 map("n", "gd", ":lua require('fzf-lua').lsp_definitions()<CR>", { desc = "lsp definitions" })
 map("n", "gi", ":lua require('fzf-lua').lsp_implementations()<CR>", { desc = "lsp implementations" })
 map("n", "gt", ":lua require('fzf-lua').lsp_type_definitions()<CR>", { desc = "lsp type definitions" })
-map("n", "ca", ":lua require('fzf-lua').lsp_code_actions()<CR>", { desc = "lsp code actions" })
+map("n", "<leader>ca", ":lua require('fzf-lua').lsp_code_actions()<CR>", { desc = "lsp code actions" })
 map("n", "<leader>fs", ":lua require('fzf-lua').lsp_document_symbols()<CR>", { desc = "lsp document symbols" })
 map(
   "n",
@@ -180,3 +180,28 @@ map("n", "<leader>fu", "<cmd>UndotreeToggle<CR>", { desc = "undo" })
 
 -- file-explorer
 map("n", "<leader>e", "<cmd>Yazi<CR>", { desc = "file-explorer" })
+
+-- notifications
+map("n", "<leader>nn", ":lua Snacks.notifier.show_history()<CR>", { desc = "show notifications" })
+map("n", "<leader>un", ":lua Snacks.notifier.hide()<CR>", { desc = "Notifications" })
+
+-- toggle
+if _G.toggle_vertical_bar then
+  _G.toggle_vertical_bar:map("<leader>ub")
+end
+
+if _G.toggle_codeium then
+  _G.toggle_codeium:map("<leader>uc")
+end
+
+if _G.toggle_completion then
+  _G.toggle_completion:map("<leader>u/")
+end
+
+if _G.toggle_diagnostics then
+  _G.toggle_diagnostics:map("<leader>ud")
+end
+
+if _G.toggle_inlay_hints then
+  _G.toggle_inlay_hints:map("<leader>ui")
+end

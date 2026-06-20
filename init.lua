@@ -3,6 +3,7 @@ require("config.options")
 require("plugins.conform")
 require("plugins.lspconfig")
 vim.cmd("packadd nvim-lspconfig")
+require("plugins.wichkey")
 require("plugins.treesitter")
 require("plugins.lazydev")
 require("plugins.completion")
@@ -24,7 +25,6 @@ require("plugins.tmux-navigator")
 require("plugins.ts-autotag")
 require("plugins.undotree")
 require("plugins.visual-star-search")
-require("plugins.wichkey")
 
 require("config.autocmds")
 require("config.theme")
@@ -33,8 +33,8 @@ load_theme()
 require("config.mappings")
 
 vim.defer_fn(function()
-    --defer non-essential configs,
-    --purely for experimental purposes:
-    require("plugins.incline")
-    require("plugins.todo-comments")
+  --defer non-essential configs,
+  --purely for experimental purposes:
+  require("plugins.incline")
+  require("plugins.todo-comments")
 end, 100)
