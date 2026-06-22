@@ -22,7 +22,7 @@ require("fzf-lua").setup({
   },
   keymap = {
     builtin = {
-      ["<M-Esc>"]  = "hide",   -- hide fzf-lua, `:FzfLua resume` to continue
+      ["<M-Esc>"]  = "hide", -- hide fzf-lua, `:FzfLua resume` to continue
       ["<F1>"]     = "toggle-help",
       ["<c-f>"]    = "toggle-fullscreen",
       -- Only valid with the 'builtin' previewer
@@ -59,6 +59,7 @@ require("fzf-lua").setup({
       ["f4"]         = "toggle-preview",
       ["shift-down"] = "preview-page-down",
       ["shift-up"]   = "preview-page-up",
+      ["ctrl-q"]     = "select-all+accept",
     },
   },
 })
