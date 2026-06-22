@@ -148,8 +148,10 @@ map("n", "<leader>.", ":lua require('fzf-lua').jj_files({})<CR>", { desc = "jj f
 map("n", "gr", ":lua require('fzf-lua').lsp_references()<CR>", { desc = "lsp references" })
 map("n", "gd", ":lua require('fzf-lua').lsp_definitions()<CR>", { desc = "lsp definitions" })
 map("n", "gi", ":lua require('fzf-lua').lsp_implementations()<CR>", { desc = "lsp implementations" })
-map("n", "gt", ":lua require('fzf-lua').lsp_type_definitions()<CR>", { desc = "lsp type definitions" })
+map("n", "gt", ":lua require('fzf-lua').lsp_typedefs()<CR>", { desc = "lsp type definitions" })
 map("n", "<leader>ca", ":lua require('fzf-lua').lsp_code_actions()<CR>", { desc = "lsp code actions" })
+map("n", "<leader>cr", vim.lsp.buf.rename, { desc = "lsp rename" })
+
 map("n", "<leader>fs", ":lua require('fzf-lua').lsp_document_symbols()<CR>", { desc = "lsp document symbols" })
 map(
   "n",
