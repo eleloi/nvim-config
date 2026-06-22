@@ -1,3 +1,8 @@
+if vim.b.did_ftplugin_yaml then
+  return
+end
+vim.b.did_ftplugin_yaml = 1
+
 local set = vim.bo
 
 set.tabstop = 2

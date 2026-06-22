@@ -1,3 +1,8 @@
+if vim.b.did_ftplugin_typescriptreact then
+  return
+end
+vim.b.did_ftplugin_typescriptreact = 1
+
 local set = vim.bo
 
 set.tabstop = 2

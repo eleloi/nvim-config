@@ -1,16 +1,9 @@
+if vim.b.did_ftplugin_go then
+  return
+end
+vim.b.did_ftplugin_go = 1
+
 vim.cmd("packadd nvim-lspconfig")
-vim.lsp.config("gopls", {
-  settings = {
-    gopls = {
-      analyses = {
-        unusedparams = true,
-        shadow = true,
-      },
-      staticcheck = true,
-      gofumpt = true,
-    },
-  },
-})
 
 vim.lsp.enable("gopls")
 vim.lsp.enable("golangci_lint_ls")

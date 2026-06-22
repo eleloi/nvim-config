@@ -1,3 +1,8 @@
+if vim.b.did_ftplugin_typescript then
+  return
+end
+vim.b.did_ftplugin_typescript = 1
+
 local set = vim.bo
 
 set.tabstop = 2
