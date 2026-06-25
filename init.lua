@@ -1,3 +1,5 @@
+local th = require("config.theme")
+
 require("config.options")
 
 require("plugins.conform")
@@ -27,8 +29,8 @@ require("plugins.undotree")
 require("plugins.visual-star-search")
 
 require("config.autocmds")
-require("config.theme")
-load_theme()
+th.setup()
+th.load_theme()
 
 require("config.mappings")
 

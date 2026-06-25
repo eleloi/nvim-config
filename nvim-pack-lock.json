@@ -28,6 +28,10 @@
       "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
       "src": "https://github.com/sindrets/diffview.nvim"
     },
+    "eldritch.nvim": {
+      "rev": "c9131a5a11f00a2f428f563a4eb2c4aeb680d963",
+      "src": "https://github.com/eldritch-theme/eldritch.nvim"
+    },
     "flash.nvim": {
       "rev": "fcea7ff883235d9024dc41e638f164a450c14ca2",
       "src": "https://github.com/folke/flash.nvim"

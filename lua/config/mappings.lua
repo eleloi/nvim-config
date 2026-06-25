@@ -1,3 +1,5 @@
+local th = require("config.theme")
+
 local function map(m, k, v, opts)
   local options = { noremap = true, silent = true }
   if opts then
@@ -36,7 +38,7 @@ map("n", "<leader>z", "<cmd>w<CR>", { desc = "save" })
 map("n", "<leader>Z", "<cmd>noautocmd w<CR>", { desc = "save without format" })
 map("i", "jk", "<ESC>") -- exit insert mode with jk
 
-map("n", "<leader>p", switch_theme, { desc = "cycle themes" })
+map("n", "<leader>p", th.switch_theme, { desc = "cycle themes" })
 map("n", "<Esc>", "<cmd>nohlsearch<CR>") -- clear search
 
 -- navigation

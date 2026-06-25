@@ -2,46 +2,57 @@
 -- could use a plugin instead, but hey, this is more fun
 -- lualine theme gets stored separately due to possible naming differences
 
-local theme_file = vim.fn.stdpath("config") .. "/lua/config/saved_theme"
+local M = {
+  theme_file = vim.fn.stdpath("config") .. "/lua/config/saved_theme",
+  themes = { --add more themes here, if installed
+    { "rosebones", "rosebones" },
+    { "gruvbox",   "gruvbox" },
+    { "eldritch",  "eldritch" },
+  },
+  current_theme_index = 1,
+}
 
-vim.pack.add({
-    -- mini summer, winter, autumn, sprint
-    "https://github.com/nvim-mini/mini.hues",
+M.setup = function()
+  vim.pack.add({
     -- zenbones
     "https://github.com/rktjmp/lush.nvim", -- dependency
     "https://github.com/zenbones-theme/zenbones.nvim",
     -- gruvbox
     "https://github.com/ellisonleao/gruvbox.nvim",
-})
+    -- eldrich
+    "https://github.com/eldritch-theme/eldritch.nvim",
+  })
 
-_G.load_theme = function()
-    local file = io.open(theme_file, "r")
-    if file then
-        vim.cmd("colorscheme " .. file:read("*l"))
-        -- require("lualine").setup({ options = { theme = file:read("*l") } })
-        file:close()
-    end
+  require("eldritch").setup({
+    transparent = true,
+    styles = {
+      sidebars = "dark",
+      floats = "dark",
+    },
+  })
 end
 
-local themes = { --add more themes here, if installed
-    { "miniwinter", "miniwinter" },
-    { "minisummer", "minisummer" },
-    { "miniautumn", "miniautumn" },
-    { "minispring", "minispring" },
-    { "rosebones",  "rosebones" },
-    { "gruvbox",    "gruvbox" },
-}
-
-local current_theme_index = 1
-
-_G.switch_theme = function()
-    current_theme_index = current_theme_index % #themes + 1
-    local colorscheme, lualine = unpack(themes[current_theme_index])
-    vim.cmd("colorscheme " .. colorscheme)
-    -- require("lualine").setup({ options = { theme = lualine } })
-    local file = io.open(theme_file, "w")
-    if file then
-        file:write(colorscheme .. "\n" .. lualine)
-        file:close()
-    end
+M.load_theme = function()
+  local file = io.open(M.theme_file, "r")
+  if file then
+    vim.cmd("colorscheme " .. file:read("*l"))
+    -- require("lualine").setup({ options = { theme = file:read("*l") } })
+    file:close()
+  end
 end
+
+
+M.switch_theme = function()
+  M.current_theme_index = M.current_theme_index % #M.themes + 1
+  local colorscheme, lualine = unpack(M.themes[M.current_theme_index])
+  vim.cmd("colorscheme " .. colorscheme)
+  require("lualine").setup({ options = { theme = lualine } })
+  local file = io.open(M.theme_file, "w")
+  if file then
+    file:write(colorscheme .. "\n" .. lualine)
+    file:close()
+  end
+  print("Theme: " .. colorscheme)
+end
+
+return M

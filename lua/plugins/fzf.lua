@@ -11,6 +11,14 @@ local function disable_blink_maps()
 end
 
 require("fzf-lua").setup({
+
+  -- Eldritch theme requirements for use with transparent
+  fzf_colors = {
+    true,
+    bg = "-1",
+    gutter = "-1",
+  },
+
   fzf_opts = {
     ["--algo"] = "v2",
   },
