@@ -11,23 +11,24 @@ set.expandtab = true
 set.shiftwidth = 2
 
 vim.opt_local.cursorcolumn = true
+vim.lsp.enable("yamlls")
 
 local group = vim.api.nvim_create_augroup("YamlCursorColumn", { clear = true })
 
 vim.api.nvim_create_autocmd("BufEnter", {
-    group = group,
-    buffer = 0,
-    callback = function()
-        vim.opt_local.cursorcolumn = true
-        vim.g.tscontext = true
-    end,
+  group = group,
+  buffer = 0,
+  callback = function()
+    vim.opt_local.cursorcolumn = true
+    vim.g.tscontext = true
+  end,
 })
 
 vim.api.nvim_create_autocmd("BufLeave", {
-    group = group,
-    buffer = 0,
-    callback = function()
-        vim.opt_local.cursorcolumn = false
-        vim.g.tscontext = false
-    end,
+  group = group,
+  buffer = 0,
+  callback = function()
+    vim.opt_local.cursorcolumn = false
+    vim.g.tscontext = false
+  end,
 })
