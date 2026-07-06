@@ -12,5 +12,6 @@ set.expandtab = true
 
 vim.cmd("packadd nvim-lspconfig")
 vim.lsp.enable("eslint")
-vim.lsp.enable("ts_ls")
-vim.lsp.enable("tailwindcss")
+vim.lsp.enable("vtsls")
+-- vim.lsp.enable("tailwindcss")
+vim.lsp.enable("vue_ls")
