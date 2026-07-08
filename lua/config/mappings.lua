@@ -1,4 +1,5 @@
 local th = require("config.theme")
+local sn = require("plugins.snacks")
 
 local function map(m, k, v, opts)
   local options = { noremap = true, silent = true }
@@ -190,22 +191,24 @@ map("n", "<leader>nn", ":lua Snacks.notifier.show_history()<CR>", { desc = "show
 map("n", "<leader>un", ":lua Snacks.notifier.hide()<CR>", { desc = "Notifications" })
 
 -- toggle
-if _G.toggle_vertical_bar then
-  _G.toggle_vertical_bar:map("<leader>ub")
+if sn.toggle_vertical_bar then
+  sn.toggle_vertical_bar:map("<leader>ub")
 end
-
-if _G.toggle_codeium then
-  _G.toggle_codeium:map("<leader>uc")
+if sn.toggle_codeium then
+  sn.toggle_codeium:map("<leader>uc")
 end
-
-if _G.toggle_completion then
-  _G.toggle_completion:map("<leader>u/")
+if sn.toggle_completion then
+  sn.toggle_completion:map("<leader>u/")
 end
-
-if _G.toggle_diagnostics then
-  _G.toggle_diagnostics:map("<leader>ud")
+if sn.toggle_diagnostics then
+  sn.toggle_diagnostics:map("<leader>ud")
 end
-
-if _G.toggle_inlay_hints then
-  _G.toggle_inlay_hints:map("<leader>ui")
+if sn.toggle_inlay_hints then
+  sn.toggle_inlay_hints:map("<leader>ui")
+end
+if sn.toggle_markdown then
+  sn.toggle_markdown:map("<leader>um")
+end
+if sn.toggle_treesitter_context then
+  sn.toggle_treesitter_context:map("<leader>ut")
 end

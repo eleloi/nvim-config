@@ -1,6 +1,8 @@
-vim.pack.add({
-  "https://github.com/folke/snacks.nvim",
-})
+local M = {
+  aicompletion_toggle = true,
+  markdown_preview_toggle = false,
+  tscontext_toggle = false,
+}
 
 local indent_config = {
   indent = {
@@ -74,67 +76,95 @@ local indent_config = {
   end,
 }
 
-local Snacks = require("snacks")
-Snacks.setup({
-  bigfile = {
-    enabled = true,
-    size = 10 * 1024 * 1024, -- 10 MB
-  },
-  bufdelete = { enabled = true },
-  quickfile = { enabled = true },
-  indent = indent_config,
-  notifier = { enabled = true },
-  scroll = { enabled = true },
-  statuscolumn = {
-    enabled = true,
-    left = { "mark", "sign" }, -- Combined signs (marks and diagnostics)
-    right = { "fold", "git" },
-    folds = {
-      open = false,
-      git_hl = true, -- Highlight line number with Git color
+M.setup = function()
+  vim.pack.add({
+    "https://github.com/folke/snacks.nvim",
+  })
+
+  local Snacks = require("snacks")
+  Snacks.setup({
+    bigfile = {
+      enabled = true,
+      size = 10 * 1024 * 1024, -- 10 MB
     },
-  },
-  toggle = { enabled = true },
-})
+    bufdelete = { enabled = true },
+    quickfile = { enabled = true },
+    indent = indent_config,
+    notifier = { enabled = true },
+    scroll = { enabled = true },
+    statuscolumn = {
+      enabled = true,
+      left = { "mark", "sign" }, -- Combined signs (marks and diagnostics)
+      right = { "fold", "git" },
+      folds = {
+        open = false,
+        git_hl = true, -- Highlight line number with Git color
+      },
+    },
+    toggle = { enabled = true },
+  })
 
-_G.toggle_codeium = Snacks.toggle
-    .new({
-      id = "codeium",
-      name = "Codeium",
-      which_key = true,
-      notify = false,
-      get = function()
-        if vim.g.aicompletion_enable == nil then
-          vim.g.aicompletion_enable = true
-        end
-        return vim.g.aicompletion_enable
-      end,
-      set = function(state)
-        if state then
-          vim.g.aicompletion_enable = true
-          vim.cmd("Codeium Toggle")
-        else
-          vim.g.aicompletion_enable = false
-          vim.cmd("Codeium Toggle")
-        end
-      end,
-    })
+  M.toggle_codeium = Snacks.toggle
+      .new({
+        id = "codeium",
+        name = "Codeium",
+        which_key = true,
+        notify = false,
+        get = function()
+          return M.aicompletion_toggle
+        end,
+        set = function(state)
+          if state then
+            M.aicompletion_toggle = true
+            vim.cmd("Codeium Toggle")
+          else
+            M.aicompletion_toggle = false
+            vim.cmd("Codeium Toggle")
+          end
+        end,
+      })
 
-_G.toggle_completion = Snacks.toggle
-    .new({
-      id = "completion",
-      name = "Autocompletion",
-      get = function()
-        if vim.b.completion == nil then
-          vim.b.completion = true
-        end
-        return vim.b.completion
-      end,
-      set = function(state)
-        vim.b.completion = state
-      end,
-    })
+  M.toggle_completion = Snacks.toggle
+      .new({
+        id = "completion",
+        name = "Autocompletion",
+        get = function()
+          local config = require("blink.cmp.config")
+          return config.completion.trigger.show_on_keyword
+        end,
+        set = function(state)
+          local config = require("blink.cmp.config")
+          config.completion.trigger.show_on_keyword = state
+        end,
+      })
 
-_G.toggle_vertical_bar = Snacks.toggle.option('cursorcolumn')
-_G.toggle_diagnostics = Snacks.toggle.diagnostics()
-_G.toggle_inlay_hints = Snacks.toggle.inlay_hints()
+  M.toggle_vertical_bar = Snacks.toggle.option('cursorcolumn')
+  M.toggle_diagnostics = Snacks.toggle.diagnostics()
+  M.toggle_inlay_hints = Snacks.toggle.inlay_hints()
+  M.toggle_markdown = Snacks.toggle
+      .new({
+        id = "markdown",
+        name = "Markdown",
+        get = function()
+          return M.markdown_preview_toggle
+        end,
+        set = function(state)
+          M.markdown_preview_toggle = state
+          vim.cmd("RenderMarkdown toggle")
+        end,
+      })
+  M.toggle_treesitter_context = Snacks.toggle
+      .new({
+        id = "treesitter_context",
+        name = "Treesitter Context",
+        get = function()
+          return M.tscontext_toggle
+        end,
+        set = function(state)
+          M.tscontext_toggle = state
+          vim.cmd("TSContext toggle")
+        end,
+      })
+end
+
+return M

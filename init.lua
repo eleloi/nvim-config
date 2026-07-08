@@ -1,4 +1,5 @@
 local th = require("config.theme")
+local sn = require("plugins.snacks")
 
 require("config.options")
 
@@ -22,7 +23,7 @@ require("plugins.mini-pairs")
 require("plugins.mini-splitjoin")
 require("plugins.mini-surround")
 require("plugins.search-and-replace")
-require("plugins.snacks")
+sn.setup()
 require("plugins.tmux-navigator")
 require("plugins.ts-autotag")
 require("plugins.undotree")
@@ -39,4 +40,5 @@ vim.defer_fn(function()
   --purely for experimental purposes:
   require("plugins.incline")
   require("plugins.todo-comments")
+  require("plugins.render-markdown")
 end, 100)
