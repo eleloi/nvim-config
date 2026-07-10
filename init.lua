@@ -1,5 +1,6 @@
 local th = require("config.theme")
 local sn = require("plugins.snacks")
+local fzf = require("plugins.fzf")
 
 require("config.options")
 
@@ -10,7 +11,7 @@ require("plugins.wichkey")
 require("plugins.treesitter")
 require("plugins.lazydev")
 require("plugins.completion")
-require("plugins.fzf")
+fzf.setup()
 require("plugins.ai")
 require("plugins.colorizer")
 require("plugins.easy-align")

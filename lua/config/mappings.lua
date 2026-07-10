@@ -1,5 +1,6 @@
 local th = require("config.theme")
 local sn = require("plugins.snacks")
+local fzf = require("plugins.fzf")
 
 local function map(m, k, v, opts)
   local options = { noremap = true, silent = true }
@@ -135,10 +136,10 @@ map("n", "z5", "zMzrzrzrzrzr", { desc = "fold 5" })
 
 -- fzf and grep
 -- fils
-map("n", "<leader>ff", fzf_files, { desc = "find files" })
-map("n", "<leader>fF", fzf_allfiles, { desc = "find all files" })
-map("n", "<leader>fa", fzf_samedir, { desc = "find files in same dir" })
-map("n", "<leader>fr", fzf_resume, { desc = "resume last search" })
+map("n", "<leader>ff", fzf.files, { desc = "find files" })
+map("n", "<leader>fF", fzf.allfiles, { desc = "find all files" })
+map("n", "<leader>fa", fzf.samedir, { desc = "find files in same dir" })
+map("n", "<leader>fr", fzf.resume, { desc = "resume last search" })
 -- grep
 map("n", "<leader>fg", ":lua require('fzf-lua').live_grep()<CR>", { desc = "grep" })
 map("n", "<leader>fw", ":lua require('fzf-lua').grep_cword()<CR>", { desc = "grep word under cursor" })
@@ -154,7 +155,6 @@ map("n", "gi", ":lua require('fzf-lua').lsp_implementations()<CR>", { desc = "ls
 map("n", "gt", ":lua require('fzf-lua').lsp_typedefs()<CR>", { desc = "lsp type definitions" })
 map("n", "<leader>ca", ":lua require('fzf-lua').lsp_code_actions()<CR>", { desc = "lsp code actions" })
 map("n", "<leader>cr", vim.lsp.buf.rename, { desc = "lsp rename" })
-
 map("n", "<leader>fs", ":lua require('fzf-lua').lsp_document_symbols()<CR>", { desc = "lsp document symbols" })
 map(
   "n",
