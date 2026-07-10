@@ -51,7 +51,9 @@ cmp.setup({
       "buffer",
       "ripgrep",
     },
-
+    per_filetype = {
+      org = { 'orgmode' }
+    },
     providers = {
       lazydev = {
         name = "LazyDev",
@@ -62,6 +64,11 @@ cmp.setup({
         module = "blink-ripgrep",
         name = "Ripgrep",
         score_offset = -10,
+      },
+      orgmode = {
+        name = 'Orgmode',
+        module = 'orgmode.org.autocompletion.blink',
+        fallbacks = { 'buffer' },
       },
     },
   },

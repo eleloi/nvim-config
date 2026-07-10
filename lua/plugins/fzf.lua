@@ -4,6 +4,7 @@ M.setup = function()
   vim.pack.add({
     "https://github.com/ibhagwan/fzf-lua",
     "https://github.com/nvim-tree/nvim-web-devicons",
+    "https://github.com/0xzhzh/fzf-org.nvim"
   })
 
   local function disable_blink_maps()
@@ -75,6 +76,7 @@ M.setup = function()
     },
   })
 
+  require("fzf-org").setup()
 end
 
 -- functions keymapped in mappings.lua

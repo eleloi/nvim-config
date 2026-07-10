@@ -1,6 +1,7 @@
 local th = require("config.theme")
 local sn = require("plugins.snacks")
 local fzf = require("plugins.fzf")
+local org = require("fzf-org")
 
 local function map(m, k, v, opts)
   local options = { noremap = true, silent = true }
@@ -64,7 +65,7 @@ map("n", "<c-w><c-l>", "<cmd>vertical resize +5<cr>", { desc = "vertical resize 
 map("n", "<c-w><c-h>", "<cmd>vertical resize -5<cr>", { desc = "vertical resize -" })
 map("n", "<c-w><c-j>", "<cmd>resize +5<cr>", { desc = "resize +" })
 map("n", "<c-w><c-k>", "<cmd>resize -5<cr>", { desc = "resize -" })
-map("n", "<leader>o", "<cmd>only<cr>") -- only
+map("n", "<leader>O", "<cmd>only<cr>") -- only
 -- quickfix
 map("n", "]q", "<cmd>cnext<cr>zz", { desc = "next quickfix" })
 map("n", "[q", "<cmd>cprev<cr>zz", { desc = "previous quickfix" })
@@ -182,7 +183,33 @@ map("n", "<leader>lr", ":lsp restart<CR>", { desc = "lsp restart" })
 map("n", "<leader>fc", ":lua require('fzf-lua').colorschemes()<CR>", { desc = "colorschemes" })
 -- undo
 map("n", "<leader>fu", "<cmd>UndotreeToggle<CR>", { desc = "undo" })
+-- org mappings
 
+map("n", "<leader>foH", function()
+  org.all_headlines()
+end, { desc = "Browse all org headlines" })
+map("n", "<leader>fof", function()
+  org.files()
+end, { desc = "Browse all org files" })
+map("n", "<leader>foh", function()
+  org.headlines()
+end, { desc = "Browse org headlines in current file" })
+map("n", "<leader>fos", function()
+  org.subheadlines()
+end, { desc = "Browse org headlines under current headline/file" })
+map("n", "<leader>forH", function()
+  org.refile()
+end, { desc = "Refile to headline" })
+map("n", "<leader>forf", function()
+  org.refile_to_file()
+end, { desc = "Refile to org file" })
+map("n", "<leader>forh", function()
+  org.refile_to_headline()
+end, { desc = "Refile to headline in current file" })
+map("n", "<leader>oli", "<cmd>OrgLinkInsert<CR>", { desc = "insert org link" })
+map("n", "<leader>olp", "<cmd>OrgLinkPromote<CR>", { desc = "promote org link" })
+map("n", "<leader>olv", "<cmd>OrgLinkFollowVSplit<CR>", { desc = "follow link in v split" })
+map("n", "<leader>osa", "<cmd>OrgSuperAgenda<CR>", { desc = "OrgSuperAgenda" })
 -- file-explorer
 map("n", "<leader>e", "<cmd>Yazi<CR>", { desc = "file-explorer" })
 
