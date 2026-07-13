@@ -9,7 +9,7 @@ M.setup = function()
 
   require('orgmode').setup({
     org_agenda_files = '~/Documents/logseq/org/*.org',
-    org_default_notes_file = '~/Documents/logseq/org/refile.org',
+    org_default_notes_file = '~/Documents/logseq/org/triage.org',
     -- org_hide_leading_stars = false,
     org_startup_indented = true,
     org_todo_keywords = { "TODO", "DOING", "WAITING", "BACKLOG", "|", "DONE" },
@@ -72,7 +72,7 @@ M.setup = function()
       t = {
         description = "Task",
         template = "* TODO %?\n %U\n %a\n",
-        target = "~/Documents/logseq/org/mywork.org",
+        target = "~/Documents/logseq/org/triage.org",
         headline = "Inbox"
       },
       j = {
