@@ -73,7 +73,6 @@ M.setup = function()
         description = "Task",
         template = "* TODO %?\n %U\n %a\n",
         target = "~/Documents/logseq/org/triage.org",
-        headline = "Inbox"
       },
       j = {
         description = "Journal",
@@ -87,7 +86,7 @@ M.setup = function()
   require('org-bullets').setup({
     symbols = {
       checkboxes = {
-        half = { "➖", "@org.checkbox.halfchecked" },
+        half = { "-", "@org.checkbox.halfchecked" },
         done = { "✅", "@org.keyword.done" },
         todo = { "🔳", "@org.keyword.todo" },
       },
