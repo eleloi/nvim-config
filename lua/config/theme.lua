@@ -5,9 +5,11 @@
 local M = {
   theme_file = vim.fn.stdpath("config") .. "/lua/config/saved_theme",
   themes = { --add more themes here, if installed
-    { "rosebones", "rosebones" },
-    { "gruvbox",   "gruvbox" },
-    { "eldritch",  "eldritch" },
+    { "rosebones",     "rosebones" },
+    { "gruvbox",       "gruvbox" },
+    { "eldritch",      "eldritch" },
+    { "eldritch-dark", "eldritch" },
+    { "default",       "default" },
   },
   current_theme_index = 1,
 }
