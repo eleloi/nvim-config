@@ -7,6 +7,10 @@ vim.pack.add({
   "https://github.com/nvim-tree/nvim-web-devicons", -- dependency of Hunk
   "https://github.com/avm99963/vim-jjdescription",  -- jj syntax highlight
   "https://github.com/tpope/vim-fugitive",
+
+  -- diffview
+  "https://github.com/nvim-tree/nvim-web-devicons",     -- dependency
+  "https://github.com/dlyongemallo/diffview-plus.nvim", -- Maintained fork of "sindrets/diffview.nvim".
 })
 
 require("gitsigns").setup({
