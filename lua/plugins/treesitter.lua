@@ -74,6 +74,8 @@ for _, lang in ipairs(ensure_installed) do
   })
 end
 
+-- shows the current code context (like the function or loop you are inside) at
+-- the top of your screen as you scroll
 require("treesitter-context").setup({
-  enable = false, -- Enable this plugin (Can be enabled/disabled later via commands)
+  enable = false, -- disabled by default, manual enabled by a toggle
 })
