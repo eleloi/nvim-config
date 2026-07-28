@@ -6,6 +6,7 @@ vim.pack.add({
   "https://github.com/MunifTanjim/nui.nvim",        -- dependency of Hunk
   "https://github.com/nvim-tree/nvim-web-devicons", -- dependency of Hunk
   "https://github.com/avm99963/vim-jjdescription",  -- jj syntax highlight
+  "https://github.com/tpope/vim-fugitive",
 })
 
 require("gitsigns").setup({

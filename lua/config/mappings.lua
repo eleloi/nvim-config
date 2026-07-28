@@ -184,7 +184,6 @@ map("n", "<leader>fc", ":lua require('fzf-lua').colorschemes()<CR>", { desc = "c
 -- undo
 map("n", "<leader>fu", "<cmd>UndotreeToggle<CR>", { desc = "undo" })
 -- org mappings
-
 map("n", "<leader>foH", function()
   org.all_headlines()
 end, { desc = "Browse all org headlines" })
@@ -239,3 +238,6 @@ end
 if sn.toggle_treesitter_context then
   sn.toggle_treesitter_context:map("<leader>ut")
 end
+
+-- fugitive
+map("n", "<leader>gg", "<cmd>G<CR>", { desc = "git status" })
