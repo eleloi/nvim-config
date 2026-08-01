@@ -148,7 +148,7 @@ map("v", "<leader>fw", ":lua require('fzf-lua').grep_visual()<CR>", { desc = "gr
 -- buffers
 map("n", "<leader>,", ":lua require('fzf-lua').buffers({})<CR>", { desc = "buffers" })
 -- jj
-map("n", "<leader>.", ":lua require('fzf-lua').jj_files({})<CR>", { desc = "jj files" })
+map("n", "<leader>.", ":lua require('fzf-lua').git_status()<CR>", { desc = "git status" })
 -- lsp
 map("n", "gr", ":lua require('fzf-lua').lsp_references()<CR>", { desc = "lsp references" })
 map("n", "gd", ":lua require('fzf-lua').lsp_definitions()<CR>", { desc = "lsp definitions" })
