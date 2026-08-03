@@ -95,5 +95,8 @@ end
 M.resume = function()
   require("fzf-lua").resume()
 end
+M.mappings = function()
+  require("fzf-lua").keymaps()
+end
 
 return M

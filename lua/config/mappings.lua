@@ -2,6 +2,7 @@ local th = require("config.theme")
 local sn = require("plugins.snacks")
 local fzf = require("plugins.fzf")
 local org = require("fzf-org")
+local ai = require("plugins.ai")
 
 local function map(m, k, v, opts)
   local options = { noremap = true, silent = true }
@@ -136,11 +137,13 @@ map("n", "z4", "zMzrzrzrzr", { desc = "fold 4" })
 map("n", "z5", "zMzrzrzrzrzr", { desc = "fold 5" })
 
 -- fzf and grep
--- fils
+-- files
 map("n", "<leader>ff", fzf.files, { desc = "find files" })
 map("n", "<leader>fF", fzf.allfiles, { desc = "find all files" })
 map("n", "<leader>fa", fzf.samedir, { desc = "find files in same dir" })
 map("n", "<leader>fr", fzf.resume, { desc = "resume last search" })
+-- mappings
+map("n", "<leader>fk", fzf.mappings, { desc = "find mappings" })
 -- grep
 map("n", "<leader>fg", ":lua require('fzf-lua').live_grep()<CR>", { desc = "grep" })
 map("n", "<leader>fw", ":lua require('fzf-lua').grep_cword()<CR>", { desc = "grep word under cursor" })
@@ -241,3 +244,12 @@ end
 
 -- fugitive
 map("n", "<leader>gg", "<cmd>G<CR>", { desc = "git status" })
+
+-- Autosuggestions
+local neocodeium = require("neocodeium")
+map("i", "<M-;>", neocodeium.accept, { desc = "accept suggestion" })
+map("i", "<M-w>", neocodeium.accept_word, { desc = "accept word" })
+map("i", "<M-l>", neocodeium.accept_line, { desc = "accept line" })
+map("i", "<M-c>", neocodeium.clear, { desc = "clear suggestion" })
+map("i", "<M-n>", neocodeium.cycle, { desc = "cycle suggestion" })
+map("i", "<M-v>", neocodeium.visible, { desc = "check suggestion visibility" })
