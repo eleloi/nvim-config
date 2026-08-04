@@ -1,4 +1,5 @@
 vim.pack.add({
+  -- Yazi
   "https://github.com/mikavilpas/yazi.nvim",
   "https://github.com/nvim-lua/plenary.nvim", -- dependency
 })
@@ -17,7 +18,3 @@ require("yazi").setup({
     end
   }
 })
-
--- 👇 if you use `open_for_directories=true`, this is recommended
--- vim.g.loaded_netrw = 1
--- vim.g.loaded_netrwPlugin = 1
