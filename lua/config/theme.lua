@@ -6,6 +6,7 @@ local M = {
   theme_file = vim.fn.stdpath("config") .. "/lua/config/saved_theme",
   themes = { --add more themes here, if installed
     { "rosebones",     "rosebones" },
+    { "rose-pine",     "rose-pine" },
     { "gruvbox",       "gruvbox" },
     { "eldritch",      "eldritch" },
     { "eldritch-dark", "eldritch" },
@@ -23,6 +24,11 @@ M.setup = function()
     "https://github.com/ellisonleao/gruvbox.nvim",
     -- eldrich
     "https://github.com/eldritch-theme/eldritch.nvim",
+    -- rose pine
+    {
+      src = "https://github.com/rose-pine/neovim",
+      name = "rose-pine",
+    },
   })
 
   require("eldritch").setup({
@@ -32,6 +38,8 @@ M.setup = function()
       floats = "dark",
     },
   })
+
+  require("rose-pine").setup()
 end
 
 M.load_theme = function()
