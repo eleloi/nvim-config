@@ -186,7 +186,9 @@ map("n", "<leader>fc", ":lua require('fzf-lua').colorschemes()<CR>", { desc = "c
 -- undo
 map("n", "<leader>fu", "<cmd>UndotreeToggle<CR>", { desc = "undo" })
 -- file-explorer
-map("n", "<leader>e", "<cmd>Yazi<CR>", { desc = "file-explorer" })
+map("n", "<leader>e", function()
+  require("plugins.file-explorer").open()
+end, { desc = "file-explorer" })
 
 -- notifications
 map("n", "<leader>nn", ":lua Snacks.notifier.show_history()<CR>", { desc = "show notifications" })
