@@ -11,6 +11,9 @@ local M = {
     { "eldritch",      "eldritch" },
     { "eldritch-dark", "eldritch" },
     { "default",       "default" },
+    -- solarized osaka (craftzdog), "vivid" is a higher contrast variant
+    { "solarized-osaka",        "solarized-osaka" },
+    { "solarized-osaka-vivid",  "solarized-osaka" },
   },
   current_theme_index = 1,
 }
@@ -29,6 +32,8 @@ M.setup = function()
       src = "https://github.com/rose-pine/neovim",
       name = "rose-pine",
     },
+    -- solarized osaka
+    "https://github.com/craftzdog/solarized-osaka.nvim",
   })
 
   require("eldritch").setup({
@@ -40,6 +45,14 @@ M.setup = function()
   })
 
   require("rose-pine").setup()
+
+  require("solarized-osaka").setup({
+    transparent = true,
+    styles = {
+      sidebars = "dark",
+      floats = "dark",
+    },
+  })
 end
 
 M.load_theme = function()
