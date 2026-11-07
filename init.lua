@@ -1,6 +1,5 @@
 local th = require("config.theme")
 local sn = require("plugins.snacks")
-local org = require("plugins.org")
 local fzf = require("plugins.fzf")
 local ai = require("plugins.ai")
 
@@ -31,7 +30,6 @@ require("plugins.tmux-navigator")
 require("plugins.ts-autotag")
 require("plugins.undotree")
 require("plugins.visual-star-search")
-org.setup()
 
 require("config.autocmds")
 th.setup()
