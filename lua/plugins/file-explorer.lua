@@ -36,9 +36,6 @@ require("oil").setup({
   default_file_explorer = true,
   columns = {
     "icon",
-    "permissions",
-    "size",
-    "mtime",
   },
   -- Renaming/moving a file asks the LSP to update imports and saves the result
   lsp_file_methods = {
