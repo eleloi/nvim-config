@@ -35,6 +35,9 @@ cmp.setup({
 
     ["<C-b>"] = { "scroll_documentation_up", "fallback" },
     ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+
+    -- Invoca a minuet (MiniMax) manualmente en el menú de completado.
+    ["<A-y>"] = require("minuet").make_blink_map(),
   },
 
   appearance = {
@@ -61,6 +64,14 @@ cmp.setup({
         module = "blink-ripgrep",
         name = "Ripgrep",
         score_offset = -10,
+      },
+      -- Solo se dispara bajo demanda (tecla <A-y>), no automáticamente.
+      minuet = {
+        name = "minuet",
+        module = "minuet.blink",
+        async = true,
+        timeout_ms = 15000,
+        score_offset = 50,
       },
     },
   },
