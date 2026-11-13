@@ -220,11 +220,6 @@ end
 -- fugitive
 map("n", "<leader>gg", "<cmd>G<CR>", { desc = "git status" })
 
--- Autosuggestions
-local neocodeium = require("neocodeium")
-map("i", "<M-;>", neocodeium.accept, { desc = "accept suggestion" })
-map("i", "<M-w>", neocodeium.accept_word, { desc = "accept word" })
-map("i", "<M-l>", neocodeium.accept_line, { desc = "accept line" })
-map("i", "<M-c>", neocodeium.clear, { desc = "clear suggestion" })
-map("i", "<M-n>", neocodeium.cycle, { desc = "cycle suggestion" })
-map("i", "<M-v>", neocodeium.visible, { desc = "check suggestion visibility" })
+-- Autosuggestions (minuet): las teclas las define minuet en su setup
+-- (virtualtext.keymap): <M-;> aceptar, <M-l> aceptar línea, <M-c> descartar,
+-- <M-n>/<M-p> navegar y <A-y> completar con IA bajo demanda.
